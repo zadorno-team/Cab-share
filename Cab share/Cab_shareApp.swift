@@ -12,6 +12,7 @@ struct Cab_shareApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .preferredColorScheme(.dark)
         }
     }
 }
