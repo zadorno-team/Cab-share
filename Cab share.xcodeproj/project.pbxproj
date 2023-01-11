@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03EED84E296F08F500375523 /* RideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EED84D296F08F500375523 /* RideView.swift */; };
 		139B2FDF296EFCBB00C33E79 /* Cab_shareApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139B2FDE296EFCBB00C33E79 /* Cab_shareApp.swift */; };
 		139B2FE1296EFCBB00C33E79 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139B2FE0296EFCBB00C33E79 /* ContentView.swift */; };
 		139B2FE3296EFCBC00C33E79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 139B2FE2296EFCBC00C33E79 /* Assets.xcassets */; };
@@ -14,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		03EED84D296F08F500375523 /* RideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideView.swift; sourceTree = "<group>"; };
 		139B2FDB296EFCBB00C33E79 /* Cab share.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cab share.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		139B2FDE296EFCBB00C33E79 /* Cab_shareApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cab_shareApp.swift; sourceTree = "<group>"; };
 		139B2FE0296EFCBB00C33E79 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -53,6 +55,7 @@
 			children = (
 				139B2FDE296EFCBB00C33E79 /* Cab_shareApp.swift */,
 				139B2FE0296EFCBB00C33E79 /* ContentView.swift */,
+				03EED84D296F08F500375523 /* RideView.swift */,
 				139B2FE2296EFCBC00C33E79 /* Assets.xcassets */,
 				139B2FE4296EFCBC00C33E79 /* Preview Content */,
 			);
@@ -137,6 +140,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03EED84E296F08F500375523 /* RideView.swift in Sources */,
 				139B2FE1296EFCBB00C33E79 /* ContentView.swift in Sources */,
 				139B2FDF296EFCBB00C33E79 /* Cab_shareApp.swift in Sources */,
 			);
@@ -273,6 +277,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -302,6 +307,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
