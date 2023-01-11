@@ -14,7 +14,7 @@ struct MainView: View {
                 .tabItem {
                     Label("Ride", systemImage: "car.fill")
                 }
-            HistoryScreen()
+            HistoryView()
                 .tabItem {
                     Label("History", systemImage: "list.bullet")
                 }
