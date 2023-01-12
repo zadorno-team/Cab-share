@@ -12,8 +12,8 @@ struct UserView: View {
         NavigationView {
             VStack {
                 HStack {
-                    Text("Sasha Nicki")
-                        .font(.title)
+                    Text("Hello, Sasha! You're in Italy right now!")
+                        .font(.title2)
                         .bold()
                     Spacer()
                     VStack {
@@ -21,15 +21,71 @@ struct UserView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .clipShape(Circle())
-                            .frame(width: 200, height: 200)
-                            .padding(0)
                         Text("edit")
                     }
+                    .offset(x: 45, y: 0)
+                    }
+                .padding()
+                
+                VStack (alignment: .leading) {
+                    Text("Your name")
+                        .font(.headline)
+                    HStack {
+                        Text("Sasha Nicki")
+                            .font(.title)
+                            .bold()
+                        Spacer()
+                        Text("edit")
+                    }
+                    .padding(.bottom, 2)
+                    Text("Your age")
+                        .font(.headline)
+                    HStack {
+                        Text("26")
+                            .font(.title)
+                            .bold()
+                        Spacer()
+                        Text("edit")
+                    }
+                    .padding(.bottom, 2)
+                    
+                    Text("Your hometown")
+                        .font(.headline)
+                    HStack {
+                        Text("Portici")
+                            .font(.title)
+                            .bold()
+                        Spacer()
+                        Text("edit")
+                    }
+                    .padding(.bottom, 2)
+
+                    Text("Your login")
+                        .font(.headline)
+                    HStack {
+                        Text("sashenka@gmail.com")
+                            .font(.title)
+                            .bold()
+                        Spacer()
+                        Text("edit")
+                    }
+                    .padding(.bottom, 2)
+                    
+                    Text("Your password")
+                        .font(.headline)
+                    HStack {
+                        Text("HelloWorld2022")
+                            .font(.title)
+                            .bold()
+                        Spacer()
+                        Text("edit")
+                    }
+                    .padding(.bottom, 2)
                 }
                 .padding()
                 Spacer()
-                Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-
+//                .padding()
+            
             }
             .navigationTitle("User")
             .preferredColorScheme(.dark)

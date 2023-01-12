@@ -22,7 +22,7 @@ struct RideView: View {
                 VStack {
                     HStack{
                         Text("Hello, Sasha! Nice to see you in the  International Airport of Naples!")
-                            .foregroundColor(.white)
+//                            .foregroundColor(.white)
                             .padding(20)
                         VStack{
                             Image(systemName: "cloud.sun.fill")
