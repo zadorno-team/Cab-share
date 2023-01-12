@@ -16,13 +16,12 @@ struct SearchBar: View {
             HStack {
                 Image(systemName: "magnifyingglass")
                     .foregroundColor(Color.black)
-                TextField("Where to?", text: $searchText)
-                    .foregroundColor(.black)
+                CustomTextField(placeholder: Text("Where to?").foregroundColor(.black), text: $searchText)
                 Button(action: {
                     self.searchText = ""
                 }, label: {
                     if !searchText.isEmpty {
-                        Image(systemName: "xmark.circle.fill").foregroundColor(.secondary)
+                        Image(systemName: "xmark.circle.fill").foregroundColor(.black)
                     }})
             }.padding()
 
@@ -33,6 +32,17 @@ struct SearchBar: View {
 //                    Text($0)
 //                }
 //            }
+        }
+    }
+}
+
+struct CustomTextField: View {
+    var placeholder: Text
+    @Binding var text: String
+    var body: some View {
+        ZStack(alignment: .leading) {
+            if text.isEmpty { placeholder }
+            TextField("", text: $text)
         }
     }
 }
