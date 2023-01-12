@@ -11,7 +11,7 @@ import SwiftUI
 struct Cab_shareApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainView()
                 .preferredColorScheme(.dark)
         }
     }
