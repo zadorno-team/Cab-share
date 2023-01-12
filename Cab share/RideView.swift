@@ -9,7 +9,8 @@ import MapKit
 import SwiftUI
 
 struct RideView: View {
-    @State var text: String
+    @State var flightNumber: String = ""
+    @State var numPeople: String = ""
     var body: some View {
         NavigationView {
             ScrollView{
@@ -26,75 +27,72 @@ struct RideView: View {
                                 .opacity(0.7)
                         }
                     }.frame(width: 350)
-                    .background(Color.blue)
+                        .background(Color.blue)
                         .cornerRadius(25)
                         .padding(.top, 5)
-
-                        TextField("Search ...", text: $text)
-                            .overlay(
-                                HStack{Image(systemName: "magnifyingglass")
-                                        .foregroundColor(Color.black)
-                                        .padding(.leading, 30)
-                                    Text("Where to?")
-                                        .foregroundColor(.black)
-                                    Spacer()})
+                    
+                    SearchBar()
                         .frame(width: 350, height: 60)
-                        .foregroundColor(.black)
-                        .background(Color.white)
-                            .cornerRadius(25)
-                            .padding(20)
-                                        
-                        HStack{
-                            Image(systemName: "airplane.departure")
-                                .foregroundColor(.gray)
-                                .font(.system(size: 30))
-                            Text("Which flight you had?")
-                                .foregroundColor(.gray)
-                                .padding(.leading, 10)
-                            Spacer()
-                        }.padding(.leading, 25)
-        //                    .overlay(Rectangle().frame(width: 300, height: 1, alignment: .trailing).foregroundColor(Color.gray), alignment: .bottom)
-                        Divider()
-                            .frame(width: 300)
+                        .background(.white)
+                        .cornerRadius(25)
+                        .padding(20)
+                    
+                    
+                    HStack {
+                        Image(systemName: "airplane.departure")
+                            .foregroundColor(.gray)
+                            .font(.system(size: 30))
+                        TextField("Which flight you had?", text: $flightNumber)
+                            .foregroundColor(.gray)
+                        Button(action: {
+                            self.flightNumber = ""
+                        }, label: {
+                            if !flightNumber.isEmpty {
+                                Image(systemName: "xmark.circle.fill").foregroundColor(.secondary)
+                            }})
+                    }.padding()
+                    
+                    HStack {
+                        Image(systemName: "person.fill")
+                            .foregroundColor(.gray)
+                            .font(.system(size: 30))
+                        TextField("   How many people with you?", text: $numPeople)
+                            .foregroundColor(.gray)
+                        Button(action: {
+                            self.numPeople = ""
+                        }, label: {
+                            if !numPeople.isEmpty {
+                                Image(systemName: "xmark.circle.fill").foregroundColor(.secondary)
+                            }})
+                    }.padding(.leading)
+                    
+                    
+                    Button{
                         
-                        HStack{
-                            Image(systemName: "person.fill")
-                                .foregroundColor(.gray)
-                                .font(.system(size: 30))
-                            Text("   How many people with you?")
-                                .foregroundColor(.gray)
-                                .padding(.leading, 10)
-                            Spacer()
-                        }.padding(.leading, 25)
-                        Divider()
-                            .frame(width: 300)
+                    } label: {
+                        Image(systemName: "star.fill")
+                            .foregroundColor(.gray)
+                        Text("Choose a saved place")
+                            .foregroundColor(.gray)
+                        Spacer()
+                    }
+                    .padding([.top,.bottom])
+                    .padding(.leading,25)
+                    
+                    Button{
                         
-                        Button{
-                            
-                        } label: {
-                            Image(systemName: "star.fill")
-                                .foregroundColor(.gray)
-                            Text("Choose a saved place")
-                                .foregroundColor(.gray)
-                            Spacer()
-                        }
-                        .padding([.top,.bottom])
-                        .padding(.leading,25)
-                        
-                        Button{
-                            
-                        } label: {
-                            Image(systemName: "figure.run")
-                                .foregroundColor(.gray)
-                            Text("Choose an already made journey")
-                                .foregroundColor(.gray)
-                            Spacer()
-                        }.padding(.leading,25)
+                    } label: {
+                        Image(systemName: "figure.run")
+                            .foregroundColor(.gray)
+                        Text("Choose an already made journey")
+                            .foregroundColor(.gray)
+                        Spacer()
+                    }.padding(.leading,25)
                         .padding(.bottom)
-                        
-                        Map(coordinateRegion: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))), interactionModes: [])
-                            .frame(width: 350, height: 200)
-                            .cornerRadius(25)
+                    
+                    Map(coordinateRegion: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))), interactionModes: [])
+                        .frame(width: 350, height: 200)
+                        .cornerRadius(25)
                     
                     Button{
                         
@@ -104,15 +102,15 @@ struct RideView: View {
                         Text("Search")
                             .foregroundColor(.black)
                     }.frame(width: 350, height: 50)
-                    .background(.white)
+                        .background(.white)
                         .cornerRadius(25)
                         .padding()
-
+                    
+                }
+                
             }
-
-        }
             .navigationTitle(Text("Ride")
-            .foregroundColor(.white))
+                .foregroundColor(.white))
             .preferredColorScheme(.dark)
         }
     }
@@ -120,6 +118,6 @@ struct RideView: View {
 
 struct RideView_Previews: PreviewProvider {
     static var previews: some View {
-        RideView(text: "")
+        RideView()
     }
 }

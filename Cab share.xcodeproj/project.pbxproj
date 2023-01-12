@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03180E2D2970365D008D8B4B /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03180E2C2970365D008D8B4B /* SearchBar.swift */; };
 		03EED84E296F08F500375523 /* RideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EED84D296F08F500375523 /* RideView.swift */; };
 		139B2FDF296EFCBB00C33E79 /* Cab_shareApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139B2FDE296EFCBB00C33E79 /* Cab_shareApp.swift */; };
 		139B2FE1296EFCBB00C33E79 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139B2FE0296EFCBB00C33E79 /* ContentView.swift */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		03180E2C2970365D008D8B4B /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		03EED84D296F08F500375523 /* RideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideView.swift; sourceTree = "<group>"; };
 		139B2FDB296EFCBB00C33E79 /* Cab share.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cab share.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		139B2FDE296EFCBB00C33E79 /* Cab_shareApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cab_shareApp.swift; sourceTree = "<group>"; };
@@ -53,6 +55,7 @@
 		139B2FDD296EFCBB00C33E79 /* Cab share */ = {
 			isa = PBXGroup;
 			children = (
+				03180E2C2970365D008D8B4B /* SearchBar.swift */,
 				139B2FDE296EFCBB00C33E79 /* Cab_shareApp.swift */,
 				139B2FE0296EFCBB00C33E79 /* ContentView.swift */,
 				03EED84D296F08F500375523 /* RideView.swift */,
@@ -141,6 +144,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				03EED84E296F08F500375523 /* RideView.swift in Sources */,
+				03180E2D2970365D008D8B4B /* SearchBar.swift in Sources */,
 				139B2FE1296EFCBB00C33E79 /* ContentView.swift in Sources */,
 				139B2FDF296EFCBB00C33E79 /* Cab_shareApp.swift in Sources */,
 			);
