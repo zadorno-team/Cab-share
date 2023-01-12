@@ -18,6 +18,7 @@
 		139B2FE3296EFCBC00C33E79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 139B2FE2296EFCBC00C33E79 /* Assets.xcassets */; };
 		139B2FE6296EFCBC00C33E79 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 139B2FE5296EFCBC00C33E79 /* Preview Assets.xcassets */; };
 		139B2FEF296F138700C33E79 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139B2FEE296F138700C33E79 /* MainView.swift */; };
+		2AA545D7297063120058CAE2 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA545D6297063120058CAE2 /* LoginView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		139B2FE2296EFCBC00C33E79 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		139B2FE5296EFCBC00C33E79 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		139B2FEE296F138700C33E79 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		2AA545D6297063120058CAE2 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 			isa = PBXGroup;
 			children = (
 				139B2FDE296EFCBB00C33E79 /* Cab_shareApp.swift */,
+				2AA545D6297063120058CAE2 /* LoginView.swift */,
 				139B2FEE296F138700C33E79 /* MainView.swift */,
 				139B2FE0296EFCBB00C33E79 /* ContentView.swift */,
 				03EED84D296F08F500375523 /* RideView.swift */,
@@ -166,6 +169,7 @@
 				133E35A2296F15520014CFC9 /* UserView.swift in Sources */,
 				03180E2F29704CD4008D8B4B /* DataController.swift in Sources */,
 				139B2FEF296F138700C33E79 /* MainView.swift in Sources */,
+				2AA545D7297063120058CAE2 /* LoginView.swift in Sources */,
 				139B2FDF296EFCBB00C33E79 /* Cab_shareApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
