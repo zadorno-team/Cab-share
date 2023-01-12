@@ -6,9 +6,17 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct HistoryView: View {
-    struct Ride: Identifiable {
+    
+    @Environment(\.managedObjectContext) var moc
+    
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Ride.date, ascending: false)]
+    ) var rides: FetchedResults<Ride>
+    
+    
+    struct RideHistory: Identifiable {
         let id = UUID()
         let date: String
         let from: String
@@ -16,12 +24,12 @@ struct HistoryView: View {
     }
     
     var previousRides = [
-        Ride(date: "3 November, 2022", from: "International Airport of Naples", to: "Portici"),
-        Ride(date: "12 December, 2022", from: "International Airport of Naples", to: "Portici")
+        RideHistory(date: "3 November, 2022", from: "International Airport of Naples", to: "Portici"),
+        RideHistory(date: "12 December, 2022", from: "International Airport of Naples", to: "Portici")
     ]
     
     struct previousRidesRowView: View {
-        var ride: Ride
+        var ride: RideHistory
         
         var body: some View {
             HStack {

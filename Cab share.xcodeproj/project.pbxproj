@@ -65,15 +65,15 @@
 		139B2FDD296EFCBB00C33E79 /* Cab share */ = {
 			isa = PBXGroup;
 			children = (
-				03180E3029704CF1008D8B4B /* UserData.xcdatamodeld */,
-				03180E2E29704CD4008D8B4B /* DataController.swift */,
-				03180E2C2970365D008D8B4B /* SearchBar.swift */,
 				139B2FDE296EFCBB00C33E79 /* Cab_shareApp.swift */,
 				139B2FEE296F138700C33E79 /* MainView.swift */,
 				139B2FE0296EFCBB00C33E79 /* ContentView.swift */,
 				03EED84D296F08F500375523 /* RideView.swift */,
 				133E35A3296F15690014CFC9 /* HistoryView.swift */,
 				133E35A1296F15520014CFC9 /* UserView.swift */,
+				03180E2C2970365D008D8B4B /* SearchBar.swift */,
+				03180E3029704CF1008D8B4B /* UserData.xcdatamodeld */,
+				03180E2E29704CD4008D8B4B /* DataController.swift */,
 				139B2FE2296EFCBC00C33E79 /* Assets.xcassets */,
 				139B2FE4296EFCBC00C33E79 /* Preview Content */,
 			);

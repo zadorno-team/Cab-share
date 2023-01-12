@@ -15,7 +15,7 @@ struct UserView: View {
                     Text("Hello, Sasha! You're in Italy right now!")
                         .font(.title2)
                         .bold()
-                    
+                    Spacer()
                     VStack {
                         Image("sasha")
                             .resizable()
