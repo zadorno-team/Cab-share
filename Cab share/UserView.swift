@@ -32,6 +32,7 @@ struct UserView: View {
 
             }
             .navigationTitle("User")
+            .preferredColorScheme(.dark)
             
         }
         
