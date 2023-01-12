@@ -109,8 +109,7 @@ struct RideView: View {
                 }
                 
             }
-            .navigationTitle(Text("Ride")
-                .foregroundColor(.white))
+            .navigationTitle("Ride")
             .preferredColorScheme(.dark)
         }
     }
