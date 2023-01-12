@@ -17,7 +17,7 @@ struct RideView: View {
                 VStack {
                     HStack{
                         Text("Hello, Sasha! Nice to see you in the  International Airport of Naples!")
-                            .foregroundColor(.white)
+//                            .foregroundColor(.white)
                             .padding(20)
                         VStack{
                             Image(systemName: "cloud.sun.fill")
@@ -56,7 +56,7 @@ struct RideView: View {
                         Image(systemName: "person.fill")
                             .foregroundColor(.gray)
                             .font(.system(size: 30))
-                        TextField("   How many people with you?", text: $numPeople)
+                        TextField("How many people with you?", text: $numPeople)
                             .foregroundColor(.gray)
                         Button(action: {
                             self.numPeople = ""
