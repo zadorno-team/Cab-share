@@ -43,7 +43,6 @@ struct CustomTextField: View {
         ZStack(alignment: .leading) {
             if text.isEmpty { placeholder }
             TextField("", text: $text)
-                .foregroundColor(.black)
         }
     }
 }

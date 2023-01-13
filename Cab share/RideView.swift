@@ -41,6 +41,7 @@ struct RideView: View {
                         .background(.white)
                         .cornerRadius(25)
                         .padding(20)
+                        .foregroundColor(.black)
                     
                     
                     HStack{
@@ -52,6 +53,7 @@ struct RideView: View {
                         VStack{
                             HStack{
                                 CustomTextField(placeholder: Text("Which flight you had?").foregroundColor(.gray), text: $flightNumber)
+                                    .foregroundColor(.white)
                                 Button(action: {
                                     self.flightNumber = ""
                                 }, label: {
