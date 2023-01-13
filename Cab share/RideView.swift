@@ -14,7 +14,6 @@ struct RideView: View {
     @State private var showPicker = false
     @State private var savedPlace = false
     @State private var alreadyMade = false
-    @State private var peopleNumber: String = "How many people with you?"
     let numbers = Array(1...10)
     var body: some View {
         NavigationView {
@@ -22,7 +21,7 @@ struct RideView: View {
                 VStack {
                     HStack{
                         Text("Hello, Sasha! Nice to see you in the  International Airport of Naples!")
-//                            .foregroundColor(.white)
+                        //                            .foregroundColor(.white)
                             .padding(20)
                         VStack{
                             Image(systemName: "cloud.sun.fill")
@@ -45,11 +44,11 @@ struct RideView: View {
                     
                     
                     HStack{
-                        VStack{
-                            Image(systemName: "airplane.departure")
-                                .foregroundColor(.gray)
-                                .font(.system(size: 30))
-                        }
+                        //                        VStack{
+                        Image(systemName: "airplane.departure")
+                            .foregroundColor(.gray)
+                            .font(.system(size: 30))
+                        //                        }
                         VStack{
                             HStack{
                                 CustomTextField(placeholder: Text("Which flight you had?").foregroundColor(.gray), text: $flightNumber)
@@ -65,15 +64,15 @@ struct RideView: View {
                     }.padding(.leading, 25)
                     
                     HStack{
-                        VStack{
-                            Image(systemName: "person.fill")
-                                .foregroundColor(.gray)
-                                .font(.system(size:30))
-                        }
+                        //                        VStack{
+                        Image(systemName: "person.fill")
+                            .foregroundColor(.gray)
+                            .font(.system(size:30))
+                        //                        }
                         VStack{
                             Button {
                                 self.showPicker = true
-                                peopleNumber = ""
+                                
                             } label: {
                                 if showPicker{
                                     Picker("Select a number", selection: self.$selectedNumber) {
@@ -115,7 +114,7 @@ struct RideView: View {
                     }.padding(.leading,25)
                         .padding(.bottom)
                         .sheet(isPresented: $alreadyMade){
-                            
+#warning("You need to fill it someday")
                         }
                     
                     Map(coordinateRegion: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))), interactionModes: [])

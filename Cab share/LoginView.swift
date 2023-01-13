@@ -12,7 +12,7 @@ struct LoginView: View {
     @State private var password = ""
     @State private var wrongEmail = 0
     @State private var wrongPassword = 0
-    @State private var showingLoginScreen = false
+    @State private var isShowingLoginScreen = false
     
     var body: some View {
         NavigationView {
@@ -51,7 +51,7 @@ struct LoginView: View {
                     .background(.black)
                     .cornerRadius(10)
                     
-                    NavigationLink(destination: Text("You are logged in \(email)"), isActive: $showingLoginScreen) {
+                    NavigationLink(destination: Text("You are logged in \(email)"), isActive: $isShowingLoginScreen) {
                         EmptyView()
                     }
 
@@ -66,7 +66,7 @@ struct LoginView: View {
             wrongEmail = 0
             if password.lowercased() == "123" {
                 wrongPassword = 0
-                showingLoginScreen = true
+                isShowingLoginScreen = true
             } else {
                 wrongPassword = 2
             }

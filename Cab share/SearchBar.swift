@@ -37,12 +37,12 @@ struct SearchBar: View {
 }
 
 struct CustomTextField: View {
-    var placeholder: Text
+    let placeholder: Text
     @Binding var text: String
     var body: some View {
         ZStack(alignment: .leading) {
             if text.isEmpty { placeholder }
-            TextField("", text: $text)
+            TextField("", text: $text).tint(.black)
         }
     }
 }
