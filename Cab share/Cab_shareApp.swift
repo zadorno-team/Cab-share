@@ -10,9 +10,9 @@ import CoreData
 
 @main
 struct Cab_shareApp: App {
-    
+
     @StateObject var dataController = DataController()
-    
+
     var body: some Scene {
         WindowGroup {
             MainView()

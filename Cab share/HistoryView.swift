@@ -16,18 +16,17 @@ struct RideHistory: Identifiable {
 }
 
 struct HistoryView: View {
-    
+
     @Environment(\.managedObjectContext) var moc
-    
+
     @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Ride.date, ascending: false)]
     ) var rides: FetchedResults<Ride>
-    
+
     var previousRides = [
         RideHistory(date: "3 November, 2022", from: "International Airport of Naples", to: "Portici"),
         RideHistory(date: "12 December, 2022", from: "International Airport of Naples", to: "Portici")
     ]
 
-    
     var body: some View {
         NavigationView {
             List {

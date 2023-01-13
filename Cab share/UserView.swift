@@ -26,8 +26,8 @@ struct UserView: View {
                     .offset(x: 45, y: 0)
                     }
                 .padding()
-                
-                VStack (alignment: .leading) {
+
+                VStack(alignment: .leading) {
                     Text("Your name")
                         .font(.headline)
                     HStack {
@@ -48,7 +48,7 @@ struct UserView: View {
                         Text("edit")
                     }
                     .padding(.bottom, 2)
-                    
+
                     Text("Your hometown")
                         .font(.headline)
                     HStack {
@@ -70,7 +70,7 @@ struct UserView: View {
                         Text("edit")
                     }
                     .padding(.bottom, 2)
-                    
+
                     Text("Your password")
                         .font(.headline)
                     HStack {
@@ -85,13 +85,13 @@ struct UserView: View {
                 .padding()
                 Spacer()
 //                .padding()
-            
+
             }
             .navigationTitle("User")
             .preferredColorScheme(.dark)
-            
+
         }
-        
+
     }
 }
 
