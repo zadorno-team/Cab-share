@@ -7,12 +7,10 @@
 
 import SwiftUI
 
-
-
 struct HistoryRowView: View {
-    
+
     var ride: RideHistory
-    
+
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: 3) {

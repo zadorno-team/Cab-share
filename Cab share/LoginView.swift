@@ -13,7 +13,7 @@ struct LoginView: View {
     @State private var wrongEmail = 0
     @State private var wrongPassword = 0
     @State private var isShowingLoginScreen = false
-    
+
     var body: some View {
         NavigationView {
             ZStack {
@@ -25,7 +25,7 @@ struct LoginView: View {
                 Circle()
                     .scale(1.2)
                     .foregroundColor(.white.opacity(0.15))
-                
+
                 VStack {
                     Text("Login")
                         .font(.largeTitle)
@@ -42,7 +42,7 @@ struct LoginView: View {
                         .frame(width: 300, height: 50)
                         .background(Color.white)
                         .cornerRadius(10)
-                    
+
                     Button("Login") {
                         autheticateUser(email: email, password: password)
                     }
@@ -50,7 +50,7 @@ struct LoginView: View {
                     .frame(width: 300, height: 50)
                     .background(.black)
                     .cornerRadius(10)
-                    
+
                     NavigationLink(destination: Text("You are logged in \(email)"), isActive: $isShowingLoginScreen) {
                         EmptyView()
                     }
@@ -60,7 +60,7 @@ struct LoginView: View {
             .navigationBarHidden(true)
         }
     }
-    
+
     func autheticateUser(email: String, password: String) {
         if email.lowercased() == "123" {
             wrongEmail = 0
@@ -71,7 +71,7 @@ struct LoginView: View {
                 wrongPassword = 2
             }
         } else {
-            wrongPassword = 2 
+            wrongPassword = 2
         }
     }
 }

@@ -17,13 +17,13 @@ struct RideView: View {
     let numbers = Array(1...10)
     var body: some View {
         NavigationView {
-            ScrollView{
+            ScrollView {
                 VStack {
-                    HStack{
+                    HStack {
                         Text("Hello, Sasha! Nice to see you in the  International Airport of Naples!")
                         //                            .foregroundColor(.white)
                             .padding(20)
-                        VStack{
+                        VStack {
                             Image(systemName: "cloud.sun.fill")
                                 .foregroundColor(.yellow)
                                 .font(.system(size: 45))
@@ -34,23 +34,22 @@ struct RideView: View {
                         .background(Color.blue)
                         .cornerRadius(25)
                         .padding(.top, 5)
-                    
+
                     SearchBar()
                         .frame(width: 350, height: 60)
                         .background(.white)
                         .cornerRadius(25)
                         .padding(20)
                         .foregroundColor(.black)
-                    
-                    
-                    HStack{
+
+                    HStack {
                         //                        VStack{
                         Image(systemName: "airplane.departure")
                             .foregroundColor(.gray)
                             .font(.system(size: 30))
                         //                        }
-                        VStack{
-                            HStack{
+                        VStack {
+                            HStack {
                                 CustomTextField(placeholder: Text("Which flight you had?").foregroundColor(.gray), text: $flightNumber)
                                     .foregroundColor(.white)
                                 Button(action: {
@@ -62,33 +61,33 @@ struct RideView: View {
                             }
                         }.padding()
                     }.padding(.leading, 25)
-                    
-                    HStack{
+
+                    HStack {
                         //                        VStack{
                         Image(systemName: "person.fill")
                             .foregroundColor(.gray)
-                            .font(.system(size:30))
+                            .font(.system(size: 30))
                         //                        }
-                        VStack{
+                        VStack {
                             Button {
                                 self.showPicker = true
-                                
+
                             } label: {
-                                if showPicker{
+                                if showPicker {
                                     Picker("Select a number", selection: self.$selectedNumber) {
                                         ForEach(self.numbers, id: \.self) { number in
                                             Text("\(number)")
                                         }
                                     }
-                                }else {
+                                } else {
                                     Text("How many people with you?").padding(.trailing, 25)
                                 }
-                            }.frame(width: 260,height: 10)
+                            }.frame(width: 260, height: 10)
                                 .accentColor(.gray)
                         }.padding()
                     }
-                    
-                    Button{
+
+                    Button {
                         self.savedPlace.toggle()
                     } label: {
                         Image(systemName: "star.fill")
@@ -97,13 +96,13 @@ struct RideView: View {
                             .foregroundColor(.gray)
                         Spacer()
                     }
-                    .padding([.top,.bottom])
-                    .padding(.leading,25)
-                    .sheet(isPresented: $savedPlace){
-                        
+                    .padding([.top, .bottom])
+                    .padding(.leading, 25)
+                    .sheet(isPresented: $savedPlace) {
+
                     }
-                    
-                    Button{
+
+                    Button {
                         self.alreadyMade.toggle()
                     } label: {
                         Image(systemName: "figure.run")
@@ -111,19 +110,19 @@ struct RideView: View {
                         Text("Choose an already made journey")
                             .foregroundColor(.gray)
                         Spacer()
-                    }.padding(.leading,25)
+                    }.padding(.leading, 25)
                         .padding(.bottom)
-                        .sheet(isPresented: $alreadyMade){
+                        .sheet(isPresented: $alreadyMade) {
 #warning("You need to fill it someday")
                         }
-                    
+
                     Map(coordinateRegion: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))), interactionModes: [])
                         .frame(width: 350, height: 200)
                         .cornerRadius(25)
-                    
-                    Button{
-                        
-                    } label:{
+
+                    Button {
+
+                    } label: {
                         Image(systemName: "magnifyingglass")
                             .foregroundColor(.black)
                         Text("Search")
@@ -132,9 +131,9 @@ struct RideView: View {
                         .background(.white)
                         .cornerRadius(25)
                         .padding()
-                    
+
                 }
-                
+
             }
             .navigationTitle("Ride")
             .preferredColorScheme(.dark)
