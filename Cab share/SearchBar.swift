@@ -36,17 +36,6 @@ struct SearchBar: View {
     }
 }
 
-struct CustomTextField: View {
-    let placeholder: Text
-    @Binding var text: String
-    var body: some View {
-        ZStack(alignment: .leading) {
-            if text.isEmpty { placeholder }
-            TextField("", text: $text).tint(.black)
-        }
-    }
-}
-
 struct SearchBar_Previews: PreviewProvider {
     static var previews: some View {
         SearchBar()
