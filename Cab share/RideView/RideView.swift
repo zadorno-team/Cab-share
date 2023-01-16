@@ -34,14 +34,12 @@ struct RideView: View {
                         .background(Color.blue)
                         .cornerRadius(25)
                         .padding(.top, 5)
-                    
                     SearchBar()
                         .frame(width: 350, height: 60)
                         .background(.white)
                         .cornerRadius(25)
                         .padding(20)
                         .foregroundColor(.black)
-                    
                     HStack {
                         //                        VStack{
                         Image(systemName: "airplane.departure")
@@ -62,7 +60,6 @@ struct RideView: View {
                             }
                         }.padding()
                     }.padding(.leading, 25)
-                    
                     HStack {
                         //                        VStack{
                         Image(systemName: "person.fill")
@@ -72,7 +69,6 @@ struct RideView: View {
                         VStack {
                             Button {
                                 self.showPicker = true
-                                
                             } label: {
                                 if showPicker {
                                     Picker("Select a number", selection: self.$selectedNumber) {
@@ -87,7 +83,6 @@ struct RideView: View {
                                 .accentColor(.gray)
                         }.padding()
                     }
-                    
                     Button {
                         self.savedPlace.toggle()
                     } label: {
@@ -100,9 +95,7 @@ struct RideView: View {
                     .padding([.top, .bottom])
                     .padding(.leading, 25)
                     .sheet(isPresented: $savedPlace) {
-                        
                     }
-                    
                     Button {
                         self.alreadyMade.toggle()
                     } label: {
@@ -115,15 +108,14 @@ struct RideView: View {
                         .padding(.bottom)
                         .sheet(isPresented: $alreadyMade) {
                         }
-                    
-                    Map(coordinateRegion: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275), span:
-                                                                        MKCoordinateSpan(latitudeDelta: 0.5,
-                                                                            longitudeDelta: 0.5))), interactionModes: [])
+                    Map(coordinateRegion: .constant(MKCoordinateRegion(
+                        center: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275),
+                        span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))),
+                        interactionModes: [])
                     .frame(width: 350, height: 200)
                     .cornerRadius(25)
-                    
                     Button {
-                        
+                        #warning("We should fill this space in my heart")
                     } label: {
                         Image(systemName: "magnifyingglass")
                             .foregroundColor(.black)
@@ -133,9 +125,7 @@ struct RideView: View {
                         .background(.white)
                         .cornerRadius(25)
                         .padding()
-                    
                 }
-                
             }
             .navigationTitle("Ride")
             .preferredColorScheme(.dark)
