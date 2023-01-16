@@ -9,7 +9,7 @@ import SwiftUI
 import CoreData
 
 @main
-struct Cab_shareApp: App {
+struct CabShareApp: App {
 
     @StateObject var dataController = DataController()
 
