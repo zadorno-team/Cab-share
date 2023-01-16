@@ -18,8 +18,8 @@ struct HistoryRowView: View {
                     .foregroundColor(.primary)
                     .font(.headline)
                 VStack(alignment: .leading, spacing: 3) {
-                    Text("from: \(ride.from)")
-                    Text("to: \(ride.to)")
+                    Text("from: \(ride.goFrom)")
+                    Text("to: \(ride.goTo)")
                 }
                 .foregroundColor(.secondary)
                 .font(.subheadline)
@@ -32,6 +32,6 @@ struct HistoryRowView: View {
 
 struct HistoryRowView_Previews: PreviewProvider {
     static var previews: some View {
-        HistoryRowView(ride: RideHistory(date: "3 November, 2022", from: "International Airport of Naples", to: "Portici"))
+        HistoryRowView(ride: RideHistory(date: "3 November, 2022", goFrom: "International Airport of Naples", goTo: "Portici"))
     }
 }

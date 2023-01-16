@@ -11,8 +11,8 @@ import CoreData
 struct RideHistory: Identifiable {
     let id = UUID()
     let date: String
-    let from: String
-    let to: String
+    let goFrom: String
+    let goTo: String
 }
 
 struct HistoryView: View {
@@ -23,8 +23,8 @@ struct HistoryView: View {
     ) var rides: FetchedResults<Ride>
 
     var previousRides = [
-        RideHistory(date: "3 November, 2022", from: "International Airport of Naples", to: "Portici"),
-        RideHistory(date: "12 December, 2022", from: "International Airport of Naples", to: "Portici")
+        RideHistory(date: "3 November, 2022", goFrom: "International Airport of Naples", goTo: "Portici"),
+        RideHistory(date: "12 December, 2022", goFrom: "International Airport of Naples", goTo: "Portici")
     ]
 
     var body: some View {
