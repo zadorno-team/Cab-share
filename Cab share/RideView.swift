@@ -114,7 +114,6 @@ struct RideView: View {
                     }.padding(.leading, 25)
                         .padding(.bottom)
                         .sheet(isPresented: $alreadyMade) {
-#warning("You need to fill it someday")
                         }
 
                     Map(coordinateRegion: .constant(

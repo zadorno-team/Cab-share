@@ -32,6 +32,9 @@ struct HistoryRowView: View {
 
 struct HistoryRowView_Previews: PreviewProvider {
     static var previews: some View {
-        HistoryRowView(ride: RideHistory(date: "3 November, 2022", goFrom: "International Airport of Naples", goTo: "Portici"))
+        HistoryRowView(ride: RideHistory(
+            date: "3 November, 2022",
+            goFrom: "International Airport of Naples",
+            goTo: "Portici"))
     }
 }
