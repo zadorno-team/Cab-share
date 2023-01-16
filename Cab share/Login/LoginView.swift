@@ -6,12 +6,27 @@
 //
 
 import SwiftUI
+import FirebaseCore
+import FirebaseAuth
 
 struct LoginView: View {
     @State private var email = ""
     @State private var password = ""
-    @State private var signIn = false
+    @State private var signInView = false
+    @State private var userIsLoggedIn = false
+    @State private var userSignedUp = false
+    @State private var userSignedIn = false
     var body: some View {
+        if userSignedIn {
+            MainView()
+        } else if userSignedUp {
+            UserView()
+        } else {
+            content
+        }
+    }
+    
+    var content: some View {
         NavigationView {
             ZStack {
                 Circle()
@@ -21,7 +36,7 @@ struct LoginView: View {
                     .scale(1.2)
                     .foregroundColor(.white.opacity(0.15))
                 VStack {
-                    if signIn {
+                    if signInView {
                         Text("Sign In")
                             .font(.system(size: 60))
                             .animation(.spring())
@@ -31,9 +46,9 @@ struct LoginView: View {
                             .animation(.easeIn(duration: 3))
                     }
                     Button {
-                        signIn.toggle()
+                        signInView.toggle()
                     } label: {
-                        if signIn {
+                        if signInView {
                             Text("or sign up")
                                 .font(.system(size: 23))
                                 .underline()
@@ -58,9 +73,9 @@ struct LoginView: View {
                         .background(Color.white)
                         .cornerRadius(25)
                         .foregroundColor(.black)
-                    if signIn {
+                    if signInView {
                         Button("Sign In") {
-                            //
+                            signIn()
                         }.foregroundColor(.white)
                             .frame(width: 300, height: 50)
                             .background(.black)
@@ -68,7 +83,7 @@ struct LoginView: View {
                             .padding(.top, 30)
                     } else {
                         Button("Sign Up") {
-                            //
+                            signUp()
                         }.foregroundColor(.white)
                             .frame(width: 300, height: 50)
                             .background(.black)
@@ -101,7 +116,31 @@ struct LoginView: View {
             }
             .navigationBarHidden(true)
             .preferredColorScheme(.dark)
+//            .onAppear{
+//                Auth.auth().addStateDidChangeListener{ auth, user in
+//                    if user != nil {
+//                        userIsLoggedIn.toggle()
+//                    }}
+//            }
         }
+    }
+    func signUp() {
+        Auth.auth().createUser(withEmail: email, password: password) {
+            result, error in
+            if error != nil {
+                print(error!.localizedDescription)
+            }
+        }
+        userSignedUp.toggle()
+    }
+    func signIn() {
+        Auth.auth().signIn(withEmail: email, password: password) {
+            result, error in
+            if error != nil {
+                print(error!.localizedDescription)
+            }
+        }
+        userSignedIn.toggle()
     }
 }
 
