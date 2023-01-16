@@ -50,7 +50,8 @@ struct RideView: View {
                         //                        }
                         VStack {
                             HStack {
-                                CustomTextField(placeholder: Text("Which flight you had?").foregroundColor(.gray), text: $flightNumber)
+                                CustomTextField(placeholder: Text("Which flight you had?")
+                                    .foregroundColor(.gray), text: $flightNumber)
                                     .foregroundColor(.white)
                                 Button(action: {
                                     self.flightNumber = ""
@@ -116,7 +117,11 @@ struct RideView: View {
 #warning("You need to fill it someday")
                         }
 
-                    Map(coordinateRegion: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))), interactionModes: [])
+                    Map(coordinateRegion: .constant(
+                        MKCoordinateRegion(
+                        center: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275),
+                        span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))),
+                        interactionModes: [])
                         .frame(width: 350, height: 200)
                         .cornerRadius(25)
 
