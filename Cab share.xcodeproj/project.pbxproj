@@ -10,6 +10,8 @@
 		03180E2D2970365D008D8B4B /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03180E2C2970365D008D8B4B /* SearchBar.swift */; };
 		03180E2F29704CD4008D8B4B /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03180E2E29704CD4008D8B4B /* DataController.swift */; };
 		03180E3229704CF1008D8B4B /* UserData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 03180E3029704CF1008D8B4B /* UserData.xcdatamodeld */; };
+		0352C6472976DC4F005080D5 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0352C6462976DC4F005080D5 /* LoginViewModel.swift */; };
+		0352C64B2976EB83005080D5 /* RoutingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0352C64A2976EB83005080D5 /* RoutingView.swift */; };
 		03B048402971A69400A3D526 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B0483F2971A69400A3D526 /* CustomTextField.swift */; };
 		03B10C252975A19200D7BA14 /* CustomSecureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B10C242975A19200D7BA14 /* CustomSecureField.swift */; };
 		03B10C272975AC6600D7BA14 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 03B10C262975AC6600D7BA14 /* GoogleService-Info.plist */; };
@@ -30,6 +32,8 @@
 		03180E2C2970365D008D8B4B /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		03180E2E29704CD4008D8B4B /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		03180E3129704CF1008D8B4B /* UserData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserData.xcdatamodel; sourceTree = "<group>"; };
+		0352C6462976DC4F005080D5 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		0352C64A2976EB83005080D5 /* RoutingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutingView.swift; sourceTree = "<group>"; };
 		03B0483F2971A69400A3D526 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		03B10C242975A19200D7BA14 /* CustomSecureField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSecureField.swift; sourceTree = "<group>"; };
 		03B10C262975AC6600D7BA14 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -78,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				2AA545D6297063120058CAE2 /* LoginView.swift */,
+				0352C6462976DC4F005080D5 /* LoginViewModel.swift */,
 				03B10C242975A19200D7BA14 /* CustomSecureField.swift */,
 				03B0483F2971A69400A3D526 /* CustomTextField.swift */,
 			);
@@ -123,6 +128,7 @@
 		139B2FDD296EFCBB00C33E79 /* Cab share */ = {
 			isa = PBXGroup;
 			children = (
+				0352C64A2976EB83005080D5 /* RoutingView.swift */,
 				139B2FDE296EFCBB00C33E79 /* Cab_shareApp.swift */,
 				139B2FEE296F138700C33E79 /* MainView.swift */,
 				133E35A1296F15520014CFC9 /* UserView.swift */,
@@ -244,6 +250,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				03180E3229704CF1008D8B4B /* UserData.xcdatamodeld in Sources */,
+				0352C64B2976EB83005080D5 /* RoutingView.swift in Sources */,
 				13759042297070080037E095 /* HistoryRowView.swift in Sources */,
 				03EED84E296F08F500375523 /* RideView.swift in Sources */,
 				03180E2D2970365D008D8B4B /* SearchBar.swift in Sources */,
@@ -251,6 +258,7 @@
 				133E35A4296F15690014CFC9 /* HistoryView.swift in Sources */,
 				133E35A2296F15520014CFC9 /* UserView.swift in Sources */,
 				03180E2F29704CD4008D8B4B /* DataController.swift in Sources */,
+				0352C6472976DC4F005080D5 /* LoginViewModel.swift in Sources */,
 				139B2FEF296F138700C33E79 /* MainView.swift in Sources */,
 				03B048402971A69400A3D526 /* CustomTextField.swift in Sources */,
 				2AA545D7297063120058CAE2 /* LoginView.swift in Sources */,

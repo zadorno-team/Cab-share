@@ -12,16 +12,15 @@ import FirebaseCore
 @main
 struct CabShareApp: App {
     @StateObject var dataController = DataController()
-    
-    init(){
+    @StateObject var loginViewModel = LoginViewModel()
+    init() {
         FirebaseApp.configure()
     }
-
     var body: some Scene {
         WindowGroup {
-            LoginView()
-                .preferredColorScheme(.dark)
+            RoutingView()
                 .environment(\.managedObjectContext, dataController.container.viewContext)
+                .environmentObject(loginViewModel)
         }
     }
 }

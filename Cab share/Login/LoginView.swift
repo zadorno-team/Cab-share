@@ -10,23 +10,8 @@ import FirebaseCore
 import FirebaseAuth
 
 struct LoginView: View {
-    @State private var email = ""
-    @State private var password = ""
-    @State private var signInView = false
-    @State private var userIsLoggedIn = false
-    @State private var userSignedUp = false
-    @State private var userSignedIn = false
+    @EnvironmentObject var loginViewModel: LoginViewModel
     var body: some View {
-        if userSignedIn {
-            MainView()
-        } else if userSignedUp {
-            UserView()
-        } else {
-            content
-        }
-    }
-    
-    var content: some View {
         NavigationView {
             ZStack {
                 Circle()
@@ -36,7 +21,7 @@ struct LoginView: View {
                     .scale(1.2)
                     .foregroundColor(.white.opacity(0.15))
                 VStack {
-                    if signInView {
+                    if loginViewModel.signInView {
                         Text("Sign In")
                             .font(.system(size: 60))
                             .animation(.spring())
@@ -46,9 +31,9 @@ struct LoginView: View {
                             .animation(.easeIn(duration: 3))
                     }
                     Button {
-                        signInView.toggle()
+                        loginViewModel.signInView.toggle()
                     } label: {
-                        if signInView {
+                        if loginViewModel.signInView {
                             Text("or sign up")
                                 .font(.system(size: 23))
                                 .underline()
@@ -61,21 +46,21 @@ struct LoginView: View {
                                 .foregroundColor(.white)
                         }
                     }
-                    CustomTextField(placeholder: Text("E-mail").foregroundColor(.black), text: $email)
+                    CustomTextField(placeholder: Text("E-mail").foregroundColor(.black), text: $loginViewModel.email)
                         .padding()
                         .frame(width: 300, height: 50)
                         .background(Color.white)
                         .cornerRadius(25)
                         .foregroundColor(.black)
-                    CustomSecureField(placeholder: Text("Password"), password: $password)
+                    CustomSecureField(placeholder: Text("Password"), password: $loginViewModel.password)
                         .padding()
                         .frame(width: 300, height: 50)
                         .background(Color.white)
                         .cornerRadius(25)
                         .foregroundColor(.black)
-                    if signInView {
+                    if loginViewModel.signInView {
                         Button("Sign In") {
-                            signIn()
+                            loginViewModel.signIn()
                         }.foregroundColor(.white)
                             .frame(width: 300, height: 50)
                             .background(.black)
@@ -83,7 +68,7 @@ struct LoginView: View {
                             .padding(.top, 30)
                     } else {
                         Button("Sign Up") {
-                            signUp()
+                            loginViewModel.signUp()
                         }.foregroundColor(.white)
                             .frame(width: 300, height: 50)
                             .background(.black)
@@ -116,36 +101,11 @@ struct LoginView: View {
             }
             .navigationBarHidden(true)
             .preferredColorScheme(.dark)
-//            .onAppear{
-//                Auth.auth().addStateDidChangeListener{ auth, user in
-//                    if user != nil {
-//                        userIsLoggedIn.toggle()
-//                    }}
-//            }
         }
-    }
-    func signUp() {
-        Auth.auth().createUser(withEmail: email, password: password) {
-            result, error in
-            if error != nil {
-                print(error!.localizedDescription)
-            }
-        }
-        userSignedUp.toggle()
-    }
-    func signIn() {
-        Auth.auth().signIn(withEmail: email, password: password) {
-            result, error in
-            if error != nil {
-                print(error!.localizedDescription)
-            }
-        }
-        userSignedIn.toggle()
     }
 }
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()
-    }
+        LoginView()}
 }
