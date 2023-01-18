@@ -7,17 +7,20 @@
 
 import SwiftUI
 import CoreData
+import FirebaseCore
 
 @main
 struct CabShareApp: App {
-
     @StateObject var dataController = DataController()
-
+    @StateObject var loginViewModel = LoginViewModel()
+    init() {
+        FirebaseApp.configure()
+    }
     var body: some Scene {
         WindowGroup {
-            MainView()
-                .preferredColorScheme(.dark)
+            RoutingView()
                 .environment(\.managedObjectContext, dataController.container.viewContext)
+                .environmentObject(loginViewModel)
         }
     }
 }
