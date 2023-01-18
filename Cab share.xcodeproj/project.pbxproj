@@ -20,6 +20,8 @@
 		139B2FE3296EFCBC00C33E79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 139B2FE2296EFCBC00C33E79 /* Assets.xcassets */; };
 		139B2FE6296EFCBC00C33E79 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 139B2FE5296EFCBC00C33E79 /* Preview Assets.xcassets */; };
 		139B2FEF296F138700C33E79 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139B2FEE296F138700C33E79 /* MainView.swift */; };
+		13AC16612977F69A00F064B9 /* RideModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AC16602977F69A00F064B9 /* RideModel.swift */; };
+		13AC16632977F8B200F064B9 /* RideViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AC16622977F8B200F064B9 /* RideViewModel.swift */; };
 		2AA545D7297063120058CAE2 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA545D6297063120058CAE2 /* LoginView.swift */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +40,8 @@
 		139B2FE2296EFCBC00C33E79 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		139B2FE5296EFCBC00C33E79 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		139B2FEE296F138700C33E79 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		13AC16602977F69A00F064B9 /* RideModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideModel.swift; sourceTree = "<group>"; };
+		13AC16622977F8B200F064B9 /* RideViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideViewModel.swift; sourceTree = "<group>"; };
 		2AA545D6297063120058CAE2 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -75,6 +79,8 @@
 			isa = PBXGroup;
 			children = (
 				03EED84D296F08F500375523 /* RideView.swift */,
+				13AC16602977F69A00F064B9 /* RideModel.swift */,
+				13AC16622977F8B200F064B9 /* RideViewModel.swift */,
 				03180E2C2970365D008D8B4B /* SearchBar.swift */,
 			);
 			path = RideView;
@@ -223,10 +229,12 @@
 				03180E3229704CF1008D8B4B /* UserData.xcdatamodeld in Sources */,
 				13759042297070080037E095 /* HistoryRowView.swift in Sources */,
 				03EED84E296F08F500375523 /* RideView.swift in Sources */,
+				13AC16612977F69A00F064B9 /* RideModel.swift in Sources */,
 				03180E2D2970365D008D8B4B /* SearchBar.swift in Sources */,
 				03B10C252975A19200D7BA14 /* CustomSecureField.swift in Sources */,
 				133E35A4296F15690014CFC9 /* HistoryView.swift in Sources */,
 				133E35A2296F15520014CFC9 /* UserView.swift in Sources */,
+				13AC16632977F8B200F064B9 /* RideViewModel.swift in Sources */,
 				03180E2F29704CD4008D8B4B /* DataController.swift in Sources */,
 				139B2FEF296F138700C33E79 /* MainView.swift in Sources */,
 				03B048402971A69400A3D526 /* CustomTextField.swift in Sources */,
