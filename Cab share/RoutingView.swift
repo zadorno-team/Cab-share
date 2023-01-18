@@ -13,7 +13,7 @@ struct RoutingView: View {
         if loginViewModel.userSignedIn {
             MainView()
         } else if loginViewModel.userSignedUp {
-            UserView()
+            #warning("To complete with a guided navigation that allows to fill all the user's information")
         } else {
             LoginView()
         }
