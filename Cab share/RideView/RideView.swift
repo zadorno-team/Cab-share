@@ -9,6 +9,7 @@ import MapKit
 import SwiftUI
 
 struct RideView: View {
+    @ObservedObject var rideVM = RideViewModel()
     @State var flightNumber: String = ""
     @State private var selectedNumber = 1
     @State private var showPicker = false

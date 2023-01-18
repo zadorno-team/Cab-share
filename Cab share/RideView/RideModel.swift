@@ -7,12 +7,9 @@
 
 import Foundation
 
-struct FlightStatus: Codable {
-    let flightNumber: String
-    let iataCarrierCode: String
-    let iataFlightNumber: String
-    let departureDate: String
 
+
+struct FlightStatus: Codable {
     let iataDepartureAirport: String
     let iataArrivalAirport: String
     let departureTime: String
