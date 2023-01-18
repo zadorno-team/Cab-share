@@ -6,11 +6,11 @@
 //
 
 import SwiftUI
+import FirebaseCore
+import FirebaseAuth
 
 struct LoginView: View {
-    @State private var email = ""
-    @State private var password = ""
-    @State private var signIn = false
+    @EnvironmentObject var loginViewModel: LoginViewModel
     var body: some View {
         NavigationView {
             ZStack {
@@ -21,7 +21,7 @@ struct LoginView: View {
                     .scale(1.2)
                     .foregroundColor(.white.opacity(0.15))
                 VStack {
-                    if signIn {
+                    if loginViewModel.signInView {
                         Text("Sign In")
                             .font(.system(size: 60))
                             .animation(.spring())
@@ -31,9 +31,9 @@ struct LoginView: View {
                             .animation(.easeIn(duration: 3))
                     }
                     Button {
-                        signIn.toggle()
+                        loginViewModel.signInView.toggle()
                     } label: {
-                        if signIn {
+                        if loginViewModel.signInView {
                             Text("or sign up")
                                 .font(.system(size: 23))
                                 .underline()
@@ -46,21 +46,21 @@ struct LoginView: View {
                                 .foregroundColor(.white)
                         }
                     }
-                    CustomTextField(placeholder: Text("E-mail").foregroundColor(.black), text: $email)
+                    CustomTextField(placeholder: Text("E-mail").foregroundColor(.black), text: $loginViewModel.email)
                         .padding()
                         .frame(width: 300, height: 50)
                         .background(Color.white)
                         .cornerRadius(25)
                         .foregroundColor(.black)
-                    CustomSecureField(placeholder: Text("Password"), password: $password)
+                    CustomSecureField(placeholder: Text("Password"), password: $loginViewModel.password)
                         .padding()
                         .frame(width: 300, height: 50)
                         .background(Color.white)
                         .cornerRadius(25)
                         .foregroundColor(.black)
-                    if signIn {
+                    if loginViewModel.signInView {
                         Button("Sign In") {
-                            //
+                            loginViewModel.signIn()
                         }.foregroundColor(.white)
                             .frame(width: 300, height: 50)
                             .background(.black)
@@ -68,7 +68,7 @@ struct LoginView: View {
                             .padding(.top, 30)
                     } else {
                         Button("Sign Up") {
-                            //
+                            loginViewModel.signUp()
                         }.foregroundColor(.white)
                             .frame(width: 300, height: 50)
                             .background(.black)
@@ -107,6 +107,5 @@ struct LoginView: View {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()
-    }
+        LoginView()}
 }
