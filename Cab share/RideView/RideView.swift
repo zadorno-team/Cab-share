@@ -22,7 +22,7 @@ struct RideView: View {
             ScrollView {
                 VStack {
                     HStack {
-                        Text("Hello, Sasha! Nice to see you in \(city)!")
+                        Text("Hello, Sasha! Nice to see you here \(city)!")
                         //                            .foregroundColor(.white)
                             .padding(20)
                         VStack {

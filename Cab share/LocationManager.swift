@@ -9,7 +9,7 @@ import CoreLocation
 
 class LocationManager: NSObject, CLLocationManagerDelegate {
     private let locationManager = CLLocationManager()
-    var city: String = ""
+    var city: String = "in "
     var onUpdate: ((String) -> Void)?
 
     override init() {
@@ -19,7 +19,6 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
 
     func startUpdatingLocation() {
         locationManager.requestWhenInUseAuthorization()
-//        locationManager.authorizationStatus
         locationManager.startUpdatingLocation()
     }
 
@@ -29,7 +28,11 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         let geocoder = CLGeocoder()
         geocoder.reverseGeocodeLocation(currentLocation) { (placemarks, error) in
             guard let placemark = placemarks?.first else { return }
-            self.city = placemark.locality ?? ""
+            if placemark.locality != nil {
+                self.city = "in " + placemark.locality!
+            } else {
+                self.city = ""
+            }
             self.onUpdate?(self.city)
         }
     }
