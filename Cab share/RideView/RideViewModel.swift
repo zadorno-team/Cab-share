@@ -10,6 +10,7 @@ import Foundation
 @MainActor
 class RideViewModel: ObservableObject {
     @Published var flightStatus: FlightData?
+    @Published var userFlightNumber: String?
     let decoder = JSONDecoder()
     var urlComponents: URLComponents = {
         var baseUrl = URLComponents(string: "https://flight-info-api.p.rapidapi.com")!

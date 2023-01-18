@@ -9,8 +9,8 @@ import MapKit
 import SwiftUI
 
 struct RideView: View {
-    @ObservedObject var rideVM = RideViewModel()
-    @State var flightNumber: String = ""
+    @ObservedObject var rideVM: RideViewModel
+    @State private var flightNumber: String = ""
     @State private var selectedNumber = 1
     @State private var showPicker = false
     @State private var savedPlace = false
@@ -34,7 +34,7 @@ struct RideView: View {
                         .background(Color.blue)
                         .cornerRadius(25)
                         .padding(.top, 5)
-////                    SearchBar()
+//                    SearchBar()
 //                        .frame(width: 350, height: 60)
 //                        .background(.white)
 //                        .cornerRadius(25)
@@ -50,7 +50,7 @@ struct RideView: View {
                                     .foregroundColor(.gray), text: $flightNumber)
                                     .foregroundColor(.white)
                                 Button(action: {
-                                    self.flightNumber = ""
+                                    self.rideVM.userFlightNumber = flightNumber
                                 }, label: {
                                     if !flightNumber.isEmpty {
                                         Image(systemName: "xmark.circle.fill").foregroundColor(.secondary)
@@ -145,6 +145,6 @@ struct RideView: View {
 
 struct RideView_Previews: PreviewProvider {
     static var previews: some View {
-        RideView()
+        RideView(rideVM: RideViewModel())
     }
 }
