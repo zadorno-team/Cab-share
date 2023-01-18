@@ -14,7 +14,7 @@ struct RideView: View {
     @State private var showPicker = false
     @State private var savedPlace = false
     @State private var alreadyMade = false
-    @State private var location: String = ""
+    @State private var city: String = ""
     private let locationManager = LocationManager()
     let numbers = Array(1...10)
     var body: some View {
@@ -22,7 +22,7 @@ struct RideView: View {
             ScrollView {
                 VStack {
                     HStack {
-                        Text("Hello, Sasha! Nice to see you in \(location)!")
+                        Text("Hello, Sasha! Nice to see you in \(city)!")
                         //                            .foregroundColor(.white)
                             .padding(20)
                         VStack {
@@ -134,17 +134,10 @@ struct RideView: View {
         }.onAppear(perform: loadLocation)
     }
     private func loadLocation() {
-        guard let exposedLocation = locationManager.exposedLocation else {
-            print("*** Error in \(#function): exposedLocation is nil")
-            return
+        locationManager.onUpdate = { city in
+            self.city = city
         }
-        
-        locationManager.getPlace(for: exposedLocation) { placemark in
-            guard let placemark = placemark else { return }
-            
-            var output = placemark.locality
-            self.location = output!
-        }
+        locationManager.startUpdatingLocation()
     }
 }
 

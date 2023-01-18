@@ -5,53 +5,34 @@
 //  Created by Marco Dell'Isola on 18/01/23.
 //
 
-
-import Foundation
 import CoreLocation
 
-
-class LocationManager: NSObject {
+class LocationManager: NSObject, CLLocationManagerDelegate {
     private let locationManager = CLLocationManager()
-    public var exposedLocation: CLLocation? {
-            return self.locationManager.location
-        }
+    var city: String = ""
+    var onUpdate: ((String) -> Void)?
+
     override init() {
         super.init()
-        self.locationManager.delegate = self
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        self.locationManager.requestWhenInUseAuthorization()
+        locationManager.delegate = self
+    }
+
+    func startUpdatingLocation() {
+        locationManager.requestWhenInUseAuthorization()
+//        locationManager.authorizationStatus
+        locationManager.startUpdatingLocation()
+    }
+
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let currentLocation = locations.last else { return }
+
+        let geocoder = CLGeocoder()
+        geocoder.reverseGeocodeLocation(currentLocation) { (placemarks, error) in
+            guard let placemark = placemarks?.first else { return }
+            self.city = placemark.locality ?? ""
+            self.onUpdate?(self.city)
+        }
     }
 }
 
-extension LocationManager: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager,
-                         didChangeAuthorization status: CLAuthorizationStatus) {
-        switch status {
-        case .notDetermined: print("notDetermined")        // location permission not asked for yet
-        case .authorizedWhenInUse: print("authorizedWhenInUse")  // location authorized
-        case .authorizedAlways: print("authorizedAlways")     // location authorized
-        case .restricted: print("restricted")           // TODO: handle
-        case .denied: print("denied")               // TODO: handle
-        }
-    }
-}
-#warning("Important: User should allows the permissions. We have to handle denying cases.")
-extension LocationManager {
-    func getPlace(for location: CLLocation,
-                  completion: @escaping (CLPlacemark?) -> Void) {
-        let geocoder = CLGeocoder()
-        geocoder.reverseGeocodeLocation(location) { placemarks, error in
-            guard error == nil else {
-                print("*** Error in \(#function): \(error!.localizedDescription)")
-                completion(nil)
-                return
-            }
-            guard let placemark = placemarks?[0] else {
-                print("*** Error in \(#function): placemark is nil")
-                completion(nil)
-                return
-            }
-            completion(placemark)
-        }
-    }
-}
+
