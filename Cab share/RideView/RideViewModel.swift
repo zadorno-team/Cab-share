@@ -9,11 +9,7 @@ import Foundation
 
 @MainActor
 class RideViewModel: ObservableObject {
-    @Published var flightStatus: FlightStatus?
-//    let flightNumber: String
-//    let iataCarrierCode: String
-//    let iataFlightNumber: String
-//    let departureDate: String
+    @Published var flightStatus: FlightData?
     let decoder = JSONDecoder()
     var urlComponents: URLComponents = {
         var baseUrl = URLComponents(string: "https://flight-info-api.p.rapidapi.com")!
@@ -26,6 +22,7 @@ class RideViewModel: ObservableObject {
 #warning("we should fill DepartureDate with departureDate YYYY-MM-DD")
 #warning("we should fill IataCarrierCode with iataCarrierCode 2 digits/letters")
 #warning("we should fill FlightNumber with iataFlightNumber 4 digits")
+        print(baseUrl)
         return baseUrl
     }()
     func getFlightStatus() async {
@@ -37,23 +34,10 @@ class RideViewModel: ObservableObject {
         request.httpMethod = "GET"
         request.allHTTPHeaderFields = headers
         do {
-            let (data, _) = try await URLSession.shared.data(for: request)
-            self.flightStatus = try decoder.decode(FlightStatus.self, from: data)
+            let (data, error) = try await URLSession.shared.data(for: request)
+            self.flightStatus = try decoder.decode(FlightData.self, from: data)
         } catch {
-            print(error.localizedDescription)
+            print(error)
         }
-        //        let session = URLSession.shared
-        //        let dataTask = session.dataTask(
-        //    with: request as URLRequest, completionHandler: {
-        //        (data, response, error) -> Void in
-        //            if (error != nil) {
-        //                print(error?.localizedDescription ?? "some error")
-        //            } else {
-        //                let httpResponse = response as? HTTPURLResponse
-        //                print(httpResponse ?? "default value")
-        //            }
-        //        })
-        //
-        //        dataTask.resume()
     }
 }
