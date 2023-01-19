@@ -45,6 +45,9 @@ struct RideView: View {
                                         }
                                     }
                             }
+                        } else {
+                            Text("Hello, Sasha! Nice to see you here \(locationManager.city)!")
+                                .padding(20)
                         }
                     }.frame(width: 350)
                         .background(Color.blue)

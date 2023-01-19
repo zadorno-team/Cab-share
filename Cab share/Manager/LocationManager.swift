@@ -11,6 +11,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
     private let locationManager = CLLocationManager()
     @Published var city: String = ""
     @Published var location: CLLocationCoordinate2D?
+    @Published var status: String?
 
     override init() {
         super.init()
@@ -21,6 +22,18 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
     func startUpdatingLocation() {
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
+        switch CLLocationManager.authorizationStatus() {
+            case .notDetermined:
+                self.status = "notDetermined"
+            case .restricted, .denied:
+                self.status = "restrictedDenied"
+            case .authorizedWhenInUse:
+                self.status = "authorizedWhenInUse"
+            case .authorizedAlways:
+                self.status = "authorizedAlways"
+            @unknown default:
+                self.status = ""
+        }
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
