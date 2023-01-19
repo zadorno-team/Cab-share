@@ -7,14 +7,15 @@
 
 import CoreLocation
 
-class LocationManager: NSObject, CLLocationManagerDelegate {
+class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
     private let locationManager = CLLocationManager()
-    var city: String = "in "
+    @Published var city: String = ""
     var onUpdate: ((String) -> Void)?
 
     override init() {
         super.init()
         locationManager.delegate = self
+        startUpdatingLocation()
     }
 
     func startUpdatingLocation() {
@@ -37,5 +38,3 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         }
     }
 }
-
-

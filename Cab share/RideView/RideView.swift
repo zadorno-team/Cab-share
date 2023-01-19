@@ -14,15 +14,14 @@ struct RideView: View {
     @State private var showPicker = false
     @State private var savedPlace = false
     @State private var alreadyMade = false
-    @State private var city: String = ""
-    private let locationManager = LocationManager()
+    @StateObject private var locationManager = LocationManager()
     let numbers = Array(1...10)
     var body: some View {
         NavigationView {
             ScrollView {
                 VStack {
                     HStack {
-                        Text("Hello, Sasha! Nice to see you here \(city)!")
+                        Text("Hello, Sasha! Nice to see you here \(locationManager.city)!")
                         //                            .foregroundColor(.white)
                             .padding(20)
                         VStack {
@@ -131,13 +130,7 @@ struct RideView: View {
             }
             .navigationTitle("Ride")
             .preferredColorScheme(.dark)
-        }.onAppear(perform: loadLocation)
-    }
-    private func loadLocation() {
-        locationManager.onUpdate = { city in
-            self.city = city
         }
-        locationManager.startUpdatingLocation()
     }
 }
 
