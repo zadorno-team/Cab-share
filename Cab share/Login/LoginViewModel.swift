@@ -15,7 +15,7 @@ class LoginViewModel: ObservableObject {
     @Published var userSignedUp = false
     @Published var userSignedIn = false
     func signUp() {
-        Auth.auth().createUser(withEmail: email, password: password) { result, error in
+        Auth.auth().createUser(withEmail: email, password: password) { _, error in
             if error != nil {
                 print(error!.localizedDescription)
             } else {
@@ -24,10 +24,10 @@ class LoginViewModel: ObservableObject {
         }
     }
     func signIn() {
-        Auth.auth().signIn(withEmail: email, password: password) { result, error in
+        Auth.auth().signIn(withEmail: email, password: password) { _, error in
             if error != nil {
                 print(error!.localizedDescription)
-            } else{
+            } else {
                 self.userSignedIn.toggle()
             }
         }

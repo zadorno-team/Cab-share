@@ -22,25 +22,13 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
     func startUpdatingLocation() {
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
-        switch CLLocationManager.authorizationStatus() {
-            case .notDetermined:
-                self.status = "notDetermined"
-            case .restricted, .denied:
-                self.status = "restrictedDenied"
-            case .authorizedWhenInUse:
-                self.status = "authorizedWhenInUse"
-            case .authorizedAlways:
-                self.status = "authorizedAlways"
-            @unknown default:
-                self.status = ""
-        }
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let currentLocation = locations.last else { return }
 
         let geocoder = CLGeocoder()
-        geocoder.reverseGeocodeLocation(currentLocation) { (placemarks, error) in
+        geocoder.reverseGeocodeLocation(currentLocation) { (placemarks, _) in
             guard let placemark = placemarks?.first else { return }
             if placemark.locality != nil {
                 self.location = locations.last?.coordinate

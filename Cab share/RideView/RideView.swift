@@ -25,12 +25,14 @@ struct RideView: View {
                     HStack {
                         if let location = locationManager.location {
                             if let weather = weather {
-                                Text("Hello, Sasha! Nice to see you here \(locationManager.city)!")
-                                    .padding(20)
-                                VStack {
+                                HStack {
+                                    Text("Hello, Sasha! Nice to see you here \(locationManager.city)!")
+                                        .padding(20)
                                     Image(String(weather.weather[0].icon))
+                                        .resizable()
+                                        .frame(width: 90, height: 90)
                                         .foregroundColor(.yellow)
-                                        .font(.system(size: 45))
+//                                        .font(.system(size: 100))
                                         .padding(.bottom, 30.0)
                                         .opacity(0.7)
                                 }
@@ -39,7 +41,8 @@ struct RideView: View {
                                     .task {
                                         do {
                                             weather = try await
-                                            weatherManager.getCurrentWeather(latitude: location.latitude, longitude: location.longitude)
+                                            weatherManager.getCurrentWeather(latitude: location.latitude,
+                                                                             longitude: location.longitude)
                                         } catch {
                                             print("Error getting weather: \(error)")
                                         }
