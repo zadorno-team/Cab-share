@@ -28,7 +28,7 @@ struct RideView: View {
                                 Text("Hello, Sasha! Nice to see you here \(locationManager.city)!")
                                     .padding(20)
                                 VStack {
-                                    Image(systemName: String(weather.weather[0].icon))
+                                    Image(String(weather.weather[0].icon))
                                         .foregroundColor(.yellow)
                                         .font(.system(size: 45))
                                         .padding(.bottom, 30.0)

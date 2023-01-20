@@ -45,6 +45,7 @@ struct ResponseBody: Decodable {
 
     struct MainResponse: Decodable {
         var temp: Double
+        //swiftlint:disable all
         var feels_like: Double
         var temp_min: Double
         var temp_max: Double
