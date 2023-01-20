@@ -13,6 +13,7 @@ import FirebaseCore
 struct CabShareApp: App {
     @StateObject var dataController = DataController()
     @StateObject var loginViewModel = LoginViewModel()
+    @StateObject var userModel = UserModel()
     init() {
         FirebaseApp.configure()
     }
@@ -21,6 +22,7 @@ struct CabShareApp: App {
             RoutingView()
                 .environment(\.managedObjectContext, dataController.container.viewContext)
                 .environmentObject(loginViewModel)
+                .environmentObject(userModel)
         }
     }
 }

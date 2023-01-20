@@ -11,6 +11,7 @@ import FirebaseAuth
 
 struct LoginView: View {
     @EnvironmentObject var loginViewModel: LoginViewModel
+    @EnvironmentObject var userModel: UserModel
     var body: some View {
         NavigationView {
             ZStack {
@@ -21,60 +22,38 @@ struct LoginView: View {
                     .scale(1.2)
                     .foregroundColor(.white.opacity(0.15))
                 VStack {
-                    if loginViewModel.signInView {
-                        Text("Sign In")
-                            .font(.system(size: 60))
-                            .animation(.spring())
-                    } else {
-                        Text("Sign Up")
-                            .font(.system(size: 60))
-                            .animation(.easeIn(duration: 3))
-                    }
+                    Text("Sign In")
+                        .font(.system(size: 60))
+                        .animation(.spring())
                     Button {
-                        loginViewModel.signInView.toggle()
+                        loginViewModel.userSignedUp.toggle()
                     } label: {
-                        if loginViewModel.signInView {
-                            Text("or sign up")
+                        Text("or sign up")
                                 .font(.system(size: 23))
                                 .underline()
                                 .foregroundColor(.white)
-                        } else {
-                            Text("or sign in")
-                                .font(.system(size: 23))
-                                .underline()
-                                .padding(.bottom, 10)
-                                .foregroundColor(.white)
-                        }
+                    }.sheet(isPresented: $loginViewModel.userSignedUp) {
+                        UserSignUpView().environmentObject(userModel)
                     }
-                    CustomTextField(placeholder: Text("E-mail").foregroundColor(.black), text: $loginViewModel.email)
+                    CustomTextField(placeholder: Text("E-mail").foregroundColor(.black), text: $loginViewModel.emailSignedIn)
                         .padding()
                         .frame(width: 300, height: 50)
                         .background(Color.white)
                         .cornerRadius(25)
                         .foregroundColor(.black)
-                    CustomSecureField(placeholder: Text("Password"), password: $loginViewModel.password)
+                    CustomSecureField(placeholder: Text("Password"), password: $loginViewModel.passwordSignedIn)
                         .padding()
                         .frame(width: 300, height: 50)
                         .background(Color.white)
                         .cornerRadius(25)
                         .foregroundColor(.black)
-                    if loginViewModel.signInView {
-                        Button("Sign In") {
-                            loginViewModel.signIn()
-                        }.foregroundColor(.white)
-                            .frame(width: 300, height: 50)
-                            .background(.black)
-                            .cornerRadius(25)
-                            .padding(.top, 30)
-                    } else {
-                        Button("Sign Up") {
-                            loginViewModel.signUp()
-                        }.foregroundColor(.white)
-                            .frame(width: 300, height: 50)
-                            .background(.black)
-                            .cornerRadius(25)
-                            .padding(.top, 30)
-                    }
+                    Button("Sign In") {
+                        loginViewModel.signIn()
+                    }.foregroundColor(.white)
+                        .frame(width: 300, height: 50)
+                        .background(.black)
+                        .cornerRadius(25)
+                        .padding(.top, 30)
                     HStack {
                         Button {
                             //

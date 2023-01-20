@@ -9,11 +9,10 @@ import SwiftUI
 
 struct RoutingView: View {
     @EnvironmentObject var loginViewModel: LoginViewModel
+    @EnvironmentObject var userModel: UserModel
     var body: some View {
         if loginViewModel.userSignedIn {
             MainView()
-        } else if loginViewModel.userSignedUp {
-            #warning("To complete with a guided navigation that allows to fill all the user's information")
         } else {
             LoginView()
         }
