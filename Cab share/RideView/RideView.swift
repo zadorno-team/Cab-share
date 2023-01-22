@@ -11,7 +11,7 @@ import SwiftUI
 struct TextFieldLimitModifer: ViewModifier {
     @Binding var value: String
     var length: Int
-
+    
     func body(content: Content) -> some View {
         content
             .onReceive(value.publisher.collect()) {
@@ -35,6 +35,12 @@ struct RideView: View {
     @State private var savedPlace = false
     @State private var alreadyMade = false
     let numbers = Array(1...5)
+    var dateFormatter: DateFormatter {
+        let formater = DateFormatter()
+        formater.dateStyle = .long
+        return formater
+    }
+    @State private var flightDate = Date()
     var body: some View {
         NavigationView {
             ScrollView {
@@ -63,11 +69,10 @@ struct RideView: View {
                         Image(systemName: "airplane.departure")
                             .foregroundColor(.gray)
                             .font(.system(size: 30))
-                        HStack {
                             CustomTextField(placeholder: Text("Enter your flight number")
                                 .foregroundColor(.gray), text: $flightNumber)
                             .foregroundColor(.white)
-                            .limitInputLength(value: $flightNumber, length: 6)
+                            .limitInputLength(value: $flightNumber, length: 7)
                             .onChange(of: flightNumber) { flightNumber in
                                 checkFlightNumber(userInput: flightNumber)
                             }
@@ -78,9 +83,16 @@ struct RideView: View {
                                     Image(systemName: "xmark.circle.fill").foregroundColor(.secondary)
                                 }
                             })
-                        }
-                    }.padding(.leading)
+                    }.padding(.horizontal)
                     Text(wrongFlightNumber)
+                    HStack {
+                        Image(systemName: "calendar")
+                            .foregroundColor(.gray)
+                            .font(.system(size: 30))
+                            .padding(.trailing, 9)
+                        DatePicker("Flight date", selection: $flightDate, in: Date()..., displayedComponents: [.date])
+                    }.padding(.horizontal).padding(.bottom, 10)
+
                     if let flightStatus = rideVM.flightStatus {
                         Text("Your flight details:")
                             .font(.headline)
@@ -160,8 +172,11 @@ struct RideView: View {
         .preferredColorScheme(.dark)
     }
     func checkFlightNumber(userInput value: String) {
-        guard let regexExpression = try? NSRegularExpression(pattern: "\\b([A-Z]{2}|[A-Z]\\d)\\s?\\d{4}\\b") else {
-            return
+//        guard let regexExpression = try? NSRegularExpression(pattern: "\\b([A-Z]{2}|[A-Z]\\d)\\s?\\d{4}\\b") else {
+//            return
+//
+        guard let regexExpression = try? NSRegularExpression(pattern: "(?<![\\dA-Z])(?!\\d{2})([A-Z\\d]{2})\\s?(\\d{2,4})(?!\\d)") else {
+                return
         }
         let valueUpper = value.uppercased()
         let range = NSRange(location: 0, length: valueUpper.utf16.count)
@@ -170,36 +185,12 @@ struct RideView: View {
             flightNumber = valueUpper
             wrongFlightNumber = ""
         } else {
-            if flightNumber.count == 6 {
+            if flightNumber.count > 5 {
                 wrongFlightNumber = "Please enter valid flight number. Ex: F2 1122"
             } else {
                 wrongFlightNumber = ""
             }
         }
-        //        if let firstCharacter = getCharacter(at: 0, from: value), firstCharacter.isLetter {
-        //            previousFlightNumber = value
-        //            wrongFlightNumber = ""
-        //            if let secondCharacter = getCharacter(at: 1, from: value), (secondCharacter.isLetter || secondCharacter.is) {
-        //                previousFlightNumber = value
-        //                wrongFlightNumber = ""
-        //            } else {
-        //                flightNumber = previousFlightNumber
-        //                wrongFlightNumber = "Only letters or numbers"
-        //            }
-        //        } else {
-        //            if value.isEmpty {
-        //                previousFlightNumber = ""
-        //            } else {
-        //                flightNumber = previousFlightNumber
-        //                wrongFlightNumber = "Only letters"
-        //            }
-        //        }
-        
-        
-    }
-    
-    func getCharacter(at index: Int, from value: String) -> Character? {
-        return value.count > index ? value[value.index(value.startIndex, offsetBy: 0)] : nil
     }
 }
 
