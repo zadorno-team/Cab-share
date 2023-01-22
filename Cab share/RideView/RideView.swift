@@ -10,7 +10,6 @@ import SwiftUI
 
 struct RideView: View {
     @ObservedObject var rideVM: RideViewModel
-    @State private var test: String = ""
     @State private var flightNumber: String = ""
     @State private var wrongFlightNumber: String = ""
     @State private var selectedNumber = 1
@@ -149,11 +148,45 @@ struct RideView: View {
     }
     
     func checkFlightNumber(userInput value: String) {
-        if let firstCharacter = value.first, firstCharacter.isLetter {
-            
-        } else {
-            wrongFlightNumber = "Only letters"
+        
+        guard let regexExpression = try? NSRegularExpression(pattern: "\\b([A-Z]{2}|[A-Z]\\d)\\s?\\d{4}\\b") else {
+            return
         }
+        let range = NSRange(location: 0, length: value.utf16.count)
+        
+        let result = regexExpression.firstMatch(in: value, options: [], range: range)
+        
+        if result != nil {
+            flightNumber = value
+            wrongFlightNumber = ""
+        } else {
+            wrongFlightNumber = "Please enter valid flight number. Ex: F2 1122"
+        }
+        
+//        if let firstCharacter = getCharacter(at: 0, from: value), firstCharacter.isLetter {
+//            previousFlightNumber = value
+//            wrongFlightNumber = ""
+//            if let secondCharacter = getCharacter(at: 1, from: value), (secondCharacter.isLetter || secondCharacter.is) {
+//                previousFlightNumber = value
+//                wrongFlightNumber = ""
+//            } else {
+//                flightNumber = previousFlightNumber
+//                wrongFlightNumber = "Only letters or numbers"
+//            }
+//        } else {
+//            if value.isEmpty {
+//                previousFlightNumber = ""
+//            } else {
+//                flightNumber = previousFlightNumber
+//                wrongFlightNumber = "Only letters"
+//            }
+//        }
+        
+        
+    }
+    
+    func getCharacter(at index: Int, from value: String) -> Character? {
+        return value.count > index ? value[value.index(value.startIndex, offsetBy: 0)] : nil
     }
 }
 
