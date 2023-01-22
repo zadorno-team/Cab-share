@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 @MainActor
 class RideViewModel: ObservableObject {
@@ -36,10 +37,27 @@ class RideViewModel: ObservableObject {
         request.httpMethod = "GET"
         request.allHTTPHeaderFields = headers
         do {
-            let (data, error) = try await URLSession.shared.data(for: request)
+            let (data, _) = try await URLSession.shared.data(for: request)
             self.flightStatus = try decoder.decode(FlightData.self, from: data)
         } catch {
             print(error)
         }
+    }
+}
+
+struct TextFieldLimitModifer: ViewModifier {
+    @Binding var value: String
+    var length: Int
+    func body(content: Content) -> some View {
+        content
+            .onReceive(value.publisher.collect()) {
+                value = String($0.prefix(length))
+            }
+    }
+}
+
+extension View {
+    func limitInputLength(value: Binding<String>, length: Int) -> some View {
+        self.modifier(TextFieldLimitModifer(value: value, length: length))
     }
 }

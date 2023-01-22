@@ -8,24 +8,6 @@
 import MapKit
 import SwiftUI
 
-struct TextFieldLimitModifer: ViewModifier {
-    @Binding var value: String
-    var length: Int
-    
-    func body(content: Content) -> some View {
-        content
-            .onReceive(value.publisher.collect()) {
-                value = String($0.prefix(length))
-            }
-    }
-}
-
-extension View {
-    func limitInputLength(value: Binding<String>, length: Int) -> some View {
-        self.modifier(TextFieldLimitModifer(value: value, length: length))
-    }
-}
-
 struct RideView: View {
     @ObservedObject var rideVM: RideViewModel
     @State private var flightNumber: String = ""
@@ -88,7 +70,6 @@ struct RideView: View {
                         DatePicker("Departure date", selection: $flightDate, in: Date()..., displayedComponents: [.date])
                             .accentColor(.gray)
                     }.padding(.horizontal).padding(.bottom, 10)
-                    
                     if let flightStatus = rideVM.flightStatus {
                         Text("Your flight details:")
                             .font(.headline)
