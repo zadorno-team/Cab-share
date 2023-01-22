@@ -30,23 +30,18 @@ struct RideView: View {
     @ObservedObject var rideVM: RideViewModel
     @State private var flightNumber: String = ""
     @State private var wrongFlightNumber: String = ""
+    @State private var flightDate = Date()
     @State private var selectedNumber = 1
     @State private var showPicker = false
     @State private var savedPlace = false
     @State private var alreadyMade = false
     let numbers = Array(1...5)
-    var dateFormatter: DateFormatter {
-        let formater = DateFormatter()
-        formater.dateStyle = .long
-        return formater
-    }
-    @State private var flightDate = Date()
     var body: some View {
         NavigationView {
             ScrollView {
                 VStack {
                     HStack {
-                        Text("Hello, Sasha! Nice to see you in the  International Airport of Naples!")
+                        Text("Hello, Sasha! Nice to see you in the International Airport of Naples!")
                             .padding(20)
                         VStack {
                             Image(systemName: "cloud.sun.fill")
@@ -69,30 +64,31 @@ struct RideView: View {
                         Image(systemName: "airplane.departure")
                             .foregroundColor(.gray)
                             .font(.system(size: 30))
-                            CustomTextField(placeholder: Text("Enter your flight number")
-                                .foregroundColor(.gray), text: $flightNumber)
-                            .foregroundColor(.white)
-                            .limitInputLength(value: $flightNumber, length: 7)
-                            .onChange(of: flightNumber) { flightNumber in
-                                checkFlightNumber(userInput: flightNumber)
+                        CustomTextField(placeholder: Text("Enter your flight number")
+                            .foregroundColor(.gray), text: $flightNumber)
+                        .foregroundColor(.white)
+                        .limitInputLength(value: $flightNumber, length: 7)
+                        .onChange(of: flightNumber) { flightNumber in
+                            checkFlightNumber(userInput: flightNumber)
+                        }
+                        Button(action: {
+                            self.flightNumber = ""
+                        }, label: {
+                            if !flightNumber.isEmpty {
+                                Image(systemName: "xmark.circle.fill").foregroundColor(.secondary)
                             }
-                            Button(action: {
-                                self.rideVM.userFlightNumber = flightNumber
-                            }, label: {
-                                if !flightNumber.isEmpty {
-                                    Image(systemName: "xmark.circle.fill").foregroundColor(.secondary)
-                                }
-                            })
-                    }.padding(.horizontal)
+                        })
+                    }.padding(.horizontal).padding(.top, 5)
                     Text(wrongFlightNumber)
                     HStack {
                         Image(systemName: "calendar")
                             .foregroundColor(.gray)
                             .font(.system(size: 30))
                             .padding(.trailing, 9)
-                        DatePicker("Flight date", selection: $flightDate, in: Date()..., displayedComponents: [.date])
+                        DatePicker("Departure date", selection: $flightDate, in: Date()..., displayedComponents: [.date])
+                            .accentColor(.gray)
                     }.padding(.horizontal).padding(.bottom, 10)
-
+                    
                     if let flightStatus = rideVM.flightStatus {
                         Text("Your flight details:")
                             .font(.headline)
@@ -149,6 +145,8 @@ struct RideView: View {
                     }
                 Button {
                     Task {
+                        self.rideVM.userFlightNumber = flightNumber
+                        self.rideVM.userDepartureDate = flightDate
                         await rideVM.getFlightStatus()
                     }
                 } label: {
@@ -172,11 +170,9 @@ struct RideView: View {
         .preferredColorScheme(.dark)
     }
     func checkFlightNumber(userInput value: String) {
-//        guard let regexExpression = try? NSRegularExpression(pattern: "\\b([A-Z]{2}|[A-Z]\\d)\\s?\\d{4}\\b") else {
-//            return
-//
-        guard let regexExpression = try? NSRegularExpression(pattern: "(?<![\\dA-Z])(?!\\d{2})([A-Z\\d]{2})\\s?(\\d{2,4})(?!\\d)") else {
-                return
+        guard let regexExpression = try? NSRegularExpression(pattern: "(?<![\\dA-Z])(?!\\d{2})([A-Z\\d]{2})\\s?(\\d{2,4})(?!\\d)")
+        else {
+            return
         }
         let valueUpper = value.uppercased()
         let range = NSRange(location: 0, length: valueUpper.utf16.count)
