@@ -8,6 +8,24 @@
 import MapKit
 import SwiftUI
 
+struct TextFieldLimitModifer: ViewModifier {
+    @Binding var value: String
+    var length: Int
+
+    func body(content: Content) -> some View {
+        content
+            .onReceive(value.publisher.collect()) {
+                value = String($0.prefix(length))
+            }
+    }
+}
+
+extension View {
+    func limitInputLength(value: Binding<String>, length: Int) -> some View {
+        self.modifier(TextFieldLimitModifer(value: value, length: length))
+    }
+}
+
 struct RideView: View {
     @ObservedObject var rideVM: RideViewModel
     @State private var flightNumber: String = ""
@@ -49,6 +67,7 @@ struct RideView: View {
                             CustomTextField(placeholder: Text("Enter your flight number")
                                 .foregroundColor(.gray), text: $flightNumber)
                             .foregroundColor(.white)
+                            .limitInputLength(value: $flightNumber, length: 6)
                             .onChange(of: flightNumber) { flightNumber in
                                 checkFlightNumber(userInput: flightNumber)
                             }
@@ -140,23 +159,23 @@ struct RideView: View {
         .navigationTitle("Ride")
         .preferredColorScheme(.dark)
     }
-    
     func checkFlightNumber(userInput value: String) {
-        
         guard let regexExpression = try? NSRegularExpression(pattern: "\\b([A-Z]{2}|[A-Z]\\d)\\s?\\d{4}\\b") else {
             return
         }
-        let range = NSRange(location: 0, length: value.utf16.count)
-        
-        let result = regexExpression.firstMatch(in: value, options: [], range: range)
-        
+        let valueUpper = value.uppercased()
+        let range = NSRange(location: 0, length: valueUpper.utf16.count)
+        let result = regexExpression.firstMatch(in: valueUpper, options: [], range: range)
         if result != nil {
-            flightNumber = value
+            flightNumber = valueUpper
             wrongFlightNumber = ""
         } else {
-            wrongFlightNumber = "Please enter valid flight number. Ex: F2 1122"
+            if flightNumber.count == 6 {
+                wrongFlightNumber = "Please enter valid flight number. Ex: F2 1122"
+            } else {
+                wrongFlightNumber = ""
+            }
         }
-        
         //        if let firstCharacter = getCharacter(at: 0, from: value), firstCharacter.isLetter {
         //            previousFlightNumber = value
         //            wrongFlightNumber = ""
