@@ -39,22 +39,19 @@ struct RideView: View {
                         .frame(width: 350, height: 60)
                         .background(.white)
                         .cornerRadius(25)
-                        .padding(20)
+                        .padding(5)
                         .foregroundColor(.black)
                     HStack {
                         Image(systemName: "airplane.departure")
                             .foregroundColor(.gray)
                             .font(.system(size: 30))
-                        
                         HStack {
-                            
-                            CustomTextField(placeholder: Text("Which flight you had?")
+                            CustomTextField(placeholder: Text("Enter your flight number")
                                 .foregroundColor(.gray), text: $flightNumber)
                             .foregroundColor(.white)
                             .onChange(of: flightNumber) { flightNumber in
                                 checkFlightNumber(userInput: flightNumber)
                             }
-                            
                             Button(action: {
                                 self.rideVM.userFlightNumber = flightNumber
                             }, label: {
@@ -74,14 +71,11 @@ struct RideView: View {
                         Text("Departure time: \(flightStatus.data[0].arrival.date)")
                         Text("Arrival time: \(flightStatus.data[0].arrival.passengerLocalTime)")
                     }
-                    
                 }
-                
                 HStack {
                     Image(systemName: "person.fill")
                         .foregroundColor(.gray)
                         .font(.system(size: 30))
-                    
                     Button {
                         self.showPicker = true
                     } label: {
@@ -134,7 +128,7 @@ struct RideView: View {
                 }.frame(width: 350, height: 50)
                     .background(.white)
                     .cornerRadius(25)
-                    .padding()
+                    .padding(5)
                 Map(coordinateRegion: .constant(MKCoordinateRegion(
                     center: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275),
                     span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))),
