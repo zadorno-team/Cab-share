@@ -32,7 +32,6 @@ struct RideView: View {
                                         .resizable()
                                         .frame(width: 90, height: 90)
                                         .foregroundColor(.yellow)
-//                                        .font(.system(size: 100))
                                         .padding(.bottom, 30.0)
                                         .opacity(0.7)
                                 }
@@ -49,7 +48,7 @@ struct RideView: View {
                                     }
                             }
                         } else {
-                            Text("Hello, Sasha! Nice to see you here \(locationManager.city)!")
+                            Text("Hello, Sasha! Nice to see you here !")
                                 .padding(20)
                         }
                     }.frame(width: 350)
