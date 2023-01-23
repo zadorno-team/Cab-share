@@ -17,7 +17,7 @@ class RideViewModel: ObservableObject {
         let decoder = JSONDecoder()
         let airlineCode: String = String(userFlightNumber!.prefix(2))
         let flightCode: String = String(userFlightNumber!.suffix(4))
-        var urlComponents: URLComponents = {
+        let urlComponents: URLComponents = {
             var baseUrl = URLComponents(string: "https://flight-info-api.p.rapidapi.com")!
             baseUrl.path = "/status"
             baseUrl.queryItems = [
@@ -29,7 +29,7 @@ class RideViewModel: ObservableObject {
             print(baseUrl)
             print(airlineCode)
             print(flightCode)
-            print(dateToString(date: userDepartureDate))
+            print(dateToString(date: userDepartureDate!))
             return baseUrl
         }()
         let headers = [
