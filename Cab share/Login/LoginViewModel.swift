@@ -27,7 +27,7 @@ class LoginViewModel: ObservableObject {
         Auth.auth().signIn(withEmail: emailSignedIn, password: passwordSignedIn) { result, error in
             if error != nil {
                 print(error!.localizedDescription)
-            } else{
+            } else {
                 self.userSignedIn.toggle()
             }
         }

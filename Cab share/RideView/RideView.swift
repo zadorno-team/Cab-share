@@ -14,21 +14,42 @@ struct RideView: View {
     @State private var showPicker = false
     @State private var savedPlace = false
     @State private var alreadyMade = false
+    @StateObject private var locationManager = LocationManager()
+    var weatherManager = WeatherManager()
+    @State var weather: ResponseBody?
     let numbers = Array(1...10)
     var body: some View {
         NavigationView {
             ScrollView {
                 VStack {
                     HStack {
-                        Text("Hello, Sasha! Nice to see you in the  International Airport of Naples!")
-                        //                            .foregroundColor(.white)
-                            .padding(20)
-                        VStack {
-                            Image(systemName: "cloud.sun.fill")
-                                .foregroundColor(.yellow)
-                                .font(.system(size: 45))
-                                .padding(.bottom, 30.0)
-                                .opacity(0.7)
+                        if let location = locationManager.location {
+                            if let weather = weather {
+                                HStack {
+                                    Text("Hello, Sasha! Nice to see you here \(locationManager.city)!")
+                                        .padding(20)
+                                    Image(String(weather.weather[0].icon))
+                                        .resizable()
+                                        .frame(width: 90, height: 90)
+                                        .foregroundColor(.yellow)
+                                        .padding(.bottom, 30.0)
+                                        .opacity(0.7)
+                                }
+                            } else {
+                                LoadingView()
+                                    .task {
+                                        do {
+                                            weather = try await
+                                            weatherManager.getCurrentWeather(latitude: location.latitude,
+                                                                             longitude: location.longitude)
+                                        } catch {
+                                            print("Error getting weather: \(error)")
+                                        }
+                                    }
+                            }
+                        } else {
+                            Text("Hello, Sasha! Nice to see you here !")
+                                .padding(20)
                         }
                     }.frame(width: 350)
                         .background(Color.blue)
