@@ -31,17 +31,3 @@ class WeatherManager {
         return decodedData
     }
 }
-
-//guard let url: URLComponents = {
-//    URLComponents(string:"http://api.openweathermap.org!)
-//    url.path = "/data/2.5/weather"
-//                  url.queryItems = [
-//                    URLQueryItems(name: "lat", value: latitude)
-//                    URLQueryItems(name: "lon", value: longtitude)
-//                  ]
-//
-//                  lat=\(latitude)&lon=\(longitude)&appid=760cb0970ae941895591c62f42d4e50e")
-//                  else {
-//    fatalError("Missing URL")
-//}
-//}
