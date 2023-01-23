@@ -24,7 +24,7 @@ struct LoginView: View {
                     if loginViewModel.signInView {
                         Text("Sign In")
                             .font(.system(size: 60))
-                            .animation(.spring())
+                            .animation(.easeIn(duration: 3))
                     } else {
                         Text("Sign Up")
                             .font(.system(size: 60))
