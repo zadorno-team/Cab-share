@@ -13,22 +13,22 @@ class RideViewModel: ObservableObject {
     @Published var flightStatus: FlightData?
     @Published var userFlightNumber: String?
     @Published var userDepartureDate: Date?
-    let decoder = JSONDecoder()
-    var urlComponents: URLComponents = {
-        var baseUrl = URLComponents(string: "https://flight-info-api.p.rapidapi.com")!
-        baseUrl.path = "/status"
-        baseUrl.queryItems = [
-            URLQueryItem(name: "version", value: "v1"),
-            URLQueryItem(name: "DepartureDate", value: "2023-01-19"),
-            URLQueryItem(name: "IataCarrierCode", value: "W6"),
-            URLQueryItem(name: "FlightNumber", value: "4370")]
-#warning("we should fill DepartureDate with departureDate YYYY-MM-DD")
-#warning("we should fill IataCarrierCode with iataCarrierCode 2 digits/letters")
-#warning("we should fill FlightNumber with iataFlightNumber 4 digits")
-        print(baseUrl)
-        return baseUrl
-    }()
     func getFlightStatus() async {
+        let decoder = JSONDecoder()
+        let airlineCode: String = String(userFlightNumber!.prefix(2))
+        let flightCode: String = String(userFlightNumber!.suffix(4))
+        var urlComponents: URLComponents = {
+            var baseUrl = URLComponents(string: "https://flight-info-api.p.rapidapi.com")!
+            baseUrl.path = "/status"
+            baseUrl.queryItems = [
+                URLQueryItem(name: "version", value: "v1"),
+                URLQueryItem(name: "DepartureDate", value: dateToString(date: userDepartureDate!)),
+                URLQueryItem(name: "IataCarrierCode", value: airlineCode),
+                URLQueryItem(name: "FlightNumber", value: flightCode)
+            ]
+            print(baseUrl)
+            return baseUrl
+        }()
         let headers = [
             "X-RapidAPI-Key": "fdd94b659fmsha76c97a227504fap10bbb6jsn78d9220a014a",
             "X-RapidAPI-Host": "flight-info-api.p.rapidapi.com"
@@ -42,6 +42,12 @@ class RideViewModel: ObservableObject {
         } catch {
             print(error)
         }
+    }
+    func dateToString(date: Date) -> String {
+        let nameFormatter = DateFormatter()
+        nameFormatter.dateFormat = "yyyy-MM-dd"
+        let departureDate = nameFormatter.string(from: date)
+        return departureDate
     }
 }
 
