@@ -10,9 +10,9 @@ import SwiftUI
 
 struct RideView: View {
     @ObservedObject var rideVM: RideViewModel
-    @State private var flightNumber: String = ""
-    @State private var wrongFlightNumber: String = ""
-    @State private var flightDate = Date()
+    //    @State private var flightNumber: String = ""
+    //    @State private var wrongFlightNumber: String = ""
+    //    @State private var flightDate = Date()
     @State private var selectedNumber = 1
     @State private var showPicker = false
     @State private var savedPlace = false
@@ -69,27 +69,27 @@ struct RideView: View {
                             .foregroundColor(.gray)
                             .font(.system(size: 30))
                         CustomTextField(placeholder: Text("Enter your flight number")
-                            .foregroundColor(.gray), text: $flightNumber)
+                            .foregroundColor(.gray), text: $rideVM.userFlightNumber)
                         .foregroundColor(.white)
-                        .limitInputLength(value: $flightNumber, length: 7)
-                        .onChange(of: flightNumber) { flightNumber in
-                            checkFlightNumber(userInput: flightNumber)
+                        .limitInputLength(value: $rideVM.userFlightNumber, length: 7)
+                        .onChange(of: rideVM.userFlightNumber) { flightNumber in
+                            rideVM.checkFlightNumber(userInput: rideVM.userFlightNumber)
                         }
                         Button(action: {
-                            self.flightNumber = ""
+                            rideVM.userFlightNumber = ""
                         }, label: {
-                            if !flightNumber.isEmpty {
+                            if rideVM.userFlightNumber.isEmpty {
                                 Image(systemName: "xmark.circle.fill").foregroundColor(.secondary)
                             }
                         })
                     }.padding(.horizontal).padding(.top, 5)
-                    Text(wrongFlightNumber)
+                    Text(rideVM.wrongFlightNumber)
                     HStack {
                         Image(systemName: "calendar")
                             .foregroundColor(.gray)
                             .font(.system(size: 30))
                             .padding(.trailing, 9)
-                        DatePicker("Departure date", selection: $flightDate, in: Date()..., displayedComponents: [.date])
+                        DatePicker("Departure date", selection: $rideVM.userDepartureDate, in: Date()..., displayedComponents: [.date])
                             .accentColor(.gray)
                             .opacity(0.6)
                     }.padding(.horizontal).padding(.bottom, 10)
@@ -149,8 +149,6 @@ struct RideView: View {
                     }
                 Button {
                     Task {
-                        self.rideVM.userFlightNumber = flightNumber
-                        self.rideVM.userDepartureDate = flightDate
                         await rideVM.getFlightStatus()
                     }
                 } label: {
@@ -172,25 +170,6 @@ struct RideView: View {
         }
         .navigationTitle("Ride")
         .preferredColorScheme(.dark)
-    }
-    func checkFlightNumber(userInput value: String) {
-        guard let regexExpression = try? NSRegularExpression(pattern: "(?<![\\dA-Z])(?!\\d{2})([A-Z\\d]{2})\\s?(\\d{2,4})(?!\\d)")
-        else {
-            return
-        }
-        let valueUpper = value.uppercased()
-        let range = NSRange(location: 0, length: valueUpper.utf16.count)
-        let result = regexExpression.firstMatch(in: valueUpper, options: [], range: range)
-        if result != nil {
-            flightNumber = valueUpper
-            wrongFlightNumber = ""
-        } else {
-            if flightNumber.count > 5 {
-                wrongFlightNumber = "Please enter valid flight number. Ex: F2 1122"
-            } else {
-                wrongFlightNumber = ""
-            }
-        }
     }
 }
 
