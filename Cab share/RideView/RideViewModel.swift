@@ -27,6 +27,9 @@ class RideViewModel: ObservableObject {
                 URLQueryItem(name: "FlightNumber", value: flightCode)
             ]
             print(baseUrl)
+            print(airlineCode)
+            print(flightCode)
+            print(dateToString(date: userDepartureDate))
             return baseUrl
         }()
         let headers = [
