@@ -23,7 +23,7 @@ class RideViewModel: ObservableObject {
             baseUrl.queryItems = [
                 URLQueryItem(name: "version", value: "v1"),
                 URLQueryItem(name: "DepartureDate", value: dateToString(date: userDepartureDate!)),
-                URLQueryItem(name: "IataCarrierCode", value: airlineCode.uppercased()),
+                URLQueryItem(name: "IataCarrierCode", value: airlineCode),
                 URLQueryItem(name: "FlightNumber", value: flightCode)
             ]
             print(baseUrl)

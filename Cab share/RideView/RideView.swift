@@ -178,10 +178,11 @@ struct RideView: View {
         else {
             return
         }
-        let range = NSRange(location: 0, length: value.utf16.count)
-        let result = regexExpression.firstMatch(in: value, options: [], range: range)
+        let valueUpper = value.uppercased()
+        let range = NSRange(location: 0, length: valueUpper.utf16.count)
+        let result = regexExpression.firstMatch(in: valueUpper, options: [], range: range)
         if result != nil {
-            flightNumber = value
+            flightNumber = valueUpper
             wrongFlightNumber = ""
         } else {
             if flightNumber.count > 5 {
