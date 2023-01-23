@@ -69,6 +69,7 @@ struct RideView: View {
                             .padding(.trailing, 9)
                         DatePicker("Departure date", selection: $flightDate, in: Date()..., displayedComponents: [.date])
                             .accentColor(.gray)
+                            .opacity(0.6)
                     }.padding(.horizontal).padding(.bottom, 10)
                     if let flightStatus = rideVM.flightStatus {
                         Text("Your flight details:")
