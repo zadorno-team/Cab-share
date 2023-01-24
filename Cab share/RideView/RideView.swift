@@ -11,7 +11,6 @@ import SwiftUI
 struct RideView: View {
     @ObservedObject var rideVM: RideViewModel
     @State private var flightNumber: String = ""
-    @State private var wrongFlightNumber: String = ""
     @State private var flightDate = Date()
     @State private var selectedNumber = 1
     @State private var showPicker = false
@@ -73,7 +72,7 @@ struct RideView: View {
                         .foregroundColor(.white)
                         .limitInputLength(value: $flightNumber, length: 7)
                         .onChange(of: flightNumber) { flightNumber in
-                            checkFlightNumber(userInput: flightNumber)
+                            rideVM.checkFlightNumber(userInput: flightNumber)
                         }
                         Button(action: {
                             self.flightNumber = ""
@@ -83,7 +82,7 @@ struct RideView: View {
                             }
                         })
                     }.padding(.horizontal).padding(.top, 5)
-                    Text(wrongFlightNumber)
+                    Text(rideVM.error ?? "")
                     HStack {
                         Image(systemName: "calendar")
                             .foregroundColor(.gray)
@@ -149,9 +148,7 @@ struct RideView: View {
                     }
                 Button {
                     Task {
-                        self.rideVM.userFlightNumber = flightNumber
-                        self.rideVM.userDepartureDate = flightDate
-                        await rideVM.getFlightStatus()
+                        await rideVM.getFlightStatus(userFlightNumber: flightNumber, userDepartureDate: flightDate)
                     }
                 } label: {
                     Image(systemName: "magnifyingglass")
@@ -172,25 +169,6 @@ struct RideView: View {
         }
         .navigationTitle("Ride")
         .preferredColorScheme(.dark)
-    }
-    func checkFlightNumber(userInput value: String) {
-        guard let regexExpression = try? NSRegularExpression(pattern: "(?<![\\dA-Z])(?!\\d{2})([A-Z\\d]{2})\\s?(\\d{2,4})(?!\\d)")
-        else {
-            return
-        }
-        let valueUpper = value.uppercased()
-        let range = NSRange(location: 0, length: valueUpper.utf16.count)
-        let result = regexExpression.firstMatch(in: valueUpper, options: [], range: range)
-        if result != nil {
-            flightNumber = valueUpper
-            wrongFlightNumber = ""
-        } else {
-            if flightNumber.count > 5 {
-                wrongFlightNumber = "Please enter valid flight number. Ex: F2 1122"
-            } else {
-                wrongFlightNumber = ""
-            }
-        }
     }
 }
 

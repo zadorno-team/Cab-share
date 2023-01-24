@@ -11,25 +11,26 @@ import SwiftUI
 @MainActor
 class RideViewModel: ObservableObject {
     @Published var flightStatus: FlightData?
-    @Published var userFlightNumber: String?
-    @Published var userDepartureDate: Date?
-    func getFlightStatus() async {
+    @Published var error: String?
+    private let wrongFlightNumberError = "Please enter valid flight number. Ex: F2 1122"
+    func getFlightStatus(userFlightNumber: String, userDepartureDate: Date) async {
         let decoder = JSONDecoder()
-        let airlineCode: String = String(userFlightNumber!.prefix(2))
-        let flightCode: String = String(userFlightNumber!.suffix(4))
+        let airlineCode: String = String(userFlightNumber.prefix(2))
+        let flightCode: String = String(userFlightNumber.suffix(4))
+        let dateString = dateToString(date: userDepartureDate)
         let urlComponents: URLComponents = {
             var baseUrl = URLComponents(string: "https://flight-info-api.p.rapidapi.com")!
             baseUrl.path = "/status"
             baseUrl.queryItems = [
                 URLQueryItem(name: "version", value: "v1"),
-                URLQueryItem(name: "DepartureDate", value: dateToString(date: userDepartureDate!)),
-                URLQueryItem(name: "IataCarrierCode", value: airlineCode),
+                URLQueryItem(name: "DepartureDate", value: dateString),
+                URLQueryItem(name: "IataCarrierCode", value: airlineCode.uppercased()),
                 URLQueryItem(name: "FlightNumber", value: flightCode)
             ]
             print(baseUrl)
             print(airlineCode)
             print(flightCode)
-            print(dateToString(date: userDepartureDate!))
+            print(dateString)
             return baseUrl
         }()
         let headers = [
@@ -51,6 +52,24 @@ class RideViewModel: ObservableObject {
         nameFormatter.dateFormat = "yyyy-MM-dd"
         let departureDate = nameFormatter.string(from: date)
         return departureDate
+    }
+    func checkFlightNumber(userInput value: String) {
+        guard let regexExpression = try? NSRegularExpression(pattern: "(?<![\\dA-Z])(?!\\d{2})([A-Z\\d]{2})\\s?(\\d{2,4})(?!\\d)")
+        else {
+            return
+        }
+        let valueUpper = value.uppercased()
+        let range = NSRange(location: 0, length: valueUpper.utf16.count)
+        let result = regexExpression.firstMatch(in: valueUpper, options: [], range: range)
+        if result != nil {
+            error = nil
+        } else {
+            if valueUpper.count > 5 {
+                error = wrongFlightNumberError
+            } else {
+                error = nil
+            }
+        }
     }
 }
 
