@@ -78,9 +78,9 @@ struct RideView: View {
                                     .foregroundColor(.gray), text: $rideInformation.flightNumber)
                                 .foregroundColor(.white)
                                 Button(action: {
-                                    self.flightNumber = ""
+                                    rideInformation.flightNumber = ""
                                 }, label: {
-                                    if !flightNumber.isEmpty {
+                                    if !rideInformation.flightNumber.isEmpty {
                                         Image(systemName: "xmark.circle.fill").foregroundColor(.secondary)
                                     }})
                             }
