@@ -9,8 +9,8 @@ import Foundation
 import FirebaseAuth
 
 class LoginViewModel: ObservableObject {
-    @Published var email = ""
-    @Published var password = ""
+    @Published var email = "test@gmail.com"
+    @Published var password = "ciaociao"
     @Published var signInView = false
     @Published var userSignedUp = false
     @Published var userSignedIn = false

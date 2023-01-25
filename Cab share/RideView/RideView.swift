@@ -9,7 +9,9 @@ import MapKit
 import SwiftUI
 
 struct RideView: View {
-    @State var flightNumber: String = ""
+    @ObservedObject var rideVM: RideViewModel
+    @State private var flightNumber: String = ""
+    @State private var flightDate = Date()
     @State private var selectedNumber = 1
     @State private var showPicker = false
     @State private var savedPlace = false
@@ -59,103 +61,119 @@ struct RideView: View {
                         .frame(width: 350, height: 60)
                         .background(.white)
                         .cornerRadius(25)
-                        .padding(20)
+                        .padding(5)
                         .foregroundColor(.black)
                     HStack {
-                        //                        VStack{
                         Image(systemName: "airplane.departure")
                             .foregroundColor(.gray)
                             .font(.system(size: 30))
-                        //                        }
-                        VStack {
-                            HStack {
-                                CustomTextField(placeholder: Text("Which flight you had?")
-                                    .foregroundColor(.gray), text: $flightNumber)
-                                    .foregroundColor(.white)
-                                Button(action: {
-                                    self.flightNumber = ""
-                                }, label: {
-                                    if !flightNumber.isEmpty {
-                                        Image(systemName: "xmark.circle.fill").foregroundColor(.secondary)
-                                    }})
+                        CustomTextField(placeholder: Text("Enter your flight number")
+                            .foregroundColor(.gray), text: $flightNumber)
+                        .foregroundColor(.white)
+                        .limitInputLength(value: $flightNumber, length: 7)
+                        .onChange(of: flightNumber) { flightNumber in
+                            rideVM.checkFlightNumber(userInput: flightNumber)
+                        }
+                        Button(action: {
+                            self.flightNumber = ""
+                        }, label: {
+                            if !flightNumber.isEmpty {
+                                Image(systemName: "xmark.circle.fill").foregroundColor(.secondary)
                             }
-                        }.padding()
-                    }.padding(.leading, 25)
+                        })
+                    }.padding(.horizontal).padding(.top, 5)
+                    Text(rideVM.error ?? "")
                     HStack {
-                        //                        VStack{
-                        Image(systemName: "person.fill")
+                        Image(systemName: "calendar")
                             .foregroundColor(.gray)
                             .font(.system(size: 30))
-                        //                        }
-                        VStack {
-                            Button {
-                                self.showPicker = true
-                            } label: {
-                                if showPicker {
-                                    Picker("Select a number", selection: self.$selectedNumber) {
-                                        ForEach(self.numbers, id: \.self) { number in
-                                            Text("\(number)")
-                                        }
-                                    }
-                                } else {
-                                    Text("How many people with you?").padding(.trailing, 25)
-                                }
-                            }.frame(width: 260, height: 10)
-                                .accentColor(.gray)
-                        }.padding()
+                            .padding(.trailing, 9)
+                        DatePicker("Departure date", selection: $flightDate, in: Date()..., displayedComponents: [.date])
+                            .accentColor(.gray)
+                            .opacity(0.6)
+                    }.padding(.horizontal).padding(.bottom, 10)
+                    if let flightStatus = rideVM.flightStatus {
+                        Text("Your flight details:")
+                            .font(.headline)
+                        Text("Departure airport: \(flightStatus.data[0].departure.airport.iata)")
+                        Text("Departure time: \(flightStatus.data[0].departure.passengerLocalTime)")
+                        Text("Arrival airport: \(flightStatus.data[0].arrival.airport.iata)")
+                        Text("Departure time: \(flightStatus.data[0].arrival.date)")
+                        Text("Arrival time: \(flightStatus.data[0].arrival.passengerLocalTime)")
                     }
-                    Button {
-                        self.savedPlace.toggle()
-                    } label: {
-                        Image(systemName: "star.fill")
-                            .foregroundColor(.gray)
-                        Text("Choose a saved place")
-                            .foregroundColor(.gray)
-                        Spacer()
-                    }
-                    .padding([.top, .bottom])
-                    .padding(.leading, 25)
-                    .sheet(isPresented: $savedPlace) {
-                    }
-                    Button {
-                        self.alreadyMade.toggle()
-                    } label: {
-                        Image(systemName: "figure.run")
-                            .foregroundColor(.gray)
-                        Text("Choose an already made journey")
-                            .foregroundColor(.gray)
-                        Spacer()
-                    }.padding(.leading, 25)
-                        .padding(.bottom)
-                        .sheet(isPresented: $alreadyMade) {
-                        }
-                    Map(coordinateRegion: .constant(MKCoordinateRegion(
-                        center: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275),
-                        span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))),
-                        interactionModes: [])
-                    .frame(width: 350, height: 200)
-                    .cornerRadius(25)
-                    Button {
-                        #warning("We should fill this space in my heart")
-                    } label: {
-                        Image(systemName: "magnifyingglass")
-                            .foregroundColor(.black)
-                        Text("Search")
-                            .foregroundColor(.black)
-                    }.frame(width: 350, height: 50)
-                        .background(.white)
-                        .cornerRadius(25)
-                        .padding()
                 }
+                HStack {
+                    Image(systemName: "person.fill")
+                        .foregroundColor(.gray)
+                        .font(.system(size: 30))
+                    Button {
+                        self.showPicker = true
+                    } label: {
+                        if showPicker {
+                            Picker("Select a number", selection: self.$selectedNumber) {
+                                ForEach(self.numbers, id: \.self) { number in
+                                    Text("\(number)")
+                                }
+                            }
+                        } else {
+                            Text("How many people with you?").padding(.trailing, 25)
+                        }
+                    }.frame(width: 260, height: 10)
+                        .accentColor(.gray)
+                    Spacer()
+                }.padding(.leading, 20)
+                Button {
+                    self.savedPlace.toggle()
+                } label: {
+                    Image(systemName: "star.fill")
+                        .foregroundColor(.gray)
+                    Text("Choose a saved place")
+                        .foregroundColor(.gray)
+                    Spacer()
+                }
+                .padding([.top, .bottom])
+                .padding(.leading, 25)
+                .sheet(isPresented: $savedPlace) {
+                }
+                Button {
+                    self.alreadyMade.toggle()
+                } label: {
+                    Image(systemName: "figure.run")
+                        .foregroundColor(.gray)
+                    Text("Choose an already made journey")
+                        .foregroundColor(.gray)
+                    Spacer()
+                }.padding(.leading, 25)
+                    .sheet(isPresented: $alreadyMade) {
+                    }
+                Button {
+                    Task {
+                        await rideVM.getFlightStatus(userFlightNumber: flightNumber, userDepartureDate: flightDate)
+                    }
+                } label: {
+                    Image(systemName: "magnifyingglass")
+                        .foregroundColor(.black)
+                    Text("Search")
+                        .foregroundColor(.black)
+                }.frame(width: 350, height: 50)
+                    .background(.white)
+                    .cornerRadius(25)
+                    .padding(5)
+                Map(coordinateRegion: .constant(MKCoordinateRegion(
+                    center: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275),
+                    span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))),
+                    interactionModes: [])
+                .frame(width: 350, height: 200)
+                .cornerRadius(25)
             }
-            .navigationTitle("Ride")
-            .preferredColorScheme(.dark)
         }
+        .navigationTitle("Ride")
+        .preferredColorScheme(.dark)
     }
 }
 
 struct RideView_Previews: PreviewProvider {
     static var previews: some View {
-        RideView()
+        RideView(rideVM: RideViewModel())
     }
 }
