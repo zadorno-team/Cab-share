@@ -102,50 +102,56 @@ struct RideView: View {
                         Text("Arrival time: \(flightStatus.data[0].arrival.passengerLocalTime)")
                     }
                 }
-                HStack {
-                    Image(systemName: "person.fill")
-                        .foregroundColor(.gray)
-                        .font(.system(size: 30))
-                    Button {
-                        self.showPicker = true
-                    } label: {
-                        if showPicker {
-                            Picker("Select a number", selection: self.$selectedNumber) {
-                                ForEach(self.numbers, id: \.self) { number in
-                                    Text("\(number)")
-                                }
-                            }
-                        } else {
-                            Text("How many people with you?").padding(.trailing, 25)
-                        }
-                    }.frame(width: 260, height: 10)
-                        .accentColor(.gray)
-                    Spacer()
-                }.padding(.leading, 20)
-                Button {
-                    self.savedPlace.toggle()
-                } label: {
-                    Image(systemName: "star.fill")
-                        .foregroundColor(.gray)
-                    Text("Choose a saved place")
-                        .foregroundColor(.gray)
-                    Spacer()
-                }
-                .padding([.top, .bottom])
-                .padding(.leading, 25)
-                .sheet(isPresented: $savedPlace) {
-                }
-                Button {
-                    self.alreadyMade.toggle()
-                } label: {
-                    Image(systemName: "figure.run")
-                        .foregroundColor(.gray)
-                    Text("Choose an already made journey")
-                        .foregroundColor(.gray)
-                    Spacer()
-                }.padding(.leading, 25)
-                    .sheet(isPresented: $alreadyMade) {
-                    }
+//                HStack {
+//                    Image(systemName: "person.fill")
+//                        .foregroundColor(.gray)
+//                        .font(.system(size: 30))
+//                    Button {
+//                        self.showPicker = true
+//                    } label: {
+//                        if showPicker {
+//                            Picker("Select a number", selection: self.$selectedNumber) {
+//                                ForEach(self.numbers, id: \.self) { number in
+//                                    Text("\(number)")
+//                                }
+//                            }
+//                        } else {
+//                            Text("How many people with you?").padding(.trailing, 25)
+//                        }
+//                    }.frame(width: 260, height: 10)
+//                        .accentColor(.gray)
+//                    Spacer()
+//                }.padding(.leading, 20)
+//                Button {
+//                    self.savedPlace.toggle()
+//                } label: {
+//                    Image(systemName: "star.fill")
+//                        .foregroundColor(.gray)
+//                    Text("Choose a saved place")
+//                        .foregroundColor(.gray)
+//                    Spacer()
+//                }
+//                .padding([.top, .bottom])
+//                .padding(.leading, 25)
+//                .sheet(isPresented: $savedPlace) {
+//                }
+//                Button {
+//                    self.alreadyMade.toggle()
+//                } label: {
+//                    Image(systemName: "figure.run")
+//                        .foregroundColor(.gray)
+//                    Text("Choose an already made journey")
+//                        .foregroundColor(.gray)
+//                    Spacer()
+//                }.padding(.leading, 25)
+//                    .sheet(isPresented: $alreadyMade) {
+//                    }
+                Map(coordinateRegion: .constant(MKCoordinateRegion(
+                    center: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275),
+                    span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))),
+                    interactionModes: [])
+                .frame(width: 350, height: 200)
+                .cornerRadius(25)
                 Button {
                     Task {
                         await rideVM.getFlightStatus(userFlightNumber: flightNumber, userDepartureDate: flightDate)
@@ -159,12 +165,6 @@ struct RideView: View {
                     .background(.white)
                     .cornerRadius(25)
                     .padding(5)
-                Map(coordinateRegion: .constant(MKCoordinateRegion(
-                    center: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275),
-                    span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))),
-                    interactionModes: [])
-                .frame(width: 350, height: 200)
-                .cornerRadius(25)
             }
             .navigationTitle("Ride")
         }
