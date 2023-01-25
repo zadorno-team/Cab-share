@@ -9,11 +9,7 @@ import MapKit
 import SwiftUI
 
 struct RideView: View {
-    @State var flightNumber: String = ""
-    @State private var selectedNumber = 1
-    @State private var showPicker = false
-    @State private var savedPlace = false
-    @State private var alreadyMade = false
+    @EnvironmentObject var rideInformation: RideInformation
     @StateObject private var locationManager = LocationManager()
     var weatherManager = WeatherManager()
     @State var weather: ResponseBody?
@@ -55,23 +51,32 @@ struct RideView: View {
                         .background(Color.blue)
                         .cornerRadius(25)
                         .padding(.top, 5)
-                    SearchBar()
-                        .frame(width: 350, height: 60)
-                        .background(.white)
-                        .cornerRadius(25)
-                        .padding(20)
-                        .foregroundColor(.black)
+                    Button{
+                        rideInformation.searchBar.toggle()
+                    } label: {
+                        HStack{
+                            Image(systemName: "magnifyingglass")
+                                .foregroundColor(.black)
+                                .padding()
+                                .padding(.trailing, 0)
+                            CustomTextField(placeholder: Text("Where to?").foregroundColor(.black), text: $rideInformation.searchText)
+                                .padding(.leading, 0)
+                        }.frame(width: 350, height: 60)
+                            .background(.white)
+                            .cornerRadius(25)
+                            .padding()
+                    }.sheet(isPresented: $rideInformation.searchBar){
+                        SearchBar()
+                    }
                     HStack {
-                        //                        VStack{
                         Image(systemName: "airplane.departure")
                             .foregroundColor(.gray)
                             .font(.system(size: 30))
-                        //                        }
                         VStack {
                             HStack {
                                 CustomTextField(placeholder: Text("Which flight you had?")
-                                    .foregroundColor(.gray), text: $flightNumber)
-                                    .foregroundColor(.white)
+                                    .foregroundColor(.gray), text: $rideInformation.flightNumber)
+                                .foregroundColor(.white)
                                 Button(action: {
                                     self.flightNumber = ""
                                 }, label: {
@@ -81,62 +86,12 @@ struct RideView: View {
                             }
                         }.padding()
                     }.padding(.leading, 25)
-                    HStack {
-                        //                        VStack{
-                        Image(systemName: "person.fill")
-                            .foregroundColor(.gray)
-                            .font(.system(size: 30))
-                        //                        }
-                        VStack {
-                            Button {
-                                self.showPicker = true
-                            } label: {
-                                if showPicker {
-                                    Picker("Select a number", selection: self.$selectedNumber) {
-                                        ForEach(self.numbers, id: \.self) { number in
-                                            Text("\(number)")
-                                        }
-                                    }
-                                } else {
-                                    Text("How many people with you?").padding(.trailing, 25)
-                                }
-                            }.frame(width: 260, height: 10)
-                                .accentColor(.gray)
-                        }.padding()
-                    }
+                    Spacer(minLength: 10)
+                    MapView()
+                        .frame(width: 350, height: 200)
+                        .cornerRadius(25)
                     Button {
-                        self.savedPlace.toggle()
-                    } label: {
-                        Image(systemName: "star.fill")
-                            .foregroundColor(.gray)
-                        Text("Choose a saved place")
-                            .foregroundColor(.gray)
-                        Spacer()
-                    }
-                    .padding([.top, .bottom])
-                    .padding(.leading, 25)
-                    .sheet(isPresented: $savedPlace) {
-                    }
-                    Button {
-                        self.alreadyMade.toggle()
-                    } label: {
-                        Image(systemName: "figure.run")
-                            .foregroundColor(.gray)
-                        Text("Choose an already made journey")
-                            .foregroundColor(.gray)
-                        Spacer()
-                    }.padding(.leading, 25)
-                        .padding(.bottom)
-                        .sheet(isPresented: $alreadyMade) {
-                        }
-                    Map(coordinateRegion: .constant(MKCoordinateRegion(
-                        center: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275),
-                        span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))),
-                        interactionModes: [])
-                    .frame(width: 350, height: 200)
-                    .cornerRadius(25)
-                    Button {
-                        #warning("We should fill this space in my heart")
+                        
                     } label: {
                         Image(systemName: "magnifyingglass")
                             .foregroundColor(.black)
@@ -156,6 +111,6 @@ struct RideView: View {
 
 struct RideView_Previews: PreviewProvider {
     static var previews: some View {
-        RideView()
+        RideView().environmentObject(RideInformation())
     }
 }

@@ -6,38 +6,68 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct SearchBar: View {
-    @State private var searchText = ""
-    let data = ["apple", "banana", "cherry", "date", "elderberry"]
-
+    @EnvironmentObject var rideInformation: RideInformation
+    @State private var filteredItems: [MKMapItem] = []
     var body: some View {
         VStack {
             HStack {
                 Image(systemName: "magnifyingglass")
-                    .foregroundColor(Color.black)
-                CustomTextField(placeholder: Text("Where to?").foregroundColor(.black), text: $searchText)
+                    .foregroundColor(Color.white)
+                CustomTextField(placeholder: Text("Where to?").foregroundColor(.white), text: $rideInformation.searchText)
                 Button(action: {
-                    self.searchText = ""
+                    self.rideInformation.searchText = ""
                 }, label: {
-                    if !searchText.isEmpty {
-                        Image(systemName: "xmark.circle.fill").foregroundColor(.black)
+                    if !rideInformation.searchText.isEmpty {
+                        Image(systemName: "xmark.circle.fill").foregroundColor(.white)
                     }})
-            }.padding()
-
-//            List {
-//                ForEach(data.filter {
-//                    self.searchText.isEmpty ? true : $0.localizedStandardContains(self.searchText)
-//                }, id: \.self) {
-//                    Text($0)
-//                }
-//            }
-        }
+            }.padding(10)
+                .padding(.top, 20)
+                .onChange(of: rideInformation.searchText) { newValue in
+                    let request = MKLocalSearch.Request()
+                    request.naturalLanguageQuery = newValue
+                    let search = MKLocalSearch(request: request)
+                    search.start { response, _ in
+                        guard let response = response else { return }
+                        let mapItems = response.mapItems
+                        print(mapItems)
+                        filteredItems = mapItems.filter {
+                            $0.placemark.name?.contains(self.rideInformation.searchText) ?? false }.map{$0}
+                    }
+                }
+            Divider()
+            ScrollView{
+                ForEach(filteredItems) { item in
+                    Button {
+                        rideInformation.searchText = "\(item.placemark.thoroughfare ?? "") \(item.placemark.subThoroughfare ?? ""), \(item.placemark.locality ?? "") \(item.placemark.postalCode ?? "")"
+                        rideInformation.searchBar.toggle()
+                    } label: {
+                        VStack(alignment: .leading){
+                            Text("\(item.placemark.thoroughfare ?? "") \(item.placemark.subThoroughfare ?? ""), \(item.placemark.locality ?? "") \(item.placemark.postalCode ?? "")")
+                                .foregroundColor(.white)
+                                .multilineTextAlignment(.leading)
+                            Divider()
+                                .foregroundColor(.white)
+                        }
+                    }.frame(height: 30)
+                        .padding(5)
+                        .padding(.leading, 15)
+                }
+            }
+            
+        }.preferredColorScheme(.dark)
     }
 }
-
+//To make filterdItems identifiable
+extension MKMapItem: Identifiable {
+    public var id: String {
+        return self.name ?? UUID().uuidString
+    }
+}
 struct SearchBar_Previews: PreviewProvider {
     static var previews: some View {
-        SearchBar()
+        SearchBar().environmentObject(RideInformation())
     }
 }

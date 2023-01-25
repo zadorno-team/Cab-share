@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0315AC9E297EBB7700A91231 /* LobbyGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0315AC9D297EBB7700A91231 /* LobbyGroupView.swift */; };
+		0315ACA2297EDB1300A91231 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0315AC9F297EDB1200A91231 /* ChatView.swift */; };
+		0315ACA3297EDB1300A91231 /* MessageBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0315ACA0297EDB1200A91231 /* MessageBubble.swift */; };
+		0315ACA4297EDB1300A91231 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0315ACA1297EDB1300A91231 /* MessageModel.swift */; };
 		03180E2D2970365D008D8B4B /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03180E2C2970365D008D8B4B /* SearchBar.swift */; };
 		03180E2F29704CD4008D8B4B /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03180E2E29704CD4008D8B4B /* DataController.swift */; };
 		03180E3229704CF1008D8B4B /* UserData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 03180E3029704CF1008D8B4B /* UserData.xcdatamodeld */; };
@@ -16,6 +20,9 @@
 		03554D7F2979DE0E00FCBC3E /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03554D7D2979DE0E00FCBC3E /* LocationManager.swift */; };
 		03554D812979DE3100FCBC3E /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03554D802979DE3000FCBC3E /* LoadingView.swift */; };
 		0366D0B6297D5B4200F0F9C0 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0366D0B5297D5B4200F0F9C0 /* WeatherModel.swift */; };
+		03784EEF297EEDEE00A60A19 /* LobbyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03784EEE297EEDEE00A60A19 /* LobbyModel.swift */; };
+		03784EF2298012E800A60A19 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03784EF1298012E800A60A19 /* MapView.swift */; };
+		038B480929818102008C48FB /* RideInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038B480829818102008C48FB /* RideInformation.swift */; };
 		03B048402971A69400A3D526 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B0483F2971A69400A3D526 /* CustomTextField.swift */; };
 		03B10C252975A19200D7BA14 /* CustomSecureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B10C242975A19200D7BA14 /* CustomSecureField.swift */; };
 		03B10C272975AC6600D7BA14 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 03B10C262975AC6600D7BA14 /* GoogleService-Info.plist */; };
@@ -33,6 +40,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0315AC9D297EBB7700A91231 /* LobbyGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobbyGroupView.swift; sourceTree = "<group>"; };
+		0315AC9F297EDB1200A91231 /* ChatView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		0315ACA0297EDB1200A91231 /* MessageBubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageBubble.swift; sourceTree = "<group>"; };
+		0315ACA1297EDB1300A91231 /* MessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
 		03180E2C2970365D008D8B4B /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		03180E2E29704CD4008D8B4B /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		03180E3129704CF1008D8B4B /* UserData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserData.xcdatamodel; sourceTree = "<group>"; };
@@ -42,6 +53,9 @@
 		03554D7D2979DE0E00FCBC3E /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		03554D802979DE3000FCBC3E /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		0366D0B5297D5B4200F0F9C0 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
+		03784EEE297EEDEE00A60A19 /* LobbyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobbyModel.swift; sourceTree = "<group>"; };
+		03784EF1298012E800A60A19 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		038B480829818102008C48FB /* RideInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideInformation.swift; sourceTree = "<group>"; };
 		03B0483F2971A69400A3D526 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		03B10C242975A19200D7BA14 /* CustomSecureField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSecureField.swift; sourceTree = "<group>"; };
 		03B10C262975AC6600D7BA14 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -71,6 +85,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0315AC9C297EBB6100A91231 /* Lobby */ = {
+			isa = PBXGroup;
+			children = (
+				0315AC9F297EDB1200A91231 /* ChatView.swift */,
+				0315ACA1297EDB1300A91231 /* MessageModel.swift */,
+				0315ACA0297EDB1200A91231 /* MessageBubble.swift */,
+				0315AC9D297EBB7700A91231 /* LobbyGroupView.swift */,
+				03784EEE297EEDEE00A60A19 /* LobbyModel.swift */,
+			);
+			path = Lobby;
+			sourceTree = "<group>";
+		};
 		03554D7B2979DE0E00FCBC3E /* Weather */ = {
 			isa = PBXGroup;
 			children = (
@@ -78,6 +104,14 @@
 				0366D0B5297D5B4200F0F9C0 /* WeatherModel.swift */,
 			);
 			path = Weather;
+			sourceTree = "<group>";
+		};
+		03784EF0298012D900A60A19 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				03784EF1298012E800A60A19 /* MapView.swift */,
+			);
+			path = Map;
 			sourceTree = "<group>";
 		};
 		03B10C2D2975CD5000D7BA14 /* Frameworks */ = {
@@ -110,8 +144,9 @@
 		13351BB82975A3B7000893CA /* RideView */ = {
 			isa = PBXGroup;
 			children = (
-				03EED84D296F08F500375523 /* RideView.swift */,
+				038B480829818102008C48FB /* RideInformation.swift */,
 				03180E2C2970365D008D8B4B /* SearchBar.swift */,
+				03EED84D296F08F500375523 /* RideView.swift */,
 			);
 			path = RideView;
 			sourceTree = "<group>";
@@ -153,6 +188,8 @@
 				139B2FEE296F138700C33E79 /* MainView.swift */,
 				133E35A1296F15520014CFC9 /* UserView.swift */,
 				03554D7D2979DE0E00FCBC3E /* LocationManager.swift */,
+				03784EF0298012D900A60A19 /* Map */,
+				0315AC9C297EBB6100A91231 /* Lobby */,
 				03554D7B2979DE0E00FCBC3E /* Weather */,
 				13351BB82975A3B7000893CA /* RideView */,
 				13351BB92975A3CA000893CA /* RideHistory */,
@@ -271,24 +308,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0315ACA4297EDB1300A91231 /* MessageModel.swift in Sources */,
+				03784EF2298012E800A60A19 /* MapView.swift in Sources */,
+				038B480929818102008C48FB /* RideInformation.swift in Sources */,
+				0315ACA3297EDB1300A91231 /* MessageBubble.swift in Sources */,
 				03180E3229704CF1008D8B4B /* UserData.xcdatamodeld in Sources */,
 				03554D7F2979DE0E00FCBC3E /* LocationManager.swift in Sources */,
 				0352C64B2976EB83005080D5 /* RoutingView.swift in Sources */,
 				13759042297070080037E095 /* HistoryRowView.swift in Sources */,
 				0366D0B6297D5B4200F0F9C0 /* WeatherModel.swift in Sources */,
 				03EED84E296F08F500375523 /* RideView.swift in Sources */,
+				0315AC9E297EBB7700A91231 /* LobbyGroupView.swift in Sources */,
 				03180E2D2970365D008D8B4B /* SearchBar.swift in Sources */,
 				03B10C252975A19200D7BA14 /* CustomSecureField.swift in Sources */,
 				133E35A4296F15690014CFC9 /* HistoryView.swift in Sources */,
 				133E35A2296F15520014CFC9 /* UserView.swift in Sources */,
 				03180E2F29704CD4008D8B4B /* DataController.swift in Sources */,
 				0352C6472976DC4F005080D5 /* LoginViewModel.swift in Sources */,
+				0315ACA2297EDB1300A91231 /* ChatView.swift in Sources */,
 				03554D7E2979DE0E00FCBC3E /* WeatherManager.swift in Sources */,
 				139B2FEF296F138700C33E79 /* MainView.swift in Sources */,
 				03B048402971A69400A3D526 /* CustomTextField.swift in Sources */,
 				2AA545D7297063120058CAE2 /* LoginView.swift in Sources */,
 				139B2FDF296EFCBB00C33E79 /* Cab_shareApp.swift in Sources */,
 				03554D812979DE3100FCBC3E /* LoadingView.swift in Sources */,
+				03784EEF297EEDEE00A60A19 /* LobbyModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
