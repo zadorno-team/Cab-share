@@ -9,13 +9,10 @@ import MapKit
 import SwiftUI
 
 struct RideView: View {
+    @EnvironmentObject var rideInformation: RideInformation
     @ObservedObject var rideVM: RideViewModel
     @State private var flightNumber: String = ""
     @State private var flightDate = Date()
-    @State private var selectedNumber = 1
-    @State private var showPicker = false
-    @State private var savedPlace = false
-    @State private var alreadyMade = false
     @StateObject private var locationManager = LocationManager()
     var weatherManager = WeatherManager()
     @State var weather: ResponseBody?
@@ -57,12 +54,24 @@ struct RideView: View {
                         .background(Color.blue)
                         .cornerRadius(25)
                         .padding(.top, 5)
-                    SearchBar()
-                        .frame(width: 350, height: 60)
-                        .background(.white)
-                        .cornerRadius(25)
-                        .padding(5)
-                        .foregroundColor(.black)
+                    Button {
+                        rideInformation.searchBar.toggle()
+                    } label: {
+                        HStack {
+                            Image(systemName: "magnifyingglass")
+                                .foregroundColor(.black)
+                                .padding(.trailing, 0)
+                                .padding(.leading, 15)
+                            CustomTextField(placeholder: Text("Where to?").foregroundColor(.black), text: $rideInformation.searchText).foregroundColor(.black)
+                                .padding(.leading, 0)
+                                .truncationMode(.tail)
+                        }.frame(width: 350, height: 60)
+                            .background(.white)
+                            .cornerRadius(25)
+                            .padding()
+                    }.sheet(isPresented: $rideInformation.searchBar) {
+                        SearchBar()
+                    }
                     HStack {
                         Image(systemName: "airplane.departure")
                             .foregroundColor(.gray)
@@ -75,9 +84,9 @@ struct RideView: View {
                             rideVM.checkFlightNumber(userInput: flightNumber)
                         }
                         Button(action: {
-                            self.flightNumber = ""
+                            rideInformation.flightNumber = ""
                         }, label: {
-                            if !flightNumber.isEmpty {
+                            if !rideInformation.flightNumber.isEmpty {
                                 Image(systemName: "xmark.circle.fill").foregroundColor(.secondary)
                             }
                         })
@@ -101,58 +110,10 @@ struct RideView: View {
                         Text("Departure time: \(flightStatus.data[0].arrival.date)")
                         Text("Arrival time: \(flightStatus.data[0].arrival.passengerLocalTime)")
                     }
-                }
-//                HStack {
-//                    Image(systemName: "person.fill")
-//                        .foregroundColor(.gray)
-//                        .font(.system(size: 30))
-//                    Button {
-//                        self.showPicker = true
-//                    } label: {
-//                        if showPicker {
-//                            Picker("Select a number", selection: self.$selectedNumber) {
-//                                ForEach(self.numbers, id: \.self) { number in
-//                                    Text("\(number)")
-//                                }
-//                            }
-//                        } else {
-//                            Text("How many people with you?").padding(.trailing, 25)
-//                        }
-//                    }.frame(width: 260, height: 10)
-//                        .accentColor(.gray)
-//                    Spacer()
-//                }.padding(.leading, 20)
-//                Button {
-//                    self.savedPlace.toggle()
-//                } label: {
-//                    Image(systemName: "star.fill")
-//                        .foregroundColor(.gray)
-//                    Text("Choose a saved place")
-//                        .foregroundColor(.gray)
-//                    Spacer()
-//                }
-//                .padding([.top, .bottom])
-//                .padding(.leading, 25)
-//                .sheet(isPresented: $savedPlace) {
-//                }
-//                Button {
-//                    self.alreadyMade.toggle()
-//                } label: {
-//                    Image(systemName: "figure.run")
-//                        .foregroundColor(.gray)
-//                    Text("Choose an already made journey")
-//                        .foregroundColor(.gray)
-//                    Spacer()
-//                }.padding(.leading, 25)
-//                    .sheet(isPresented: $alreadyMade) {
-//                    }
-                Map(coordinateRegion: .constant(MKCoordinateRegion(
-                    center: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275),
-                    span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))),
-                    interactionModes: [])
-                .frame(width: 350, height: 200)
-                .cornerRadius(25)
-                if flightNumber != "" {
+                    Spacer(minLength: 10)
+                    MapView()
+                        .frame(width: 350, height: 200)
+                        .cornerRadius(25)
                     Button {
                         Task {
                             await rideVM.getFlightStatus(userFlightNumber: flightNumber, userDepartureDate: flightDate)
@@ -166,30 +127,14 @@ struct RideView: View {
                         .background(.white)
                         .cornerRadius(25)
                         .padding(5)
-                } else {
-                    Button {
-                        Task {
-                            await rideVM.getFlightStatus(userFlightNumber: flightNumber, userDepartureDate: flightDate)
-                        }
-                    } label: {
-                        Image(systemName: "magnifyingglass")
-                            .foregroundColor(.white)
-                        Text("Search")
-                            .foregroundColor(.white)
-                    }.frame(width: 350, height: 50)
-                        .background(Color(white: 0.3))
-                        .cornerRadius(25)
-                        .padding(5)
-                }
+                }.navigationTitle("Ride")
             }
-            .navigationTitle("Ride")
-        }
-        .preferredColorScheme(.dark)
+        }.preferredColorScheme(.dark)
     }
 }
 
 struct RideView_Previews: PreviewProvider {
     static var previews: some View {
-        RideView(rideVM: RideViewModel())
+        RideView(rideVM: RideViewModel()).environmentObject(RideInformation())
     }
 }
