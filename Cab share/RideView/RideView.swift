@@ -166,8 +166,8 @@ struct RideView: View {
                 .frame(width: 350, height: 200)
                 .cornerRadius(25)
             }
+            .navigationTitle("Ride")
         }
-        .navigationTitle("Ride")
         .preferredColorScheme(.dark)
     }
 }
