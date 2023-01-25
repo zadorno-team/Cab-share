@@ -18,7 +18,7 @@ class UserModel: ObservableObject {
     
     func upload() {
         let db = Firestore.firestore()
-        db.collection("User").document(currentUser!.uid).setData(["nameText": $nameText, "ageText": $ageText, "hometownText": $hometownText, "emailText": $emailText, "passwordText": $passwordText])
+        db.collection("UserInformation").document(currentUser!.uid).setData(["nameText": $nameText, "ageText": $ageText, "hometownText": $hometownText, "emailText": $emailText, "passwordText": $passwordText])
     }
     func download() {
         let db = Firestore.firestore()

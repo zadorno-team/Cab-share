@@ -39,6 +39,6 @@ struct UserSignUpView: View {
 
 struct UserSignUpView_Previews: PreviewProvider {
     static var previews: some View {
-        UserSignUpView()
+        UserSignUpView().environmentObject(UserModel())
     }
 }
