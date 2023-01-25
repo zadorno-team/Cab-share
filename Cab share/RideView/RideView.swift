@@ -152,19 +152,35 @@ struct RideView: View {
                     interactionModes: [])
                 .frame(width: 350, height: 200)
                 .cornerRadius(25)
-                Button {
-                    Task {
-                        await rideVM.getFlightStatus(userFlightNumber: flightNumber, userDepartureDate: flightDate)
-                    }
-                } label: {
-                    Image(systemName: "magnifyingglass")
-                        .foregroundColor(.black)
-                    Text("Search")
-                        .foregroundColor(.black)
-                }.frame(width: 350, height: 50)
-                    .background(.white)
-                    .cornerRadius(25)
-                    .padding(5)
+                if flightNumber != "" {
+                    Button {
+                        Task {
+                            await rideVM.getFlightStatus(userFlightNumber: flightNumber, userDepartureDate: flightDate)
+                        }
+                    } label: {
+                        Image(systemName: "magnifyingglass")
+                            .foregroundColor(.black)
+                        Text("Search")
+                            .foregroundColor(.black)
+                    }.frame(width: 350, height: 50)
+                        .background(.white)
+                        .cornerRadius(25)
+                        .padding(5)
+                } else {
+                    Button {
+                        Task {
+                            await rideVM.getFlightStatus(userFlightNumber: flightNumber, userDepartureDate: flightDate)
+                        }
+                    } label: {
+                        Image(systemName: "magnifyingglass")
+                            .foregroundColor(.white)
+                        Text("Search")
+                            .foregroundColor(.white)
+                    }.frame(width: 350, height: 50)
+                        .background(Color(white: 0.3))
+                        .cornerRadius(25)
+                        .padding(5)
+                }
             }
             .navigationTitle("Ride")
         }

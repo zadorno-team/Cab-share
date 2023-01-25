@@ -22,6 +22,7 @@
 		03B10C2A2975B0B200D7BA14 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 03B10C292975B0B200D7BA14 /* FirebaseAuth */; };
 		03B10C2F2975CD5000D7BA14 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 03B10C2E2975CD5000D7BA14 /* FirebaseFirestore */; };
 		03EED84E296F08F500375523 /* RideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EED84D296F08F500375523 /* RideView.swift */; };
+		1319D13F29817B3D005BAE3C /* RideListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1319D13E29817B3D005BAE3C /* RideListView.swift */; };
 		133E35A2296F15520014CFC9 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133E35A1296F15520014CFC9 /* UserView.swift */; };
 		133E35A4296F15690014CFC9 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133E35A3296F15690014CFC9 /* HistoryView.swift */; };
 		13759042297070080037E095 /* HistoryRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13759041297070080037E095 /* HistoryRowView.swift */; };
@@ -49,6 +50,7 @@
 		03B10C262975AC6600D7BA14 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		03C12B792979D89A00C6803C /* Cab-share-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Cab-share-Info.plist"; sourceTree = SOURCE_ROOT; };
 		03EED84D296F08F500375523 /* RideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideView.swift; sourceTree = "<group>"; };
+		1319D13E29817B3D005BAE3C /* RideListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideListView.swift; sourceTree = "<group>"; };
 		133E35A1296F15520014CFC9 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
 		133E35A3296F15690014CFC9 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		13759041297070080037E095 /* HistoryRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryRowView.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				13AC16602977F69A00F064B9 /* RideModel.swift */,
 				13AC16622977F8B200F064B9 /* RideViewModel.swift */,
 				03180E2C2970365D008D8B4B /* SearchBar.swift */,
+				1319D13E29817B3D005BAE3C /* RideListView.swift */,
 			);
 			path = RideView;
 			sourceTree = "<group>";
@@ -153,8 +156,8 @@
 			isa = PBXGroup;
 			children = (
 				03C12B792979D89A00C6803C /* Cab-share-Info.plist */,
-				0352C64A2976EB83005080D5 /* RoutingView.swift */,
 				139B2FDE296EFCBB00C33E79 /* Cab_shareApp.swift */,
+				0352C64A2976EB83005080D5 /* RoutingView.swift */,
 				03554D802979DE3000FCBC3E /* LoadingView.swift */,
 				139B2FEE296F138700C33E79 /* MainView.swift */,
 				133E35A1296F15520014CFC9 /* UserView.swift */,
@@ -289,6 +292,7 @@
 				133E35A4296F15690014CFC9 /* HistoryView.swift in Sources */,
 				133E35A2296F15520014CFC9 /* UserView.swift in Sources */,
 				13AC16632977F8B200F064B9 /* RideViewModel.swift in Sources */,
+				1319D13F29817B3D005BAE3C /* RideListView.swift in Sources */,
 				03180E2F29704CD4008D8B4B /* DataController.swift in Sources */,
 				0352C6472976DC4F005080D5 /* LoginViewModel.swift in Sources */,
 				03554D7E2979DE0E00FCBC3E /* WeatherManager.swift in Sources */,
