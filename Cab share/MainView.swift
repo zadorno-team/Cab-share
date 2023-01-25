@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct MainView: View {
+
+    @StateObject var rideVM = RideViewModel()
+
     var body: some View {
         TabView {
-            RideView()
+            RideView(rideVM: rideVM)
                 .tabItem {
                     Label("Ride", systemImage: "car.fill")
                 }

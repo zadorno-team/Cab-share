@@ -33,6 +33,8 @@
 		2A8CBC552979950300ACC2B4 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 2A8CBC542979950300ACC2B4 /* FirebaseStorage */; };
 		2A8CBC57297AEE8200ACC2B4 /* UserSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8CBC56297AEE8200ACC2B4 /* UserSignUpView.swift */; };
 		2A8CBC5A297AEECC00ACC2B4 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8CBC59297AEECC00ACC2B4 /* UserModel.swift */; };
+		13AC16612977F69A00F064B9 /* RideModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AC16602977F69A00F064B9 /* RideModel.swift */; };
+		13AC16632977F8B200F064B9 /* RideViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AC16622977F8B200F064B9 /* RideViewModel.swift */; };
 		2AA545D7297063120058CAE2 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA545D6297063120058CAE2 /* LoginView.swift */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +64,8 @@
 		2A4756D72980227200DA6084 /* UserTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTextField.swift; sourceTree = "<group>"; };
 		2A8CBC56297AEE8200ACC2B4 /* UserSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSignUpView.swift; sourceTree = "<group>"; };
 		2A8CBC59297AEECC00ACC2B4 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		13AC16602977F69A00F064B9 /* RideModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideModel.swift; sourceTree = "<group>"; };
+		13AC16622977F8B200F064B9 /* RideViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideViewModel.swift; sourceTree = "<group>"; };
 		2AA545D6297063120058CAE2 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -119,6 +123,8 @@
 			isa = PBXGroup;
 			children = (
 				03EED84D296F08F500375523 /* RideView.swift */,
+				13AC16602977F69A00F064B9 /* RideModel.swift */,
+				13AC16622977F8B200F064B9 /* RideViewModel.swift */,
 				03180E2C2970365D008D8B4B /* SearchBar.swift */,
 			);
 			path = RideView;
@@ -298,11 +304,14 @@
 				2A8CBC57297AEE8200ACC2B4 /* UserSignUpView.swift in Sources */,
 				0366D0B6297D5B4200F0F9C0 /* WeatherModel.swift in Sources */,
 				03EED84E296F08F500375523 /* RideView.swift in Sources */,
+				13AC16612977F69A00F064B9 /* RideModel.swift in Sources */,
 				03180E2D2970365D008D8B4B /* SearchBar.swift in Sources */,
 				03B10C252975A19200D7BA14 /* CustomSecureField.swift in Sources */,
 				133E35A4296F15690014CFC9 /* HistoryView.swift in Sources */,
 				2A8CBC5A297AEECC00ACC2B4 /* UserModel.swift in Sources */,
 				2A4756D82980227200DA6084 /* UserTextField.swift in Sources */,
+				133E35A2296F15520014CFC9 /* UserView.swift in Sources */,
+				13AC16632977F8B200F064B9 /* RideViewModel.swift in Sources */,
 				03180E2F29704CD4008D8B4B /* DataController.swift in Sources */,
 				2A2AD620297ED3A10092B4D8 /* UserView.swift in Sources */,
 				0352C6472976DC4F005080D5 /* LoginViewModel.swift in Sources */,
