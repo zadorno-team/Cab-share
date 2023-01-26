@@ -17,12 +17,10 @@
 		0352C6472976DC4F005080D5 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0352C6462976DC4F005080D5 /* LoginViewModel.swift */; };
 		0352C64B2976EB83005080D5 /* RoutingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0352C64A2976EB83005080D5 /* RoutingView.swift */; };
 		03554D7E2979DE0E00FCBC3E /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03554D7C2979DE0E00FCBC3E /* WeatherManager.swift */; };
-		03554D7F2979DE0E00FCBC3E /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03554D7D2979DE0E00FCBC3E /* LocationManager.swift */; };
 		03554D812979DE3100FCBC3E /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03554D802979DE3000FCBC3E /* LoadingView.swift */; };
 		0366D0B6297D5B4200F0F9C0 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0366D0B5297D5B4200F0F9C0 /* WeatherModel.swift */; };
 		03784EEF297EEDEE00A60A19 /* LobbyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03784EEE297EEDEE00A60A19 /* LobbyModel.swift */; };
 		03784EF2298012E800A60A19 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03784EF1298012E800A60A19 /* MapView.swift */; };
-		038B480929818102008C48FB /* RideInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038B480829818102008C48FB /* RideInformation.swift */; };
 		03B048402971A69400A3D526 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B0483F2971A69400A3D526 /* CustomTextField.swift */; };
 		03B10C252975A19200D7BA14 /* CustomSecureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B10C242975A19200D7BA14 /* CustomSecureField.swift */; };
 		03B10C272975AC6600D7BA14 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 03B10C262975AC6600D7BA14 /* GoogleService-Info.plist */; };
@@ -52,12 +50,10 @@
 		0352C6462976DC4F005080D5 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		0352C64A2976EB83005080D5 /* RoutingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutingView.swift; sourceTree = "<group>"; };
 		03554D7C2979DE0E00FCBC3E /* WeatherManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
-		03554D7D2979DE0E00FCBC3E /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		03554D802979DE3000FCBC3E /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		0366D0B5297D5B4200F0F9C0 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		03784EEE297EEDEE00A60A19 /* LobbyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobbyModel.swift; sourceTree = "<group>"; };
 		03784EF1298012E800A60A19 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
-		038B480829818102008C48FB /* RideInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideInformation.swift; sourceTree = "<group>"; };
 		03B0483F2971A69400A3D526 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		03B10C242975A19200D7BA14 /* CustomSecureField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSecureField.swift; sourceTree = "<group>"; };
 		03B10C262975AC6600D7BA14 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -148,8 +144,6 @@
 		13351BB82975A3B7000893CA /* RideView */ = {
 			isa = PBXGroup;
 			children = (
-				038B480829818102008C48FB /* RideInformation.swift */,
-				03EED84D296F08F500375523 /* RideView.swift */,
 				13AC16602977F69A00F064B9 /* RideModel.swift */,
 				13AC16622977F8B200F064B9 /* RideViewModel.swift */,
 				03180E2C2970365D008D8B4B /* SearchBar.swift */,
@@ -194,7 +188,6 @@
 				03554D802979DE3000FCBC3E /* LoadingView.swift */,
 				139B2FEE296F138700C33E79 /* MainView.swift */,
 				133E35A1296F15520014CFC9 /* UserView.swift */,
-				03554D7D2979DE0E00FCBC3E /* LocationManager.swift */,
 				03784EF0298012D900A60A19 /* Map */,
 				0315AC9C297EBB6100A91231 /* Lobby */,
 				03554D7B2979DE0E00FCBC3E /* Weather */,
@@ -317,10 +310,8 @@
 			files = (
 				0315ACA4297EDB1300A91231 /* MessageModel.swift in Sources */,
 				03784EF2298012E800A60A19 /* MapView.swift in Sources */,
-				038B480929818102008C48FB /* RideInformation.swift in Sources */,
 				0315ACA3297EDB1300A91231 /* MessageBubble.swift in Sources */,
 				03180E3229704CF1008D8B4B /* UserData.xcdatamodeld in Sources */,
-				03554D7F2979DE0E00FCBC3E /* LocationManager.swift in Sources */,
 				0352C64B2976EB83005080D5 /* RoutingView.swift in Sources */,
 				13759042297070080037E095 /* HistoryRowView.swift in Sources */,
 				0366D0B6297D5B4200F0F9C0 /* WeatherModel.swift in Sources */,

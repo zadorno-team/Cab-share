@@ -13,7 +13,6 @@ struct RideView: View {
     @ObservedObject var rideVM: RideViewModel
     @State private var flightNumber: String = ""
     @State private var flightDate = Date()
-    @StateObject private var locationManager = LocationManager()
     var weatherManager = WeatherManager()
     @State var weather: ResponseBody?
     let numbers = Array(1...10)
@@ -22,10 +21,10 @@ struct RideView: View {
             ScrollView {
                 VStack {
                     HStack {
-                        if let location = locationManager.location {
+                        if let location = rideVM.locationManager.location {
                             if let weather = weather {
                                 HStack {
-                                    Text("Hello, Sasha! Nice to see you here \(locationManager.city)!")
+                                    Text("Hello, Sasha! Nice to see you here \(rideVM.locationManager.city)!")
                                         .padding(20)
                                     Image(String(weather.weather[0].icon))
                                         .resizable()
@@ -111,7 +110,7 @@ struct RideView: View {
                         Text("Arrival time: \(flightStatus.data[0].arrival.passengerLocalTime)")
                     }
                     Spacer(minLength: 10)
-                    MapView()
+                    MapView(latitude: $rideInformation.latitude, longitude: $rideInformation.longitude)
                         .frame(width: 350, height: 200)
                         .cornerRadius(25)
                     Button {

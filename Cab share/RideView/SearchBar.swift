@@ -32,19 +32,20 @@ struct SearchBar: View {
                     search.start { response, _ in
                         guard let response = response else { return }
                         let mapItems = response.mapItems
-                        print(mapItems)
                         filteredItems = mapItems.filter {
                             $0.placemark.name?.contains(self.rideInformation.searchText) ?? false }.map{$0}
                     }
                 }
             Divider()
-            ScrollView{
+            ScrollView {
                 ForEach(filteredItems) { item in
                     Button {
                         rideInformation.searchText = "\(item.placemark.thoroughfare ?? "") \(item.placemark.subThoroughfare ?? ""), \(item.placemark.locality ?? "") \(item.placemark.postalCode ?? "")"
+                        rideInformation.latitude = item.placemark.coordinate.latitude
+                        rideInformation.longitude = item.placemark.coordinate.longitude
                         rideInformation.searchBar.toggle()
                     } label: {
-                        VStack(alignment: .leading){
+                        VStack(alignment: .leading) {
                             Text("\(item.placemark.thoroughfare ?? "") \(item.placemark.subThoroughfare ?? ""), \(item.placemark.locality ?? "") \(item.placemark.postalCode ?? "")")
                                 .foregroundColor(.white)
                                 .multilineTextAlignment(.leading)
@@ -56,11 +57,10 @@ struct SearchBar: View {
                         .padding(.leading, 15)
                 }
             }
-            
         }.preferredColorScheme(.dark)
     }
 }
-//To make filterdItems identifiable
+// To make filterdItems identifiable
 extension MKMapItem: Identifiable {
     public var id: String {
         return self.name ?? UUID().uuidString
