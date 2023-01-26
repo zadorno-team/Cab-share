@@ -11,4 +11,8 @@ class RideInformation: ObservableObject {
     @Published var searchBar = false
     @Published var searchText: String = ""
     @Published var flightNumber = ""
+    @Published var flightDate = Date()
+    @Published var arrivalTime = ""
+    @Published var arrivalDate = ""
+    @Published var arrivalAirport = ""
 }

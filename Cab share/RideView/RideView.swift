@@ -65,7 +65,7 @@ struct RideView: View {
                             CustomTextField(placeholder: Text("Where to?").foregroundColor(.black), text: $rideInformation.searchText).foregroundColor(.black)
                                 .padding(.leading, 0)
                                 .truncationMode(.tail)
-                        }.frame(width: 350, height: 60)
+                        }.frame(width: 350, height: 50)
                             .background(.white)
                             .cornerRadius(25)
                             .padding()
@@ -84,10 +84,10 @@ struct RideView: View {
                             rideVM.checkFlightNumber(userInput: flightNumber)
                         }
                         Button(action: {
-                            rideInformation.flightNumber = ""
+                            flightNumber = ""
                         }, label: {
-                            if !rideInformation.flightNumber.isEmpty {
-                                Image(systemName: "xmark.circle.fill").foregroundColor(.secondary)
+                            if !flightNumber.isEmpty {
+                                Image(systemName: "xmark.circle.fill").foregroundColor(.white)
                             }
                         })
                     }.padding(.horizontal).padding(.top, 5)
@@ -101,15 +101,6 @@ struct RideView: View {
                             .accentColor(.gray)
                             .opacity(0.6)
                     }.padding(.horizontal).padding(.bottom, 10)
-                    if let flightStatus = rideVM.flightStatus {
-                        Text("Your flight details:")
-                            .font(.headline)
-                        Text("Departure airport: \(flightStatus.data[0].departure.airport.iata)")
-                        Text("Departure time: \(flightStatus.data[0].departure.passengerLocalTime)")
-                        Text("Arrival airport: \(flightStatus.data[0].arrival.airport.iata)")
-                        Text("Departure time: \(flightStatus.data[0].arrival.date)")
-                        Text("Arrival time: \(flightStatus.data[0].arrival.passengerLocalTime)")
-                    }
                     Spacer(minLength: 10)
                     MapView()
                         .frame(width: 350, height: 200)
@@ -117,6 +108,9 @@ struct RideView: View {
                     Button {
                         Task {
                             await rideVM.getFlightStatus(userFlightNumber: flightNumber, userDepartureDate: flightDate)
+                            rideInformation.flightNumber = flightNumber
+                            rideInformation.flightDate = flightDate
+
                         }
                     } label: {
                         Image(systemName: "magnifyingglass")
@@ -127,6 +121,15 @@ struct RideView: View {
                         .background(.white)
                         .cornerRadius(25)
                         .padding(5)
+                    if let flightStatus = rideVM.flightStatus {
+                        Text("Your flight details:")
+                            .font(.headline)
+                        Text("Departure airport: \(flightStatus.data[0].departure.airport.iata)")
+                        Text("Departure time: \(flightStatus.data[0].departure.passengerLocalTime)")
+                        Text("Arrival airport: \(flightStatus.data[0].arrival.airport.iata)")
+                        Text("Departure time: \(flightStatus.data[0].arrival.date)")
+                        Text("Arrival time: \(flightStatus.data[0].arrival.passengerLocalTime)")
+                    }
                 }.navigationTitle("Ride")
             }
         }.preferredColorScheme(.dark)
