@@ -12,6 +12,7 @@ import SwiftUI
 class RideViewModel: ObservableObject {
     @Published var flightStatus: FlightData?
     @Published var error: String?
+    @Published var previousApiRequests = UserDefaults.standard.array(forKey: "LastApi") as? [String]
     private let wrongFlightNumberError = "Please enter valid flight number. Ex: F2 1122"
     func getFlightStatus(userFlightNumber: String, userDepartureDate: Date) async {
         let decoder = JSONDecoder()
@@ -34,7 +35,7 @@ class RideViewModel: ObservableObject {
             return baseUrl
         }()
         let headers = [
-            "X-RapidAPI-Key": "fdd94b659fmsha76c97a227504fap10bbb6jsn78d9220a014a",
+            "X-RapidAPI-Key": "392c21c50cmsha3a896885e4cc53p1bc7dfjsn3252bf0acb97",
             "X-RapidAPI-Host": "flight-info-api.p.rapidapi.com"
         ]
         var request = URLRequest(url: urlComponents.url!)
@@ -46,6 +47,7 @@ class RideViewModel: ObservableObject {
         } catch {
             print(error)
         }
+        saveApiRequest()
     }
     func dateToString(date: Date) -> String {
         let nameFormatter = DateFormatter()
@@ -71,6 +73,16 @@ class RideViewModel: ObservableObject {
             }
         }
     }
+    func saveApiRequest() {
+        previousApiRequests = [
+                flightStatus!.data[0].departure.airport.iata,
+                flightStatus!.data[0].departure.passengerLocalTime,
+                flightStatus!.data[0].arrival.airport.iata,
+                flightStatus!.data[0].arrival.date,
+                flightStatus!.data[0].arrival.passengerLocalTime
+            ]
+            UserDefaults.standard.set(previousApiRequests, forKey: "LastApi")
+        }
 }
 
 struct TextFieldLimitModifer: ViewModifier {

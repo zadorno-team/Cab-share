@@ -110,7 +110,7 @@ struct RideView: View {
                             await rideVM.getFlightStatus(userFlightNumber: flightNumber, userDepartureDate: flightDate)
                             rideInformation.flightNumber = flightNumber
                             rideInformation.flightDate = flightDate
-
+                            
                         }
                     } label: {
                         Image(systemName: "magnifyingglass")
@@ -129,6 +129,15 @@ struct RideView: View {
                         Text("Arrival airport: \(flightStatus.data[0].arrival.airport.iata)")
                         Text("Departure time: \(flightStatus.data[0].arrival.date)")
                         Text("Arrival time: \(flightStatus.data[0].arrival.passengerLocalTime)")
+                    }
+                    if rideVM.previousApiRequests != [] {
+                        Text("Your flight details:")
+                            .font(.headline)
+                        Text("Departure airport: \(rideVM.previousApiRequests?[0] ?? "")")
+                        Text("Departure time: \(rideVM.previousApiRequests?[1] ?? "")")
+                        Text("Arrival airport: \(rideVM.previousApiRequests?[2] ?? "")")
+                        Text("Arrival time: \(rideVM.previousApiRequests?[3] ?? "")")
+                        Text("Arrival time: \(rideVM.previousApiRequests?[4] ?? "")")
                     }
                 }.navigationTitle("Ride")
             }
