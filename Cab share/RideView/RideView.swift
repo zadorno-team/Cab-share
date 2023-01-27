@@ -16,7 +16,6 @@ struct RideView: View {
     @StateObject private var locationManager = LocationManager()
     var weatherManager = WeatherManager()
     @State var weather: ResponseBody?
-    let numbers = Array(1...10)
     var body: some View {
         NavigationView {
             ScrollView {
@@ -130,15 +129,7 @@ struct RideView: View {
                         Text("Departure time: \(flightStatus.data[0].arrival.date)")
                         Text("Arrival time: \(flightStatus.data[0].arrival.passengerLocalTime)")
                     }
-                    if rideVM.previousApiRequests != [] {
-                        Text("Your flight details:")
-                            .font(.headline)
-                        Text("Departure airport: \(rideVM.previousApiRequests?[0] ?? "")")
-                        Text("Departure time: \(rideVM.previousApiRequests?[1] ?? "")")
-                        Text("Arrival airport: \(rideVM.previousApiRequests?[2] ?? "")")
-                        Text("Arrival time: \(rideVM.previousApiRequests?[3] ?? "")")
-                        Text("Arrival time: \(rideVM.previousApiRequests?[4] ?? "")")
-                    }
+                    HistoryRowApiRequestView(rideVM: rideVM)
                 }.navigationTitle("Ride")
             }
         }.preferredColorScheme(.dark)
