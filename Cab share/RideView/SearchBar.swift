@@ -16,7 +16,8 @@ struct SearchBar: View {
             HStack {
                 Image(systemName: "magnifyingglass")
                     .foregroundColor(Color.white)
-                CustomTextField(placeholder: Text("Where to?").foregroundColor(.white), text: $rideInformation.searchText)
+                CustomTextField(placeholder: Text("Where to?").foregroundColor(.white),
+                                text: $rideInformation.searchText)
                 Button(action: {
                     self.rideInformation.searchText = ""
                 }, label: {
@@ -34,17 +35,18 @@ struct SearchBar: View {
                         let mapItems = response.mapItems
                         print(mapItems)
                         filteredItems = mapItems.filter {
-                            $0.placemark.name?.contains(self.rideInformation.searchText) ?? false }.map{$0}
+                            $0.placemark.name?.contains(
+                                self.rideInformation.searchText) ?? false }.map { $0 }
                     }
                 }
             Divider()
-            ScrollView{
+            ScrollView {
                 ForEach(filteredItems) { item in
                     Button {
                         rideInformation.searchText = "\(item.placemark.thoroughfare ?? "") \(item.placemark.subThoroughfare ?? ""), \(item.placemark.locality ?? "") \(item.placemark.postalCode ?? "")"
                         rideInformation.searchBar.toggle()
                     } label: {
-                        VStack(alignment: .leading){
+                        VStack(alignment: .leading) {
                             Text("\(item.placemark.thoroughfare ?? "") \(item.placemark.subThoroughfare ?? ""), \(item.placemark.locality ?? "") \(item.placemark.postalCode ?? "")")
                                 .foregroundColor(.white)
                                 .multilineTextAlignment(.leading)
@@ -56,11 +58,10 @@ struct SearchBar: View {
                         .padding(.leading, 15)
                 }
             }
-            
         }.preferredColorScheme(.dark)
     }
 }
-//To make filterdItems identifiable
+// To make filterdItems identifiable
 extension MKMapItem: Identifiable {
     public var id: String {
         return self.name ?? UUID().uuidString

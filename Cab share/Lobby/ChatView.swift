@@ -26,9 +26,9 @@ struct ChatView: View {
                 .navigationBarItems(leading:
                                         Button {
                     presentationMode.wrappedValue.dismiss()
-                } label: {Image(systemName: "chevron.left")
-                    .foregroundColor(Color.blue)}
-                                    , trailing: Button(action: {}) {
+                } label: { Image(systemName: "chevron.left")
+                    .foregroundColor(Color.blue) }
+                                    ,trailing: Button(action: {}) {
                     Image(systemName: "magnifyingglass")
                         .foregroundColor(Color.blue)
                 })

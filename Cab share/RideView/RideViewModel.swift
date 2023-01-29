@@ -12,7 +12,8 @@ import SwiftUI
 class RideViewModel: ObservableObject {
     @Published var flightStatus: FlightData?
     @Published var error: String?
-    @Published var previousApiRequests: [[String : String]] = (UserDefaults.standard.array(forKey: "LastApi") as? [[String : String]]) ?? []
+    @Published var previousApiRequests: [[String: String]] = (
+        UserDefaults.standard.array(forKey: "LastApi") as? [[String: String]]) ?? []
     private let wrongFlightNumberError = "Please enter valid flight number. Ex: F2 1122"
     func getFlightStatus(userFlightNumber: String, userDepartureDate: Date) async {
         let decoder = JSONDecoder()
@@ -77,13 +78,13 @@ class RideViewModel: ObservableObject {
     }
     func saveApiRequest() {
         previousApiRequests.append([
-            "departureAirport" : flightStatus!.data[0].departure.airport.iata,
-            "departureDate" : flightStatus!.data[0].departure.date,
-            "departureTime" : flightStatus!.data[0].departure.passengerLocalTime,
-            "arrivalAirport" : flightStatus!.data[0].arrival.airport.iata,
-            "arrivalDate" : flightStatus!.data[0].arrival.date,
-            "arrivalTime" : flightStatus!.data[0].arrival.passengerLocalTime,
-            "dateOfRequest" : dateToString(date: Date.now)
+            "departureAirport": flightStatus!.data[0].departure.airport.iata,
+            "departureDate": flightStatus!.data[0].departure.date,
+            "departureTime": flightStatus!.data[0].departure.passengerLocalTime,
+            "arrivalAirport": flightStatus!.data[0].arrival.airport.iata,
+            "arrivalDate": flightStatus!.data[0].arrival.date,
+            "arrivalTime": flightStatus!.data[0].arrival.passengerLocalTime,
+            "dateOfRequest": dateToString(date: Date.now)
             ])
             UserDefaults.standard.set(previousApiRequests, forKey: "LastApi")
         }

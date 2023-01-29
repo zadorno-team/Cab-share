@@ -109,7 +109,6 @@ struct RideView: View {
                             await rideVM.getFlightStatus(userFlightNumber: flightNumber, userDepartureDate: flightDate)
                             rideInformation.flightNumber = flightNumber
                             rideInformation.flightDate = flightDate
-                            
                         }
                     } label: {
                         Image(systemName: "magnifyingglass")
