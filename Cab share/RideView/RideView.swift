@@ -129,7 +129,7 @@ struct RideView: View {
                         Text("Departure time: \(flightStatus.data[0].arrival.date)")
                         Text("Arrival time: \(flightStatus.data[0].arrival.passengerLocalTime)")
                     }
-                    HistoryRowApiRequestView(rideVM: rideVM)
+                    HistoryRowApiRequestView(historyRequests: $rideVM.previousApiRequests)
                 }.navigationTitle("Ride")
             }
         }.preferredColorScheme(.dark)

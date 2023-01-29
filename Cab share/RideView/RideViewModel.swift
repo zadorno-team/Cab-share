@@ -12,7 +12,7 @@ import SwiftUI
 class RideViewModel: ObservableObject {
     @Published var flightStatus: FlightData?
     @Published var error: String?
-    @Published var previousApiRequests = UserDefaults.standard.array(forKey: "LastApi") as? [String]
+    @Published var previousApiRequests: [[String : String]] = (UserDefaults.standard.array(forKey: "LastApi") as? [[String : String]]) ?? []
     private let wrongFlightNumberError = "Please enter valid flight number. Ex: F2 1122"
     func getFlightStatus(userFlightNumber: String, userDepartureDate: Date) async {
         let decoder = JSONDecoder()
@@ -56,7 +56,9 @@ class RideViewModel: ObservableObject {
         return departureDate
     }
     func checkFlightNumber(userInput value: String) {
-        guard let regexExpression = try? NSRegularExpression(pattern: "(?<![\\dA-Z])(?!\\d{2})([A-Z\\d]{2})\\s?(\\d{2,4})(?!\\d)")
+        guard let regexExpression = try? NSRegularExpression(
+            pattern: "(?<![\\dA-Z])(?!\\d{2})([A-Z\\d]{2})\\s?(\\d{2,4})(?!\\d)"
+        )
         else {
             return
         }
@@ -74,13 +76,15 @@ class RideViewModel: ObservableObject {
         }
     }
     func saveApiRequest() {
-        previousApiRequests = [
-                flightStatus!.data[0].departure.airport.iata,
-                flightStatus!.data[0].departure.passengerLocalTime,
-                flightStatus!.data[0].arrival.airport.iata,
-                flightStatus!.data[0].arrival.date,
-                flightStatus!.data[0].arrival.passengerLocalTime
-            ]
+        previousApiRequests.append([
+            "departureAirport" : flightStatus!.data[0].departure.airport.iata,
+            "departureDate" : flightStatus!.data[0].departure.date,
+            "departureTime" : flightStatus!.data[0].departure.passengerLocalTime,
+            "arrivalAirport" : flightStatus!.data[0].arrival.airport.iata,
+            "arrivalDate" : flightStatus!.data[0].arrival.date,
+            "arrivalTime" : flightStatus!.data[0].arrival.passengerLocalTime,
+            "dateOfRequest" : dateToString(date: Date.now)
+            ])
             UserDefaults.standard.set(previousApiRequests, forKey: "LastApi")
         }
 }

@@ -8,42 +8,46 @@
 import SwiftUI
 
 struct HistoryRowApiRequestView: View {
-    @ObservedObject var rideVM: RideViewModel
+    @Binding var historyRequests: [[String: String]]
     var body: some View {
-        HStack {
-            VStack(alignment: .leading, spacing: 3) {
-                Text(rideVM.previousApiRequests?[0] ?? "")
-                    .foregroundColor(.primary)
-                    .font(.headline)
-                Text(rideVM.previousApiRequests?[1] ?? "")
-                    .foregroundColor(.secondary)
-                    .font(.subheadline)
-                Text(rideVM.previousApiRequests?[1] ?? "")
-                    .foregroundColor(.secondary)
-                    .font(.subheadline)
+        ForEach(historyRequests, id: \.self) {previousApiRequest in
+            HStack {
+                VStack(alignment: .leading, spacing: 3) {
+                    Text(previousApiRequest["departureAirport"] ?? "")
+                        .foregroundColor(.primary)
+                        .font(.headline)
+                    Text(previousApiRequest["departureDate"] ?? "")
+                        .foregroundColor(.secondary)
+                        .font(.subheadline)
+                    Text(previousApiRequest["departureTime"] ?? "")
+                        .foregroundColor(.secondary)
+                        .font(.subheadline)
+                }
+                Spacer()
+                VStack(alignment: .leading, spacing: 3) {
+                    Text(previousApiRequest["arrivalAirport"] ?? "")
+                        .foregroundColor(.primary)
+                        .font(.headline)
+                    Text(previousApiRequest["arrivalDate"] ?? "")
+                        .foregroundColor(.secondary)
+                        .font(.subheadline)
+                    Text(previousApiRequest["arrivalTime"] ?? "")
+                        .foregroundColor(.secondary)
+                        .font(.subheadline)
+                }
+                Spacer()
+                Image(systemName: "arrowtriangle.right")
             }
-            Spacer()
-            VStack(alignment: .leading, spacing: 3) {
-                Text(rideVM.previousApiRequests?[2] ?? "")
-                    .foregroundColor(.primary)
-                    .font(.headline)
-                Text(rideVM.previousApiRequests?[3] ?? "")
-                    .foregroundColor(.secondary)
-                    .font(.subheadline)
-                Text(rideVM.previousApiRequests?[4] ?? "")
-                    .foregroundColor(.secondary)
-                    .font(.subheadline)
-            }
-            Spacer()
-            Image(systemName: "arrowtriangle.right")
+            .padding(.horizontal)
         }
-        .padding(.horizontal)
     }
 }
 
-
 struct HistoryRowApiRequestView_Previews: PreviewProvider {
     static var previews: some View {
-        HistoryRowApiRequestView(rideVM: RideViewModel()).environmentObject(RideInformation())
+        HistoryRowApiRequestView(historyRequests: .constant([[
+            "departureAirport": "Sofia air",
+            "departureDate": "12.05.2023"
+        ]])).environmentObject(RideInformation())
     }
 }
