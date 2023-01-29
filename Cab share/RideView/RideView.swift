@@ -119,16 +119,62 @@ struct RideView: View {
                         .background(.white)
                         .cornerRadius(25)
                         .padding(5)
-                    if let flightStatus = rideVM.flightStatus {
-                        Text("Your flight details:")
+//                    if let flightStatus = rideVM.flightStatus {
+//                        VStack {
+//                            Text("Your previous requests:")
+//                                .padding(.horizontal, 25)
+//                                .frame(maxWidth: .infinity, alignment: .leading)
+//                                .font(.headline)
+//                            HStack {
+//                                VStack(alignment: .leading, spacing: 3) {
+//                                    Text(flightStatus.data[0].departure.airport.iata)
+//                                        .foregroundColor(.primary)
+//                                        .font(.headline)
+//                                    Text(flightStatus.data[0].departure.date)
+//                                        .foregroundColor(.secondary)
+//                                        .font(.subheadline)
+//                                    Text(flightStatus.data[0].departure.passengerLocalTime)
+//                                        .foregroundColor(.secondary)
+//                                        .font(.subheadline)
+//                                }
+//                                Spacer()
+//                                VStack(alignment: .leading, spacing: 3) {
+//                                    Text(flightStatus.data[0].arrival.airport.iata)
+//                                        .foregroundColor(.primary)
+//                                        .font(.headline)
+//                                    Text(flightStatus.data[0].arrival.date)
+//                                        .foregroundColor(.secondary)
+//                                        .font(.subheadline)
+//                                    Text(flightStatus.data[0].arrival.passengerLocalTime)
+//                                        .foregroundColor(.secondary)
+//                                        .font(.subheadline)
+//                                }
+//                                Spacer()
+//                                Image(systemName: "arrowtriangle.right")
+//                            }
+//                            .padding(.vertical)
+//                            .padding(.horizontal, 50)
+//                            .overlay(
+//                                RoundedRectangle(cornerRadius: 25)
+//                                    .stroke(.white, lineWidth: 1)
+//                                    .padding(.horizontal, 25)
+//                            )
+//                        }
+////                        Text("Your flight details:")
+////                            .font(.headline)
+////                        Text("Departure airport: \(flightStatus.data[0].departure.airport.iata)")
+////                        Text("Departure time: \(flightStatus.data[0].departure.passengerLocalTime)")
+////                        Text("Arrival airport: \(flightStatus.data[0].arrival.airport.iata)")
+////                        Text("Departure time: \(flightStatus.data[0].arrival.date)")
+////                        Text("Arrival time: \(flightStatus.data[0].arrival.passengerLocalTime)")
+//                    }
+                    VStack {
+                        Text("Your previous requests:")
+                            .padding(.horizontal, 25)
+                            .frame(maxWidth: .infinity, alignment: .leading)
                             .font(.headline)
-                        Text("Departure airport: \(flightStatus.data[0].departure.airport.iata)")
-                        Text("Departure time: \(flightStatus.data[0].departure.passengerLocalTime)")
-                        Text("Arrival airport: \(flightStatus.data[0].arrival.airport.iata)")
-                        Text("Departure time: \(flightStatus.data[0].arrival.date)")
-                        Text("Arrival time: \(flightStatus.data[0].arrival.passengerLocalTime)")
+                        HistoryRowApiRequestView(historyRequests: $rideVM.previousApiRequests)
                     }
-                    HistoryRowApiRequestView(historyRequests: $rideVM.previousApiRequests)
                 }.navigationTitle("Ride")
             }
         }.preferredColorScheme(.dark)

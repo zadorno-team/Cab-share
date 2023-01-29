@@ -10,6 +10,7 @@ import SwiftUI
 struct HistoryRowApiRequestView: View {
     @Binding var historyRequests: [[String: String]]
     var body: some View {
+        
         ForEach(historyRequests, id: \.self) {previousApiRequest in
             HStack {
                 VStack(alignment: .leading, spacing: 3) {
@@ -38,7 +39,13 @@ struct HistoryRowApiRequestView: View {
                 Spacer()
                 Image(systemName: "arrowtriangle.right")
             }
-            .padding(.horizontal)
+            .padding(.vertical)
+            .padding(.horizontal, 50)
+            .overlay(
+                RoundedRectangle(cornerRadius: 25)
+                    .stroke(.white, lineWidth: 1)
+                    .padding(.horizontal, 25)
+            )
         }
     }
 }
