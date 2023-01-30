@@ -9,31 +9,44 @@ import SwiftUI
 
 struct UserSignUpView: View {
     @EnvironmentObject var userModel: UserModel
+    @EnvironmentObject var loginViewModel: LoginViewModel
     @State private var showPicker = false
-    let numbers = Array(1...10)
+    let numbers = Array(1...80)
     var body: some View {
         VStack{
             CustomTextField(placeholder: Text("Name"), text: $userModel.nameText)
-            VStack {
-                Button {
-                    self.showPicker = true
-                } label: {
-                    if showPicker {
-                        Picker("Select a number", selection: self.$userModel.ageText) {
-                            ForEach(self.numbers, id: \.self) { number in
-                                Text("\(number)")
-                            }
-                        }
-                    } else {
-                        Text("How many people with you?").padding(.trailing, 25)
-                    }
-                }.frame(width: 260, height: 10)
-                    .accentColor(.gray)
-            }.padding()
+                .padding(.bottom, 20)
+            CustomTextField(placeholder: Text("Age"), text: $userModel.ageText)
+                .padding(.bottom, 20)
             CustomTextField(placeholder: Text("HomeTown"), text: $userModel.hometownText)
+                .padding(.bottom, 20)
             CustomTextField(placeholder: Text("Email"), text: $userModel.emailText)
+                .padding(.bottom, 20)
             CustomSecureField(placeholder: Text("Password"), password:  $userModel.passwordText)
-        }.preferredColorScheme(.dark)
+                .padding(.bottom, 20)
+            
+            Button{
+                loginViewModel.signUp(emailText: userModel.emailText, passwordText: userModel.passwordText)
+                userModel.nameText = ""
+                userModel.ageText = ""
+                userModel.hometownText = ""
+                userModel.emailText = ""
+                userModel.passwordText = ""
+                userModel.upload()
+                loginViewModel.userSignedUp.toggle()
+                loginViewModel.signIn(emailText: loginViewModel.email, passwordText: loginViewModel.password)
+                if loginViewModel.userSignedIn {
+                    loginViewModel.userSignedIn.toggle()
+                }
+            } label: {
+                Text("Sign Up")
+                    .foregroundColor(.black)
+            }.frame(width: 320, height: 60)
+            .background(.white)
+                .cornerRadius(25)
+                .padding(.top, 100)
+        }.padding(60)
+        .preferredColorScheme(.dark)
     }
 }
 

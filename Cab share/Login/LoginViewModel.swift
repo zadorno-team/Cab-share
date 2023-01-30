@@ -14,8 +14,8 @@ class LoginViewModel: ObservableObject {
     @Published var signInView = false
     @Published var userSignedUp = false
     @Published var userSignedIn = false
-    func signUp() {
-        Auth.auth().createUser(withEmail: email, password: password) { result, error in
+    func signUp(emailText: String, passwordText: String) {
+        Auth.auth().createUser(withEmail: emailText, password: passwordText) { result, error in
             if error != nil {
                 print(error!.localizedDescription)
             } else {
@@ -23,8 +23,8 @@ class LoginViewModel: ObservableObject {
             }
         }
     }
-    func signIn() {
-        Auth.auth().signIn(withEmail: email, password: password) { result, error in
+    func signIn(emailText: String, passwordText: String) {
+        Auth.auth().signIn(withEmail: emailText, password: passwordText) { result, error in
             if error != nil {
                 print(error!.localizedDescription)
             } else {

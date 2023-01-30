@@ -18,22 +18,26 @@ class UserModel: ObservableObject {
     
     func upload() {
         let db = Firestore.firestore()
-        db.collection("UserInformation").document(currentUser!.uid).setData(["nameText": $nameText, "ageText": $ageText, "hometownText": $hometownText, "emailText": $emailText, "passwordText": $passwordText])
+        db.collection("UserInformation").document(currentUser!.uid).setData(["nameText": String(nameText), "ageText": String(ageText), "hometownText": String(hometownText), "emailText": String(emailText), "passwordText": String(passwordText)]) { error in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+        }
     }
     func download() {
         let db = Firestore.firestore()
-        db.collection("User").document(currentUser!.uid).getDocument {
+        db.collection("UserInformation").document(currentUser!.uid).getDocument {
             (snapshot, error) in
             if let error = error {
                 // Handle error
                 print(error)
             } else {
                 guard let data = snapshot?.data() else { return }
-                let emailText = data["emailText"] as? String
-                let nameText = data["nameText"] as? String
-                let passwordText = data["passwordText"] as? String
-                let hometownText = data["hometownText"] as? String
-                let ageText = data["ageText"] as? String
+                self.emailText = data["emailText"] as? String ?? ""
+                self.nameText = data["nameText"] as? String ?? ""
+                self.passwordText = data["passwordText"] as? String ?? ""
+                self.hometownText = data["hometownText"] as? String ?? ""
+                self.ageText = data["ageText"] as? String ?? ""
             }
         }
     }

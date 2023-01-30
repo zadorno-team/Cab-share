@@ -33,7 +33,7 @@ struct LoginView: View {
                                 .underline()
                                 .foregroundColor(.white)
                     }.sheet(isPresented: $loginViewModel.userSignedUp) {
-                        UserSignUpView().environmentObject(userModel)
+                        UserSignUpView()
                     }
                     CustomTextField(placeholder: Text("E-mail").foregroundColor(.black), text: $loginViewModel.email)
                         .padding()
@@ -48,7 +48,7 @@ struct LoginView: View {
                         .cornerRadius(25)
                         .foregroundColor(.black)
                     Button("Sign In") {
-                        loginViewModel.signIn()
+                        loginViewModel.signIn(emailText: loginViewModel.email, passwordText: loginViewModel.password)
                     }.foregroundColor(.white)
                         .frame(width: 300, height: 50)
                         .background(.black)
