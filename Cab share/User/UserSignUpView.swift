@@ -13,7 +13,7 @@ struct UserSignUpView: View {
     @State private var showPicker = false
     let numbers = Array(1...80)
     var body: some View {
-        VStack{
+        VStack {
             CustomTextField(placeholder: Text("Name"), text: $userModel.nameText)
                 .padding(.bottom, 20)
             CustomTextField(placeholder: Text("Age"), text: $userModel.ageText)
@@ -22,19 +22,18 @@ struct UserSignUpView: View {
                 .padding(.bottom, 20)
             CustomTextField(placeholder: Text("Email"), text: $userModel.emailText)
                 .padding(.bottom, 20)
-            CustomSecureField(placeholder: Text("Password"), password:  $userModel.passwordText)
+            CustomSecureField(placeholder: Text("Password"), password:
+                                $userModel.passwordText)
                 .padding(.bottom, 20)
-            
-            Button{
+            Button {
                 loginViewModel.signUp(emailText: userModel.emailText, passwordText: userModel.passwordText)
+                loginViewModel.signIn(emailText: userModel.emailText, passwordText: userModel.passwordText)
+                userModel.upload()
                 userModel.nameText = ""
                 userModel.ageText = ""
                 userModel.hometownText = ""
                 userModel.emailText = ""
                 userModel.passwordText = ""
-                userModel.upload()
-                loginViewModel.userSignedUp.toggle()
-                loginViewModel.signIn(emailText: loginViewModel.email, passwordText: loginViewModel.password)
                 if loginViewModel.userSignedIn {
                     loginViewModel.userSignedIn.toggle()
                 }

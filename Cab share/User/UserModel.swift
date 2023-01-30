@@ -9,25 +9,19 @@ import Foundation
 import Firebase
 
 class UserModel: ObservableObject {
-    @Published var currentUser = Auth.auth().currentUser
+    @Published var userID = Auth.auth().currentUser?.uid
     @Published var nameText = ""
     @Published var ageText = ""
     @Published var hometownText = ""
     @Published var emailText = ""
     @Published var passwordText = ""
-    
     func upload() {
         let db = Firestore.firestore()
-        db.collection("UserInformation").document(currentUser!.uid).setData(["nameText": String(nameText), "ageText": String(ageText), "hometownText": String(hometownText), "emailText": String(emailText), "passwordText": String(passwordText)]) { error in
-            if let error = error {
-                print(error.localizedDescription)
-            }
-        }
+        db.collection("Users").document(String(userID!)).setData(["nameText": nameText, "ageText": ageText, "hometownText": hometownText, "emailText": emailText, "passwordText": passwordText])
     }
     func download() {
         let db = Firestore.firestore()
-        db.collection("UserInformation").document(currentUser!.uid).getDocument {
-            (snapshot, error) in
+        db.collection("Users").document(String(userID!)).getDocument { (snapshot, error) in
             if let error = error {
                 // Handle error
                 print(error)

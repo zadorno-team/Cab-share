@@ -80,7 +80,9 @@ struct UserView: View {
             .toolbar {
                 Button("Edit") {
                     isEditing.toggle()
-                    userModel.upload()
+                    if isEditing {
+                        userModel.upload()
+                    }
                 }
                 .foregroundColor(.white)
             }
