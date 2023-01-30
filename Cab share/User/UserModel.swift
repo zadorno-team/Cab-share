@@ -26,6 +26,7 @@ class UserModel: ObservableObject {
             (snapshot, error) in
             if let error = error {
                 // Handle error
+                print(error)
             } else {
                 guard let data = snapshot?.data() else { return }
                 let emailText = data["emailText"] as? String

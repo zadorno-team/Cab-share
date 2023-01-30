@@ -35,13 +35,13 @@ struct LoginView: View {
                     }.sheet(isPresented: $loginViewModel.userSignedUp) {
                         UserSignUpView().environmentObject(userModel)
                     }
-                    CustomTextField(placeholder: Text("E-mail").foregroundColor(.black), text: $loginViewModel.emailSignedIn)
+                    CustomTextField(placeholder: Text("E-mail").foregroundColor(.black), text: $loginViewModel.email)
                         .padding()
                         .frame(width: 300, height: 50)
                         .background(Color.white)
                         .cornerRadius(25)
                         .foregroundColor(.black)
-                    CustomSecureField(placeholder: Text("Password"), password: $loginViewModel.passwordSignedIn)
+                    CustomSecureField(placeholder: Text("Password"), password: $loginViewModel.password)
                         .padding()
                         .frame(width: 300, height: 50)
                         .background(Color.white)
@@ -86,5 +86,6 @@ struct LoginView: View {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()}
+        LoginView().environmentObject(LoginViewModel())
+    }
 }

@@ -37,12 +37,15 @@ struct UserView: View {
                         UserTextField(placeholder: Text("Print your name"), isDisabled: $isEditing, text: $userModel.nameText)
                     }
                     .padding(.bottom, 2)
+                    .underline(isEditing == false)
+                    
                     Text("Your age")
                         .font(.headline)
                     HStack {
                         UserTextField(placeholder: Text("Print your age"), isDisabled: $isEditing, text: $userModel.ageText)
                     }
                     .padding(.bottom, 2)
+                    .underline(isEditing == false)
                     
                     Text("Your hometown")
                         .font(.headline)
@@ -50,6 +53,7 @@ struct UserView: View {
                         UserTextField(placeholder: Text("Print your hometown"), isDisabled: $isEditing, text: $userModel.hometownText)
                     }
                     .padding(.bottom, 2)
+                    .underline(isEditing == false)
                     
                     Text("Your login")
                         .font(.headline)
@@ -57,6 +61,7 @@ struct UserView: View {
                         UserTextField(placeholder: Text("Print your e-mail"), isDisabled: $isEditing, text: $userModel.emailText)
                     }
                     .padding(.bottom, 2)
+                    .underline(isEditing == false)
                     
                     Text("Your password")
                         .font(.headline)
@@ -64,11 +69,12 @@ struct UserView: View {
                         UserSecureField(placeholder: Text("Print your password"), isDisabled: $isEditing, text: $userModel.passwordText)
                     }
                     .padding(.bottom, 2)
+                    .underline(isEditing == false)
                 }
                 .padding()
                 Spacer()
             }
-            //            .onAppear{userModel.download()}
+                .onAppear{userModel.download()}
             .navigationTitle("User")
             .preferredColorScheme(.dark)
             .toolbar {
