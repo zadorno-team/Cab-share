@@ -14,7 +14,7 @@ struct Message: Identifiable {
     var timestamp: Date
 }
 
-final class MessageData : ObservableObject {
+final class MessageData: ObservableObject {
     @Published var mails: [Message] = [Message(id:"1", text: """
     Gentile Cliente, La informiamo che è stato autorizzato il pagamento a favore di:
     WWW.MYCICERO.IT
