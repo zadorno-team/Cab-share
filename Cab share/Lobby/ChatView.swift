@@ -27,8 +27,8 @@ struct ChatView: View {
                                         Button {
                     presentationMode.wrappedValue.dismiss()
                 } label: { Image(systemName: "chevron.left")
-                    .foregroundColor(Color.blue) }
-                                    ,trailing: Button(action: {}) {
+                    .foregroundColor(Color.blue) },
+                                    trailing: Button(action: {}) {
                     Image(systemName: "magnifyingglass")
                         .foregroundColor(Color.blue)
                 })

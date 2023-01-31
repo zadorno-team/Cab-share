@@ -10,7 +10,6 @@ import SwiftUI
 struct HistoryRowApiRequestView: View {
     @Binding var historyRequests: [[String: String]]
     var body: some View {
-        
         ForEach(historyRequests, id: \.self) {previousApiRequest in
             HStack {
                 VStack(alignment: .leading, spacing: 3) {
