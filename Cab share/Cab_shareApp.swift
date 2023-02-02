@@ -12,17 +12,22 @@ import FirebaseCore
 @main
 struct CabShareApp: App {
     @StateObject var dataController = DataController()
-    @StateObject var loginViewModel = LoginViewModel()
-    @StateObject var userModel = UserModel()
+    @StateObject var sessionService = SessionServiceImpl()
     init() {
         FirebaseApp.configure()
     }
     var body: some Scene {
         WindowGroup {
-            RoutingView()
-                .environment(\.managedObjectContext, dataController.container.viewContext)
-                .environmentObject(loginViewModel)
-                .environmentObject(userModel)
+            NavigationView {
+                switch sessionService.state {
+                case .loggedIn:
+                    MainView()
+                        .environment(\.managedObjectContext, dataController.container.viewContext)
+                        .environmentObject(sessionService)
+                case .loggedOut:
+                    LoginView()
+                }
+            }
         }
     }
 }
