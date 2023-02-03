@@ -17,9 +17,7 @@
 		03554D7E2979DE0E00FCBC3E /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03554D7C2979DE0E00FCBC3E /* WeatherManager.swift */; };
 		03554D812979DE3100FCBC3E /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03554D802979DE3000FCBC3E /* LoadingView.swift */; };
 		0366D0B6297D5B4200F0F9C0 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0366D0B5297D5B4200F0F9C0 /* WeatherModel.swift */; };
-		03784EEF297EEDEE00A60A19 /* LobbyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03784EEE297EEDEE00A60A19 /* LobbyModel.swift */; };
 		03784EF2298012E800A60A19 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03784EF1298012E800A60A19 /* MapView.swift */; };
-		038B27CE298D661E00ABA10B /* RideInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038B27CD298D661E00ABA10B /* RideInformation.swift */; };
 		0385500A298A650600CA0507 /* Combine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03855009298A650600CA0507 /* Combine.framework */; };
 		03855027298A6CBC00CA0507 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0385500E298A6CBC00CA0507 /* UserView.swift */; };
 		03855028298A6CBC00CA0507 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03855011298A6CBC00CA0507 /* RegistrationViewModel.swift */; };
@@ -43,7 +41,6 @@
 		03EED84E296F08F500375523 /* RideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EED84D296F08F500375523 /* RideView.swift */; };
 		133B53B2298D5A0B00370201 /* UserData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 133B53B0298D5A0B00370201 /* UserData.xcdatamodeld */; };
 		133B53BF298D5A3800370201 /* LobbyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133B53BE298D5A3800370201 /* LobbyModel.swift */; };
-		133B53C3298D5A4700370201 /* RideInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133B53C0298D5A4700370201 /* RideInformation.swift */; };
 		133B53C4298D5A4700370201 /* RideListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133B53C1298D5A4700370201 /* RideListView.swift */; };
 		133B53C5298D5A4700370201 /* HistoryRowApiRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133B53C2298D5A4700370201 /* HistoryRowApiRequestView.swift */; };
 		133B53C7298D5A6A00370201 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133B53C6298D5A6A00370201 /* MapView.swift */; };
@@ -69,9 +66,7 @@
 		03554D7C2979DE0E00FCBC3E /* WeatherManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
 		03554D802979DE3000FCBC3E /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		0366D0B5297D5B4200F0F9C0 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
-		03784EEE297EEDEE00A60A19 /* LobbyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobbyModel.swift; sourceTree = "<group>"; };
 		03784EF1298012E800A60A19 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
-		038B27CD298D661E00ABA10B /* RideInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideInformation.swift; sourceTree = "<group>"; };
 		03855009298A650600CA0507 /* Combine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Combine.framework; path = System/Library/Frameworks/Combine.framework; sourceTree = SDKROOT; };
 		0385500E298A6CBC00CA0507 /* UserView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
 		03855011298A6CBC00CA0507 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
@@ -94,7 +89,6 @@
 		03EED84D296F08F500375523 /* RideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideView.swift; sourceTree = "<group>"; };
 		133B53B1298D5A0B00370201 /* UserData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserData.xcdatamodel; sourceTree = "<group>"; };
 		133B53BE298D5A3800370201 /* LobbyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LobbyModel.swift; sourceTree = "<group>"; };
-		133B53C0298D5A4700370201 /* RideInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideInformation.swift; sourceTree = "<group>"; };
 		133B53C1298D5A4700370201 /* RideListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideListView.swift; sourceTree = "<group>"; };
 		133B53C2298D5A4700370201 /* HistoryRowApiRequestView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryRowApiRequestView.swift; sourceTree = "<group>"; };
 		133B53C6298D5A6A00370201 /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
@@ -313,6 +307,14 @@
 			path = Modifiers;
 			sourceTree = "<group>";
 		};
+		038B27D0298D671100ABA10B /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				03784EF1298012E800A60A19 /* MapView.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		03B10C2D2975CD5000D7BA14 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -334,14 +336,11 @@
 			isa = PBXGroup;
 			children = (
 				133B53C2298D5A4700370201 /* HistoryRowApiRequestView.swift */,
-				133B53C0298D5A4700370201 /* RideInformation.swift */,
 				133B53C1298D5A4700370201 /* RideListView.swift */,
-				03EED84D296F08F500375523 /* RideView.swift */,
 				13AC16602977F69A00F064B9 /* RideModel.swift */,
 				13AC16622977F8B200F064B9 /* RideViewModel.swift */,
 				03180E2C2970365D008D8B4B /* SearchBar.swift */,
 				03EED84D296F08F500375523 /* RideView.swift */,
-				038B27CD298D661E00ABA10B /* RideInformation.swift */,
 			);
 			path = RideView;
 			sourceTree = "<group>";
@@ -362,6 +361,7 @@
 				139B2FDD296EFCBB00C33E79 /* Cab share */,
 				139B2FDC296EFCBB00C33E79 /* Products */,
 				03B10C2D2975CD5000D7BA14 /* Frameworks */,
+				038B27D0298D671100ABA10B /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -381,8 +381,6 @@
 				139B2FDE296EFCBB00C33E79 /* Cab_shareApp.swift */,
 				03554D802979DE3000FCBC3E /* LoadingView.swift */,
 				139B2FEE296F138700C33E79 /* MainView.swift */,
-				133E35A1296F15520014CFC9 /* UserView.swift */,
-				03554D7D2979DE0E00FCBC3E /* LocationManager.swift */,
 				03784EF0298012D900A60A19 /* Map */,
 				0315AC9C297EBB6100A91231 /* Lobby */,
 				2A4756D72980227200DA6084 /* UserTextField.swift */,
@@ -517,13 +515,10 @@
 				0315ACA3297EDB1300A91231 /* MessageBubble.swift in Sources */,
 				133B53BF298D5A3800370201 /* LobbyModel.swift in Sources */,
 				03180E3229704CF1008D8B4B /* UserData.xcdatamodeld in Sources */,
-				0352C64B2976EB83005080D5 /* RoutingView.swift in Sources */,
-				03554D7F2979DE0E00FCBC3E /* LocationManager.swift in Sources */,
 				0385503A298AAE4D00CA0507 /* NavigationCloseViewModifier.swift in Sources */,
 				133B53C7298D5A6A00370201 /* MapView.swift in Sources */,
 				0385503C298AF14F00CA0507 /* EditButtonViewModifier.swift in Sources */,
 				13759042297070080037E095 /* HistoryRowView.swift in Sources */,
-				038B27CE298D661E00ABA10B /* RideInformation.swift in Sources */,
 				0366D0B6297D5B4200F0F9C0 /* WeatherModel.swift in Sources */,
 				03855031298A6CBC00CA0507 /* SessionService.swift in Sources */,
 				03EED84E296F08F500375523 /* RideView.swift in Sources */,
@@ -535,7 +530,6 @@
 				0385502D298A6CBC00CA0507 /* ForgotPasswordView.swift in Sources */,
 				03B10C252975A19200D7BA14 /* CustomSecureField.swift in Sources */,
 				133E35A4296F15690014CFC9 /* HistoryView.swift in Sources */,
-				133B53C3298D5A4700370201 /* RideInformation.swift in Sources */,
 				03855029298A6CBC00CA0507 /* RegistrationService.swift in Sources */,
 				2A4756D82980227200DA6084 /* UserTextField.swift in Sources */,
 				13AC16632977F8B200F064B9 /* RideViewModel.swift in Sources */,
