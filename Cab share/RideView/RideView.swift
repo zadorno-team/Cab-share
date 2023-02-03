@@ -10,6 +10,7 @@ import SwiftUI
 
 struct RideView: View {
     @ObservedObject var rideVM: RideViewModel
+    @EnvironmentObject var rideInformation: RideInformation
     @State private var flightNumber: String = ""
     @State private var flightDate = Date()
     var weatherManager = WeatherManager()
@@ -20,10 +21,10 @@ struct RideView: View {
             ScrollView {
                 VStack {
                     HStack {
-                        if let location = locationManager.location {
+                        if let location = rideVM.locationManager.location {
                             if let weather = weather {
                                 HStack {
-                                    Text("Hello, Sasha! Nice to see you here \(locationManager.city)!")
+                                    Text("Hello, Sasha! Nice to see you here \(rideVM.locationManager.city)!")
                                         .padding(20)
                                     Image(String(weather.weather[0].icon))
                                         .resizable()

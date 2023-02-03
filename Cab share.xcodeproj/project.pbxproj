@@ -13,11 +13,9 @@
 		0315ACA4297EDB1300A91231 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0315ACA1297EDB1300A91231 /* MessageModel.swift */; };
 		03180E2D2970365D008D8B4B /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03180E2C2970365D008D8B4B /* SearchBar.swift */; };
 		03180E2F29704CD4008D8B4B /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03180E2E29704CD4008D8B4B /* DataController.swift */; };
-		03180E3229704CF1008D8B4B /* UserData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 03180E3029704CF1008D8B4B /* UserData.xcdatamodeld */; };
 		03554D7E2979DE0E00FCBC3E /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03554D7C2979DE0E00FCBC3E /* WeatherManager.swift */; };
 		03554D812979DE3100FCBC3E /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03554D802979DE3000FCBC3E /* LoadingView.swift */; };
 		0366D0B6297D5B4200F0F9C0 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0366D0B5297D5B4200F0F9C0 /* WeatherModel.swift */; };
-		03784EF2298012E800A60A19 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03784EF1298012E800A60A19 /* MapView.swift */; };
 		0385500A298A650600CA0507 /* Combine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03855009298A650600CA0507 /* Combine.framework */; };
 		03855027298A6CBC00CA0507 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0385500E298A6CBC00CA0507 /* UserView.swift */; };
 		03855028298A6CBC00CA0507 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03855011298A6CBC00CA0507 /* RegistrationViewModel.swift */; };
@@ -35,11 +33,11 @@
 		03855045298AFD8600CA0507 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03855044298AFD8600CA0507 /* EditView.swift */; };
 		03855049298BF07E00CA0507 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 03855048298BF07E00CA0507 /* GoogleService-Info.plist */; };
 		0385504D298C036900CA0507 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 0385504C298C036900CA0507 /* FirebaseFirestore */; };
+		038B27D1298D6D1D00ABA10B /* UserData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 133B53B0298D5A0B00370201 /* UserData.xcdatamodeld */; };
 		03B048402971A69400A3D526 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B0483F2971A69400A3D526 /* CustomTextField.swift */; };
 		03B10C252975A19200D7BA14 /* CustomSecureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B10C242975A19200D7BA14 /* CustomSecureField.swift */; };
 		03B10C2A2975B0B200D7BA14 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 03B10C292975B0B200D7BA14 /* FirebaseAuth */; };
 		03EED84E296F08F500375523 /* RideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EED84D296F08F500375523 /* RideView.swift */; };
-		133B53B2298D5A0B00370201 /* UserData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 133B53B0298D5A0B00370201 /* UserData.xcdatamodeld */; };
 		133B53BF298D5A3800370201 /* LobbyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133B53BE298D5A3800370201 /* LobbyModel.swift */; };
 		133B53C4298D5A4700370201 /* RideListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133B53C1298D5A4700370201 /* RideListView.swift */; };
 		133B53C5298D5A4700370201 /* HistoryRowApiRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133B53C2298D5A4700370201 /* HistoryRowApiRequestView.swift */; };
@@ -381,9 +379,9 @@
 				139B2FDE296EFCBB00C33E79 /* Cab_shareApp.swift */,
 				03554D802979DE3000FCBC3E /* LoadingView.swift */,
 				139B2FEE296F138700C33E79 /* MainView.swift */,
+				2A4756D72980227200DA6084 /* UserTextField.swift */,
 				03784EF0298012D900A60A19 /* Map */,
 				0315AC9C297EBB6100A91231 /* Lobby */,
-				2A4756D72980227200DA6084 /* UserTextField.swift */,
 				03855044298AFD8600CA0507 /* EditView.swift */,
 				03855037298AAE4D00CA0507 /* Base */,
 				03855036298A9C4E00CA0507 /* CustomComponent */,
@@ -509,12 +507,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				038B27D1298D6D1D00ABA10B /* UserData.xcdatamodeld in Sources */,
 				133B53C4298D5A4700370201 /* RideListView.swift in Sources */,
 				0315ACA4297EDB1300A91231 /* MessageModel.swift in Sources */,
-				03784EF2298012E800A60A19 /* MapView.swift in Sources */,
 				0315ACA3297EDB1300A91231 /* MessageBubble.swift in Sources */,
 				133B53BF298D5A3800370201 /* LobbyModel.swift in Sources */,
-				03180E3229704CF1008D8B4B /* UserData.xcdatamodeld in Sources */,
 				0385503A298AAE4D00CA0507 /* NavigationCloseViewModifier.swift in Sources */,
 				133B53C7298D5A6A00370201 /* MapView.swift in Sources */,
 				0385503C298AF14F00CA0507 /* EditButtonViewModifier.swift in Sources */,
@@ -536,7 +533,6 @@
 				03855028298A6CBC00CA0507 /* RegistrationViewModel.swift in Sources */,
 				0385502B298A6CBC00CA0507 /* ForgotPasswordViewModel.swift in Sources */,
 				0385502A298A6CBC00CA0507 /* RegisterView.swift in Sources */,
-				133B53B2298D5A0B00370201 /* UserData.xcdatamodeld in Sources */,
 				03855045298AFD8600CA0507 /* EditView.swift in Sources */,
 				03180E2F29704CD4008D8B4B /* DataController.swift in Sources */,
 				03180E2F29704CD4008D8B4B /* DataController.swift in Sources */,
