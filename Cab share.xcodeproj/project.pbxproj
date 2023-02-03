@@ -21,6 +21,7 @@
 		0366D0B6297D5B4200F0F9C0 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0366D0B5297D5B4200F0F9C0 /* WeatherModel.swift */; };
 		03784EEF297EEDEE00A60A19 /* LobbyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03784EEE297EEDEE00A60A19 /* LobbyModel.swift */; };
 		03784EF2298012E800A60A19 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03784EF1298012E800A60A19 /* MapView.swift */; };
+		038B27CE298D661E00ABA10B /* RideInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038B27CD298D661E00ABA10B /* RideInformation.swift */; };
 		03B048402971A69400A3D526 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B0483F2971A69400A3D526 /* CustomTextField.swift */; };
 		03B10C252975A19200D7BA14 /* CustomSecureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B10C242975A19200D7BA14 /* CustomSecureField.swift */; };
 		03B10C272975AC6600D7BA14 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 03B10C262975AC6600D7BA14 /* GoogleService-Info.plist */; };
@@ -54,6 +55,7 @@
 		0366D0B5297D5B4200F0F9C0 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		03784EEE297EEDEE00A60A19 /* LobbyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobbyModel.swift; sourceTree = "<group>"; };
 		03784EF1298012E800A60A19 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		038B27CD298D661E00ABA10B /* RideInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideInformation.swift; sourceTree = "<group>"; };
 		03B0483F2971A69400A3D526 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		03B10C242975A19200D7BA14 /* CustomSecureField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSecureField.swift; sourceTree = "<group>"; };
 		03B10C262975AC6600D7BA14 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				13AC16622977F8B200F064B9 /* RideViewModel.swift */,
 				03180E2C2970365D008D8B4B /* SearchBar.swift */,
 				03EED84D296F08F500375523 /* RideView.swift */,
+				038B27CD298D661E00ABA10B /* RideInformation.swift */,
 			);
 			path = RideView;
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 				03180E3229704CF1008D8B4B /* UserData.xcdatamodeld in Sources */,
 				0352C64B2976EB83005080D5 /* RoutingView.swift in Sources */,
 				13759042297070080037E095 /* HistoryRowView.swift in Sources */,
+				038B27CE298D661E00ABA10B /* RideInformation.swift in Sources */,
 				0366D0B6297D5B4200F0F9C0 /* WeatherModel.swift in Sources */,
 				03EED84E296F08F500375523 /* RideView.swift in Sources */,
 				0315AC9E297EBB7700A91231 /* LobbyGroupView.swift in Sources */,
