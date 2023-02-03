@@ -9,13 +9,17 @@ import MapKit
 import SwiftUI
 
 struct RideView: View {
-    @EnvironmentObject var rideInformation: RideInformation
     @ObservedObject var rideVM: RideViewModel
     @State private var flightNumber: String = ""
     @State private var flightDate = Date()
+    @State private var selectedNumber = 1
+    @State private var showPicker = false
+    @State private var savedPlace = false
+    @State private var alreadyMade = false
     @StateObject private var locationManager = LocationManager()
     var weatherManager = WeatherManager()
     @State var weather: ResponseBody?
+    let numbers = Array(1...10)
     var body: some View {
         NavigationView {
             ScrollView {
@@ -53,24 +57,12 @@ struct RideView: View {
                         .background(Color.blue)
                         .cornerRadius(25)
                         .padding(.top, 5)
-                    Button {
-                        rideInformation.searchBar.toggle()
-                    } label: {
-                        HStack {
-                            Image(systemName: "magnifyingglass")
-                                .foregroundColor(.black)
-                                .padding(.trailing, 0)
-                                .padding(.leading, 15)
-                            CustomTextField(placeholder: Text("Where to?").foregroundColor(.black), text: $rideInformation.searchText).foregroundColor(.black)
-                                .padding(.leading, 0)
-                                .truncationMode(.tail)
-                        }.frame(width: 350, height: 50)
-                            .background(.white)
-                            .cornerRadius(25)
-                            .padding()
-                    }.sheet(isPresented: $rideInformation.searchBar) {
-                        SearchBar()
-                    }
+                    SearchBar()
+                        .frame(width: 350, height: 60)
+                        .background(.white)
+                        .cornerRadius(25)
+                        .padding(5)
+                        .foregroundColor(.black)
                     HStack {
                         Image(systemName: "airplane.departure")
                             .foregroundColor(.gray)
@@ -83,10 +75,10 @@ struct RideView: View {
                             rideVM.checkFlightNumber(userInput: flightNumber)
                         }
                         Button(action: {
-                            flightNumber = ""
+                            self.flightNumber = ""
                         }, label: {
                             if !flightNumber.isEmpty {
-                                Image(systemName: "xmark.circle.fill").foregroundColor(.white)
+                                Image(systemName: "xmark.circle.fill").foregroundColor(.secondary)
                             }
                         })
                     }.padding(.horizontal).padding(.top, 5)
@@ -100,89 +92,88 @@ struct RideView: View {
                             .accentColor(.gray)
                             .opacity(0.6)
                     }.padding(.horizontal).padding(.bottom, 10)
-                    Spacer(minLength: 10)
-                    MapView()
-                        .frame(width: 350, height: 200)
-                        .cornerRadius(25)
-                    Button {
-                        Task {
-                            await rideVM.getFlightStatus(userFlightNumber: flightNumber, userDepartureDate: flightDate)
-                            rideInformation.flightNumber = flightNumber
-                            rideInformation.flightDate = flightDate
-                        }
-                    } label: {
-                        Image(systemName: "magnifyingglass")
-                            .foregroundColor(.black)
-                        Text("Search")
-                            .foregroundColor(.black)
-                    }.frame(width: 350, height: 50)
-                        .background(.white)
-                        .cornerRadius(25)
-                        .padding(5)
-//                    if let flightStatus = rideVM.flightStatus {
-//                        VStack {
-//                            Text("Your previous requests:")
-//                                .padding(.horizontal, 25)
-//                                .frame(maxWidth: .infinity, alignment: .leading)
-//                                .font(.headline)
-//                            HStack {
-//                                VStack(alignment: .leading, spacing: 3) {
-//                                    Text(flightStatus.data[0].departure.airport.iata)
-//                                        .foregroundColor(.primary)
-//                                        .font(.headline)
-//                                    Text(flightStatus.data[0].departure.date)
-//                                        .foregroundColor(.secondary)
-//                                        .font(.subheadline)
-//                                    Text(flightStatus.data[0].departure.passengerLocalTime)
-//                                        .foregroundColor(.secondary)
-//                                        .font(.subheadline)
-//                                }
-//                                Spacer()
-//                                VStack(alignment: .leading, spacing: 3) {
-//                                    Text(flightStatus.data[0].arrival.airport.iata)
-//                                        .foregroundColor(.primary)
-//                                        .font(.headline)
-//                                    Text(flightStatus.data[0].arrival.date)
-//                                        .foregroundColor(.secondary)
-//                                        .font(.subheadline)
-//                                    Text(flightStatus.data[0].arrival.passengerLocalTime)
-//                                        .foregroundColor(.secondary)
-//                                        .font(.subheadline)
-//                                }
-//                                Spacer()
-//                                Image(systemName: "arrowtriangle.right")
-//                            }
-//                            .padding(.vertical)
-//                            .padding(.horizontal, 50)
-//                            .overlay(
-//                                RoundedRectangle(cornerRadius: 25)
-//                                    .stroke(.white, lineWidth: 1)
-//                                    .padding(.horizontal, 25)
-//                            )
-//                        }
-////                        Text("Your flight details:")
-////                            .font(.headline)
-////                        Text("Departure airport: \(flightStatus.data[0].departure.airport.iata)")
-////                        Text("Departure time: \(flightStatus.data[0].departure.passengerLocalTime)")
-////                        Text("Arrival airport: \(flightStatus.data[0].arrival.airport.iata)")
-////                        Text("Departure time: \(flightStatus.data[0].arrival.date)")
-////                        Text("Arrival time: \(flightStatus.data[0].arrival.passengerLocalTime)")
-//                    }
-                    VStack {
-                        Text("Your previous requests:")
-                            .padding(.horizontal, 25)
-                            .frame(maxWidth: .infinity, alignment: .leading)
+                    if let flightStatus = rideVM.flightStatus {
+                        Text("Your flight details:")
                             .font(.headline)
-                        HistoryRowApiRequestView(historyRequests: $rideVM.previousApiRequests)
+                        Text("Departure airport: \(flightStatus.data[0].departure.airport.iata)")
+                        Text("Departure time: \(flightStatus.data[0].departure.passengerLocalTime)")
+                        Text("Arrival airport: \(flightStatus.data[0].arrival.airport.iata)")
+                        Text("Departure time: \(flightStatus.data[0].arrival.date)")
+                        Text("Arrival time: \(flightStatus.data[0].arrival.passengerLocalTime)")
                     }
-                }.navigationTitle("Ride")
+                }
+//                HStack {
+//                    Image(systemName: "person.fill")
+//                        .foregroundColor(.gray)
+//                        .font(.system(size: 30))
+//                    Button {
+//                        self.showPicker = true
+//                    } label: {
+//                        if showPicker {
+//                            Picker("Select a number", selection: self.$selectedNumber) {
+//                                ForEach(self.numbers, id: \.self) { number in
+//                                    Text("\(number)")
+//                                }
+//                            }
+//                        } else {
+//                            Text("How many people with you?").padding(.trailing, 25)
+//                        }
+//                    }.frame(width: 260, height: 10)
+//                        .accentColor(.gray)
+//                    Spacer()
+//                }.padding(.leading, 20)
+//                Button {
+//                    self.savedPlace.toggle()
+//                } label: {
+//                    Image(systemName: "star.fill")
+//                        .foregroundColor(.gray)
+//                    Text("Choose a saved place")
+//                        .foregroundColor(.gray)
+//                    Spacer()
+//                }
+//                .padding([.top, .bottom])
+//                .padding(.leading, 25)
+//                .sheet(isPresented: $savedPlace) {
+//                }
+//                Button {
+//                    self.alreadyMade.toggle()
+//                } label: {
+//                    Image(systemName: "figure.run")
+//                        .foregroundColor(.gray)
+//                    Text("Choose an already made journey")
+//                        .foregroundColor(.gray)
+//                    Spacer()
+//                }.padding(.leading, 25)
+//                    .sheet(isPresented: $alreadyMade) {
+//                    }
+                Map(coordinateRegion: .constant(MKCoordinateRegion(
+                    center: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275),
+                    span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))),
+                    interactionModes: [])
+                .frame(width: 350, height: 200)
+                .cornerRadius(25)
+                Button {
+                    Task {
+                        await rideVM.getFlightStatus(userFlightNumber: flightNumber, userDepartureDate: flightDate)
+                    }
+                } label: {
+                    Image(systemName: "magnifyingglass")
+                        .foregroundColor(.black)
+                    Text("Search")
+                        .foregroundColor(.black)
+                }.frame(width: 350, height: 50)
+                    .background(.white)
+                    .cornerRadius(25)
+                    .padding(5)
             }
-        }.preferredColorScheme(.dark)
+            .navigationTitle("Ride")
+        }
+        .preferredColorScheme(.dark)
     }
 }
 
 struct RideView_Previews: PreviewProvider {
     static var previews: some View {
-        RideView(rideVM: RideViewModel()).environmentObject(RideInformation())
+        RideView(rideVM: RideViewModel())
     }
 }
