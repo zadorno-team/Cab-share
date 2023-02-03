@@ -13,6 +13,7 @@ import FirebaseCore
 struct CabShareApp: App {
     @StateObject var dataController = DataController()
     @StateObject var sessionService = SessionServiceImpl()
+    @StateObject var rideInformation = RideInformation()
     init() {
         FirebaseApp.configure()
     }
@@ -24,6 +25,7 @@ struct CabShareApp: App {
                     MainView()
                         .environment(\.managedObjectContext, dataController.container.viewContext)
                         .environmentObject(sessionService)
+                        .environmentObject(rideInformation)
                 case .loggedOut:
                     LoginView()
                 }

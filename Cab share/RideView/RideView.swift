@@ -10,13 +10,9 @@ import SwiftUI
 
 struct RideView: View {
     @ObservedObject var rideVM: RideViewModel
+    @EnvironmentObject var rideInformation: RideInformation
     @State private var flightNumber: String = ""
     @State private var flightDate = Date()
-    @State private var selectedNumber = 1
-    @State private var showPicker = false
-    @State private var savedPlace = false
-    @State private var alreadyMade = false
-    @StateObject private var locationManager = LocationManager()
     var weatherManager = WeatherManager()
     @State var weather: ResponseBody?
     let numbers = Array(1...10)
@@ -25,10 +21,10 @@ struct RideView: View {
             ScrollView {
                 VStack {
                     HStack {
-                        if let location = locationManager.location {
+                        if let location = rideVM.locationManager.location {
                             if let weather = weather {
                                 HStack {
-                                    Text("Hello, Sasha! Nice to see you here \(locationManager.city)!")
+                                    Text("Hello, Sasha! Nice to see you here \(rideVM.locationManager.city)!")
                                         .padding(20)
                                     Image(String(weather.weather[0].icon))
                                         .resizable()
@@ -57,12 +53,24 @@ struct RideView: View {
                         .background(Color.blue)
                         .cornerRadius(25)
                         .padding(.top, 5)
-                    SearchBar()
-                        .frame(width: 350, height: 60)
-                        .background(.white)
-                        .cornerRadius(25)
-                        .padding(5)
-                        .foregroundColor(.black)
+                    Button {
+                        rideInformation.searchBar.toggle()
+                    } label: {
+                        HStack {
+                            Image(systemName: "magnifyingglass")
+                                .foregroundColor(.black)
+                                .padding(.trailing, 0)
+                                .padding(.leading, 15)
+                            CustomTextField(placeholder: Text("Where to?").foregroundColor(.black), text: $rideInformation.searchText).foregroundColor(.black)
+                                .padding(.leading, 0)
+                                .truncationMode(.tail)
+                        }.frame(width: 350, height: 60)
+                            .background(.white)
+                            .cornerRadius(25)
+                            .padding()
+                    }.sheet(isPresented: $rideInformation.searchBar) {
+                        SearchBar()
+                    }
                     HStack {
                         Image(systemName: "airplane.departure")
                             .foregroundColor(.gray)
@@ -101,74 +109,26 @@ struct RideView: View {
                         Text("Departure time: \(flightStatus.data[0].arrival.date)")
                         Text("Arrival time: \(flightStatus.data[0].arrival.passengerLocalTime)")
                     }
-                }
-//                HStack {
-//                    Image(systemName: "person.fill")
-//                        .foregroundColor(.gray)
-//                        .font(.system(size: 30))
-//                    Button {
-//                        self.showPicker = true
-//                    } label: {
-//                        if showPicker {
-//                            Picker("Select a number", selection: self.$selectedNumber) {
-//                                ForEach(self.numbers, id: \.self) { number in
-//                                    Text("\(number)")
-//                                }
-//                            }
-//                        } else {
-//                            Text("How many people with you?").padding(.trailing, 25)
-//                        }
-//                    }.frame(width: 260, height: 10)
-//                        .accentColor(.gray)
-//                    Spacer()
-//                }.padding(.leading, 20)
-//                Button {
-//                    self.savedPlace.toggle()
-//                } label: {
-//                    Image(systemName: "star.fill")
-//                        .foregroundColor(.gray)
-//                    Text("Choose a saved place")
-//                        .foregroundColor(.gray)
-//                    Spacer()
-//                }
-//                .padding([.top, .bottom])
-//                .padding(.leading, 25)
-//                .sheet(isPresented: $savedPlace) {
-//                }
-//                Button {
-//                    self.alreadyMade.toggle()
-//                } label: {
-//                    Image(systemName: "figure.run")
-//                        .foregroundColor(.gray)
-//                    Text("Choose an already made journey")
-//                        .foregroundColor(.gray)
-//                    Spacer()
-//                }.padding(.leading, 25)
-//                    .sheet(isPresented: $alreadyMade) {
-//                    }
-                Map(coordinateRegion: .constant(MKCoordinateRegion(
-                    center: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275),
-                    span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))),
-                    interactionModes: [])
-                .frame(width: 350, height: 200)
-                .cornerRadius(25)
-                Button {
-                    Task {
-                        await rideVM.getFlightStatus(userFlightNumber: flightNumber, userDepartureDate: flightDate)
-                    }
-                } label: {
-                    Image(systemName: "magnifyingglass")
-                        .foregroundColor(.black)
-                    Text("Search")
-                        .foregroundColor(.black)
-                }.frame(width: 350, height: 50)
-                    .background(.white)
-                    .cornerRadius(25)
-                    .padding(5)
+                    Spacer(minLength: 10)
+                    MapView(latitude: $rideInformation.latitude, longitude: $rideInformation.longitude)
+                        .frame(width: 350, height: 200)
+                        .cornerRadius(25)
+                    Button {
+                        Task {
+                            await rideVM.getFlightStatus(userFlightNumber: flightNumber, userDepartureDate: flightDate)
+                        }
+                    } label: {
+                        Image(systemName: "magnifyingglass")
+                            .foregroundColor(.black)
+                        Text("Search")
+                            .foregroundColor(.black)
+                    }.frame(width: 350, height: 50)
+                        .background(.white)
+                        .cornerRadius(25)
+                        .padding(5)
+                }.navigationTitle("Ride")
             }
-            .navigationTitle("Ride")
-        }
-        .preferredColorScheme(.dark)
+        }.preferredColorScheme(.dark)
     }
 }
 

@@ -7,9 +7,11 @@
 
 import Foundation
 import SwiftUI
+import CoreLocation
 
 @MainActor
 class RideViewModel: ObservableObject {
+    @Published var locationManager = LocationManager()
     @Published var flightStatus: FlightData?
     @Published var error: String?
     @Published var previousApiRequests: [[String: String]] = (
@@ -104,5 +106,46 @@ struct TextFieldLimitModifer: ViewModifier {
 extension View {
     func limitInputLength(value: Binding<String>, length: Int) -> some View {
         self.modifier(TextFieldLimitModifer(value: value, length: length))
+    }
+}
+
+class RideInformation: ObservableObject {
+    @Published var searchBar = false
+    @Published var searchText: String = ""
+    @Published var flightNumber = ""
+    @Published var latitude: CLLocationDegrees?
+    @Published var longitude: CLLocationDegrees?
+}
+
+class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
+    private let locationManager = CLLocationManager()
+    @Published var city: String = ""
+    @Published var location: CLLocationCoordinate2D?
+    @Published var status: String?
+
+    override init() {
+        super.init()
+        locationManager.delegate = self
+        startUpdatingLocation()
+    }
+
+    func startUpdatingLocation() {
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+    }
+
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let currentLocation = locations.last else { return }
+
+        let geocoder = CLGeocoder()
+        geocoder.reverseGeocodeLocation(currentLocation) { (placemarks, _) in
+            guard let placemark = placemarks?.first else { return }
+            if placemark.locality != nil {
+                self.location = locations.last?.coordinate
+                self.city = "in " + placemark.locality!
+            } else {
+                self.city = ""
+            }
+        }
     }
 }

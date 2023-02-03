@@ -9,20 +9,24 @@ import SwiftUI
 import MapKit
 
 struct MapView: UIViewRepresentable {
+    @Binding var latitude: CLLocationDegrees?
+    @Binding var longitude: CLLocationDegrees?
+    @State var annotation: MKPointAnnotation?
     func makeUIView(context: Context) -> MKMapView {
-        MKMapView(frame: .zero)
+        let mapView = MKMapView(frame: .zero)
+        if let annotation = annotation {
+            mapView.addAnnotation(annotation)
+        }
+        return mapView
     }
-
     func updateUIView(_ uiView: MKMapView, context: Context) {
-        let coordinate = CLLocationCoordinate2D(latitude: 34.011286, longitude: -116.166868)
-        let span = MKCoordinateSpan(latitudeDelta: 2.0, longitudeDelta: 2.0)
+        let coordinate = CLLocationCoordinate2D(latitude: latitude ?? 51.507359, longitude: longitude ?? -0.136439)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = coordinate
+        self.annotation = annotation
+        let span = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
         let region = MKCoordinateRegion(center: coordinate, span: span)
         uiView.setRegion(region, animated: true)
-    }
-}
-
-struct MapView_Previews: PreviewProvider {
-    static var previews: some View {
-        MapView()
+        uiView.addAnnotation(annotation)
     }
 }
