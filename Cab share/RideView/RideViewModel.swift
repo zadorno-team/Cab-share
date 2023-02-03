@@ -12,6 +12,8 @@ import SwiftUI
 class RideViewModel: ObservableObject {
     @Published var flightStatus: FlightData?
     @Published var error: String?
+    @Published var previousApiRequests: [[String: String]] = (
+        UserDefaults.standard.array(forKey: "LastApi") as? [[String: String]]) ?? []
     private let wrongFlightNumberError = "Please enter valid flight number. Ex: F2 1122"
     func getFlightStatus(userFlightNumber: String, userDepartureDate: Date) async {
         let decoder = JSONDecoder()
@@ -34,7 +36,7 @@ class RideViewModel: ObservableObject {
             return baseUrl
         }()
         let headers = [
-            "X-RapidAPI-Key": "fdd94b659fmsha76c97a227504fap10bbb6jsn78d9220a014a",
+            "X-RapidAPI-Key": "392c21c50cmsha3a896885e4cc53p1bc7dfjsn3252bf0acb97",
             "X-RapidAPI-Host": "flight-info-api.p.rapidapi.com"
         ]
         var request = URLRequest(url: urlComponents.url!)
@@ -46,6 +48,7 @@ class RideViewModel: ObservableObject {
         } catch {
             print(error)
         }
+        saveApiRequest()
     }
     func dateToString(date: Date) -> String {
         let nameFormatter = DateFormatter()
@@ -54,7 +57,9 @@ class RideViewModel: ObservableObject {
         return departureDate
     }
     func checkFlightNumber(userInput value: String) {
-        guard let regexExpression = try? NSRegularExpression(pattern: "(?<![\\dA-Z])(?!\\d{2})([A-Z\\d]{2})\\s?(\\d{2,4})(?!\\d)")
+        guard let regexExpression = try? NSRegularExpression(
+            pattern: "(?<![\\dA-Z])(?!\\d{2})([A-Z\\d]{2})\\s?(\\d{2,4})(?!\\d)"
+        )
         else {
             return
         }
@@ -71,6 +76,18 @@ class RideViewModel: ObservableObject {
             }
         }
     }
+    func saveApiRequest() {
+        previousApiRequests.append([
+            "departureAirport": flightStatus!.data[0].departure.airport.iata,
+            "departureDate": flightStatus!.data[0].departure.date,
+            "departureTime": flightStatus!.data[0].departure.passengerLocalTime,
+            "arrivalAirport": flightStatus!.data[0].arrival.airport.iata,
+            "arrivalDate": flightStatus!.data[0].arrival.date,
+            "arrivalTime": flightStatus!.data[0].arrival.passengerLocalTime,
+            "dateOfRequest": dateToString(date: Date.now)
+            ])
+            UserDefaults.standard.set(previousApiRequests, forKey: "LastApi")
+        }
 }
 
 struct TextFieldLimitModifer: ViewModifier {
