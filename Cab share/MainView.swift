@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct MainView: View {
-
     @StateObject var rideVM = RideViewModel()
-
     var body: some View {
         TabView {
             RideView(rideVM: rideVM)

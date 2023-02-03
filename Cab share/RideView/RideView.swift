@@ -9,7 +9,6 @@ import MapKit
 import SwiftUI
 
 struct RideView: View {
-    @EnvironmentObject var rideInformation: RideInformation
     @ObservedObject var rideVM: RideViewModel
     @State private var flightNumber: String = ""
     @State private var flightDate = Date()
@@ -21,10 +20,10 @@ struct RideView: View {
             ScrollView {
                 VStack {
                     HStack {
-                        if let location = rideVM.locationManager.location {
+                        if let location = locationManager.location {
                             if let weather = weather {
                                 HStack {
-                                    Text("Hello, Sasha! Nice to see you here \(rideVM.locationManager.city)!")
+                                    Text("Hello, Sasha! Nice to see you here \(locationManager.city)!")
                                         .padding(20)
                                     Image(String(weather.weather[0].icon))
                                         .resizable()
@@ -83,9 +82,9 @@ struct RideView: View {
                             rideVM.checkFlightNumber(userInput: flightNumber)
                         }
                         Button(action: {
-                            rideInformation.flightNumber = ""
+                            self.flightNumber = ""
                         }, label: {
-                            if !rideInformation.flightNumber.isEmpty {
+                            if !flightNumber.isEmpty {
                                 Image(systemName: "xmark.circle.fill").foregroundColor(.secondary)
                             }
                         })
@@ -134,6 +133,6 @@ struct RideView: View {
 
 struct RideView_Previews: PreviewProvider {
     static var previews: some View {
-        RideView(rideVM: RideViewModel()).environmentObject(RideInformation())
+        RideView(rideVM: RideViewModel())
     }
 }

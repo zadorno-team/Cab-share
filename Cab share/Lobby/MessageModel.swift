@@ -37,10 +37,10 @@ final class MessageData: ObservableObject {
     Distinti saluti.
     Nexi Payments SpA
     """, received: false, timestamp: Date()),
-                         Message(id:"2", text:"""
+                         Message(id: "2", text: """
     Thank you, you have the worst service ever! 🤗
     """, received: true, timestamp: Date()),
-                         Message(id:"3", text: """
+                         Message(id: "3", text: """
     Gentile Cliente, La informiamo che è stato autorizzato il pagamento a favore di:
     WWW.MYCICERO.IT
     WWW.MYCICERO.IT

@@ -12,7 +12,7 @@ struct LobbyGroupView: View {
         NavigationView {
             ScrollView {
                 VStack {
-                    //TODO: Change coordinate with the position where the taxi will go
+#warning("TODO: Change coordinate with the position where the taxi will go")
                     Map(coordinateRegion: .constant(MKCoordinateRegion(
                         center: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275),
                         span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))),
@@ -20,9 +20,9 @@ struct LobbyGroupView: View {
                     .frame(width: 350, height: 200)
                     .cornerRadius(25)
                     HStack {
-    #warning("Instead of do all this button, we just need to do one with a foreach for each user")
+#warning("Instead of do all this button, we just need to do one with a foreach for each user")
                         Button {
-                            //TODO: Fill with a variable that open a sheet that shows the user's profile
+#warning("TODO: Fill with a variable that open a sheet that shows the user's profile")
                         } label: {
                             Image("noimage")
                                 .resizable()
@@ -31,7 +31,7 @@ struct LobbyGroupView: View {
                                 .padding(10)
                         }
                         Button {
-                            //TODO: Fill with a variable that open a sheet that shows the user's profile
+#warning("TODO: Fill with a variable that open a sheet that shows the user's profile")
                         } label: {
                             Image("noimage")
                                 .resizable()
@@ -40,7 +40,7 @@ struct LobbyGroupView: View {
                                 .padding(10)
                         }
                         Button {
-                            
+                            #warning("some action")
                         } label: {
                             Image("noimage")
                                 .resizable()
@@ -49,7 +49,7 @@ struct LobbyGroupView: View {
                                 .padding(10)
                         }
                         Button {
-                            
+                            #warning("some action")
                         } label: {
                             Image("noimage")
                                 .resizable()
