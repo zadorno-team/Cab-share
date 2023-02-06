@@ -14,8 +14,8 @@ protocol LoginService {
 }
 
 struct LoginCredentials {
-    var email: String
-    var password: String
+    var email: String = "test@gmail.com"
+    var password: String = "ciaociao"
 }
 
 final class LoginServiceImpl: LoginService {

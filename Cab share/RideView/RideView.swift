@@ -64,10 +64,10 @@ struct RideView: View {
                             CustomTextField(placeholder: Text("Where to?").foregroundColor(.black), text: $rideInformation.searchText).foregroundColor(.black)
                                 .padding(.leading, 0)
                                 .truncationMode(.tail)
-                        }.frame(width: 350, height: 60)
+                        }.frame(width: 350, height: 50)
                             .background(.white)
                             .cornerRadius(25)
-                            .padding()
+                            .padding(.vertical, 5)
                     }.sheet(isPresented: $rideInformation.searchBar) {
                         SearchBar()
                     }
@@ -126,6 +126,15 @@ struct RideView: View {
                         .background(.white)
                         .cornerRadius(25)
                         .padding(5)
+                    if !$rideVM.previousApiRequests.isEmpty {
+                        VStack {
+                            Text("Your previous requests:")
+                                .padding(.horizontal, 25)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .font(.headline)
+                            HistoryRowApiRequestView(historyRequests: $rideVM.previousApiRequests)
+                        }
+                    }
                 }.navigationTitle("Ride")
             }
         }.preferredColorScheme(.dark)
@@ -134,6 +143,6 @@ struct RideView: View {
 
 struct RideView_Previews: PreviewProvider {
     static var previews: some View {
-        RideView(rideVM: RideViewModel())
+        RideView(rideVM: RideViewModel()).environmentObject(RideInformation())
     }
 }
