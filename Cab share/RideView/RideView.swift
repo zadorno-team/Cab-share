@@ -100,32 +100,19 @@ struct RideView: View {
                             .accentColor(.gray)
                             .opacity(0.6)
                     }.padding(.horizontal).padding(.bottom, 10)
-                    if let flightStatus = rideVM.flightStatus {
-                        Text("Your flight details:")
-                            .font(.headline)
-                        Text("Departure airport: \(flightStatus.data[0].departure.airport.iata)")
-                        Text("Departure time: \(flightStatus.data[0].departure.passengerLocalTime)")
-                        Text("Arrival airport: \(flightStatus.data[0].arrival.airport.iata)")
-                        Text("Departure time: \(flightStatus.data[0].arrival.date)")
-                        Text("Arrival time: \(flightStatus.data[0].arrival.passengerLocalTime)")
-                    }
+                  
                     Spacer(minLength: 10)
                     MapView(latitude: $rideInformation.latitude, longitude: $rideInformation.longitude)
                         .frame(width: 350, height: 200)
                         .cornerRadius(25)
-                    Button {
-                        Task {
-                            await rideVM.getFlightStatus(userFlightNumber: flightNumber, userDepartureDate: flightDate)
-                        }
-                    } label: {
+                    NavigationLink (destination: RideListView(rideVM: rideVM, flightNumber: flightNumber, flightDate: flightDate)) {
                         Image(systemName: "magnifyingglass")
-                            .foregroundColor(.black)
                         Text("Search")
-                            .foregroundColor(.black)
                     }.frame(width: 350, height: 50)
                         .background(.white)
                         .cornerRadius(25)
                         .padding(5)
+                        .foregroundColor(.black)
                     if !$rideVM.previousApiRequests.isEmpty {
                         VStack {
                             Text("Your previous requests:")

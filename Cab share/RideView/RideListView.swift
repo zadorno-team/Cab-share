@@ -22,20 +22,62 @@ struct RideRow: View {
 }
 
 struct RideListView: View {
+    @ObservedObject var rideVM: RideViewModel
+    let flightNumber: String
+    let flightDate: Date
     let rides = [
     AnotherRide(time: "10:00", freeSeats: 4),
     AnotherRide(time: "10:20", freeSeats: 1)
     ]
 
     var body: some View {
-        List(rides) { ride in
-            RideRow(ride: ride)
+        NavigationView {
+            VStack {
+                HStack {
+                    VStack(alignment: .leading, spacing: 3) {
+                        Text(rideVM.flightStatus?.data[0].departure.airport.iata ?? "")
+                            .foregroundColor(.primary)
+                            .font(.headline)
+                        Text(rideVM.flightStatus?.data[0].departure.date ?? "")
+                            .foregroundColor(.secondary)
+                            .font(.subheadline)
+                        Text(rideVM.flightStatus?.data[0].departure.passengerLocalTime ?? "")
+                            .foregroundColor(.secondary)
+                            .font(.subheadline)
+                    }
+                    Spacer()
+                    VStack(alignment: .leading, spacing: 3) {
+                        Text(rideVM.flightStatus?.data[0].arrival.airport.iata ?? "")
+                            .foregroundColor(.primary)
+                            .font(.headline)
+                        Text(rideVM.flightStatus?.data[0].arrival.date ?? "")
+                            .foregroundColor(.secondary)
+                            .font(.subheadline)
+                        Text(rideVM.flightStatus?.data[0].arrival.passengerLocalTime ?? "")
+                            .foregroundColor(.secondary)
+                            .font(.subheadline)
+                    }
+                    Spacer()
+                    Image(systemName: "arrowtriangle.right")
+                }.padding(.vertical)
+                    .padding(.horizontal, 50)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 25)
+                            .stroke(.white, lineWidth: 1)
+                            .padding(.horizontal, 25)
+                    )
+                List(rides) { ride in
+                    RideRow(ride: ride)
+                }
+            }
+        }.task {
+            await rideVM.getFlightStatus(userFlightNumber: flightNumber, userDepartureDate: flightDate)
         }
     }
 }
 
 struct RideListView_Previews: PreviewProvider {
     static var previews: some View {
-        RideListView()
+        RideListView(rideVM: RideViewModel(), flightNumber: "", flightDate: Date.now)
     }
 }
