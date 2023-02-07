@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0315AC9E297EBB7700A91231 /* LobbyGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0315AC9D297EBB7700A91231 /* LobbyGroupView.swift */; };
+		0315AC9E297EBB7700A91231 /* LobbyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0315AC9D297EBB7700A91231 /* LobbyView.swift */; };
 		0315ACA2297EDB1300A91231 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0315AC9F297EDB1200A91231 /* ChatView.swift */; };
 		0315ACA3297EDB1300A91231 /* MessageBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0315ACA0297EDB1200A91231 /* MessageBubble.swift */; };
 		0315ACA4297EDB1300A91231 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0315ACA1297EDB1300A91231 /* MessageModel.swift */; };
@@ -38,7 +38,6 @@
 		03B10C252975A19200D7BA14 /* CustomSecureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B10C242975A19200D7BA14 /* CustomSecureField.swift */; };
 		03B10C2A2975B0B200D7BA14 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 03B10C292975B0B200D7BA14 /* FirebaseAuth */; };
 		03EED84E296F08F500375523 /* RideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EED84D296F08F500375523 /* RideView.swift */; };
-		133B53BF298D5A3800370201 /* LobbyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133B53BE298D5A3800370201 /* LobbyModel.swift */; };
 		133B53C4298D5A4700370201 /* RideListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133B53C1298D5A4700370201 /* RideListView.swift */; };
 		133B53C5298D5A4700370201 /* HistoryRowApiRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133B53C2298D5A4700370201 /* HistoryRowApiRequestView.swift */; };
 		133B53C7298D5A6A00370201 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133B53C6298D5A6A00370201 /* MapView.swift */; };
@@ -54,7 +53,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0315AC9D297EBB7700A91231 /* LobbyGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobbyGroupView.swift; sourceTree = "<group>"; };
+		0315AC9D297EBB7700A91231 /* LobbyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobbyView.swift; sourceTree = "<group>"; };
 		0315AC9F297EDB1200A91231 /* ChatView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		0315ACA0297EDB1200A91231 /* MessageBubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageBubble.swift; sourceTree = "<group>"; };
 		0315ACA1297EDB1300A91231 /* MessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
@@ -86,7 +85,6 @@
 		03C12B792979D89A00C6803C /* Cab-share-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Cab-share-Info.plist"; sourceTree = SOURCE_ROOT; };
 		03EED84D296F08F500375523 /* RideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideView.swift; sourceTree = "<group>"; };
 		133B53B1298D5A0B00370201 /* UserData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserData.xcdatamodel; sourceTree = "<group>"; };
-		133B53BE298D5A3800370201 /* LobbyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LobbyModel.swift; sourceTree = "<group>"; };
 		133B53C1298D5A4700370201 /* RideListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideListView.swift; sourceTree = "<group>"; };
 		133B53C2298D5A4700370201 /* HistoryRowApiRequestView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryRowApiRequestView.swift; sourceTree = "<group>"; };
 		133B53C6298D5A6A00370201 /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
@@ -119,11 +117,10 @@
 		0315AC9C297EBB6100A91231 /* Lobby */ = {
 			isa = PBXGroup;
 			children = (
-				133B53BE298D5A3800370201 /* LobbyModel.swift */,
+				0361F18329914B2A00F023AD /* View */,
 				0315AC9F297EDB1200A91231 /* ChatView.swift */,
 				0315ACA1297EDB1300A91231 /* MessageModel.swift */,
 				0315ACA0297EDB1200A91231 /* MessageBubble.swift */,
-				0315AC9D297EBB7700A91231 /* LobbyGroupView.swift */,
 			);
 			path = Lobby;
 			sourceTree = "<group>";
@@ -135,6 +132,14 @@
 				0366D0B5297D5B4200F0F9C0 /* WeatherModel.swift */,
 			);
 			path = Weather;
+			sourceTree = "<group>";
+		};
+		0361F18329914B2A00F023AD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0315AC9D297EBB7700A91231 /* LobbyView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		03784EF0298012D900A60A19 /* Map */ = {
@@ -380,9 +385,9 @@
 				03554D802979DE3000FCBC3E /* LoadingView.swift */,
 				139B2FEE296F138700C33E79 /* MainView.swift */,
 				2A4756D72980227200DA6084 /* UserTextField.swift */,
+				03855044298AFD8600CA0507 /* EditView.swift */,
 				03784EF0298012D900A60A19 /* Map */,
 				0315AC9C297EBB6100A91231 /* Lobby */,
-				03855044298AFD8600CA0507 /* EditView.swift */,
 				03855037298AAE4D00CA0507 /* Base */,
 				03855036298A9C4E00CA0507 /* CustomComponent */,
 				03855024298A6CBC00CA0507 /* Session */,
@@ -511,7 +516,6 @@
 				133B53C4298D5A4700370201 /* RideListView.swift in Sources */,
 				0315ACA4297EDB1300A91231 /* MessageModel.swift in Sources */,
 				0315ACA3297EDB1300A91231 /* MessageBubble.swift in Sources */,
-				133B53BF298D5A3800370201 /* LobbyModel.swift in Sources */,
 				0385503A298AAE4D00CA0507 /* NavigationCloseViewModifier.swift in Sources */,
 				133B53C7298D5A6A00370201 /* MapView.swift in Sources */,
 				0385503C298AF14F00CA0507 /* EditButtonViewModifier.swift in Sources */,
@@ -519,7 +523,7 @@
 				0366D0B6297D5B4200F0F9C0 /* WeatherModel.swift in Sources */,
 				03855031298A6CBC00CA0507 /* SessionService.swift in Sources */,
 				03EED84E296F08F500375523 /* RideView.swift in Sources */,
-				0315AC9E297EBB7700A91231 /* LobbyGroupView.swift in Sources */,
+				0315AC9E297EBB7700A91231 /* LobbyView.swift in Sources */,
 				13AC16612977F69A00F064B9 /* RideModel.swift in Sources */,
 				0385502E298A6CBC00CA0507 /* LoginViewModel.swift in Sources */,
 				0385502F298A6CBC00CA0507 /* LoginService.swift in Sources */,

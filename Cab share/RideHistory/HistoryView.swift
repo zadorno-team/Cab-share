@@ -8,30 +8,19 @@
 import SwiftUI
 import CoreData
 
-struct RideHistory: Identifiable {
-    let id = UUID()
-    let date: String
-    let goFrom: String
-    let goTo: String
-}
-
 struct HistoryView: View {
-
+    @EnvironmentObject var service: SessionServiceImpl
     @Environment(\.managedObjectContext) var moc
+    @State private var sheet = false
 
-    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Ride.date, ascending: false)]
-    ) var rides: FetchedResults<Ride>
-
-    var previousRides = [
-        RideHistory(date: "3 November, 2022", goFrom: "International Airport of Naples", goTo: "Portici"),
-        RideHistory(date: "12 December, 2022", goFrom: "International Airport of Naples", goTo: "Portici")
-    ]
+//    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \service.lo.date, ascending: false)]
+//    ) var rides: FetchedResults<Ride>
 
     var body: some View {
         NavigationView {
-            List {
-                ForEach(previousRides) { ride in
-                    HistoryRowView(ride: ride)
+            ScrollView {
+                ForEach(service.lobbyDetails) { lobby in
+                    NavigationLink(destination: LobbyView(lobbyInformation: lobby), label: {HistoryRowView(lobby: lobby)})
                 }
             }
             .navigationTitle("Previous Rides")

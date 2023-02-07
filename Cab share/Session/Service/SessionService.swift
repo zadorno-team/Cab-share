@@ -1,13 +1,8 @@
-//
-//  SessionService.swift
-//  Firebase User Account Management
-//
-//  Created by Tunde on 22/05/2021.
-//
-
 import Foundation
+import Firebase
 import FirebaseAuth
 import FirebaseFirestore
+import MapKit
 import Combine
 
 // Create a protocol with the following
@@ -21,7 +16,6 @@ enum SessionState {
     case loggedIn
     case loggedOut
 }
-
 
 struct UserSessionUpdates {
     var firstName: String
@@ -44,6 +38,32 @@ protocol SessionService {
     func logout()
 }
 
+enum LobbyKeys: String {
+    case date
+    case latitude
+    case longitude
+    case placemark
+    case users
+    case hour
+    case numUsers
+    case namePlate
+    case price
+}
+
+struct LobbyDetails: Identifiable {
+    var id = UUID()
+    //I had to make coordinate optional because of the architecture of MapView
+    var date: Timestamp
+    var latitude: CLLocationDegrees?
+    var longitude: CLLocationDegrees?
+    var placemark: String
+    var users: [String]
+    var hour: String
+    var numUsers: String
+    var namePlate: String
+    var price: String
+}
+
 final class SessionServiceImpl: SessionService, ObservableObject {
     @Published var state: SessionState = .loggedOut
     @Published var userDetails: UserSessionDetails?
@@ -51,6 +71,7 @@ final class SessionServiceImpl: SessionService, ObservableObject {
                                                                          lastName: "",
                                                                          age: "",
                                                                          homeTown: "")
+    @Published var lobbyDetails: [LobbyDetails] = []
     private var handler: AuthStateDidChangeListenerHandle?
     private var subscriptions = Set<AnyCancellable>()
     init() {
@@ -95,6 +116,32 @@ private extension SessionServiceImpl {
                                 }
                             }
                 }
+                // HISTORYVIEW(RIDES) DOWNLOAD
+                Firestore.firestore().collection("Rides").getDocuments { (snapshot, error) in
+                    if let error = error {
+                        // Handle error
+                        print(error)
+                        return
+                    } else {
+                        for value in snapshot!.documents {
+                                let value = value.data()
+                                  let users = value[LobbyKeys.users.rawValue] as? [String]
+                                  let date = value[LobbyKeys.date.rawValue] as? Timestamp
+                                  let latitude = value[LobbyKeys.latitude.rawValue] as? CLLocationDegrees
+                                  let longitude = value[LobbyKeys.longitude.rawValue] as? CLLocationDegrees
+                                  let placemark = value[LobbyKeys.placemark.rawValue] as? String
+                                  let hour = value[LobbyKeys.hour.rawValue] as? String
+                                  let numUsers = value[LobbyKeys.numUsers.rawValue] as? String
+                                  let namePlate = value[LobbyKeys.namePlate.rawValue] as? String
+                                  let price = value[LobbyKeys.price.rawValue] as? String
+                            DispatchQueue.main.async {
+                                // swiftlint:disable all
+                                let lobby = LobbyDetails(date: date ?? Timestamp(date: Date()), latitude: latitude ?? CLLocationDegrees(), longitude: longitude ?? CLLocationDegrees(), placemark: placemark ?? "", users: users ?? [""], hour: hour ?? "", numUsers: numUsers ?? "", namePlate: namePlate ?? "", price: price ?? "")
+                                self.lobbyDetails.append(lobby)
+                            }
+                        }
+                    }
+                }
             }
     }
 }
@@ -106,7 +153,7 @@ extension SessionServiceImpl {
             let values = [RegistrationKeys.firstName.rawValue: userUpdates.firstName,
                           RegistrationKeys.lastName.rawValue: userUpdates.lastName,
                           RegistrationKeys.age.rawValue: userUpdates.age,
-                          RegistrationKeys.homeTown.rawValue: userUpdates.homeTown] as [String : Any]
+                          RegistrationKeys.homeTown.rawValue: userUpdates.homeTown] as [String: Any]
             Firestore
                 .firestore()
                 .collection("Users")
