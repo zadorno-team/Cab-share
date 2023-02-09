@@ -38,7 +38,7 @@ class RideViewModel: ObservableObject {
             return baseUrl
         }()
         let headers = [
-            "X-RapidAPI-Key": "392c21c50cmsha3a896885e4cc53p1bc7dfjsn3252bf0acb97",
+            "X-RapidAPI-Key": "bd403ffc41msh4580183d7c2a148p1d2826jsna53c0d4ad488",
             "X-RapidAPI-Host": "flight-info-api.p.rapidapi.com"
         ]
         var request = URLRequest(url: urlComponents.url!)
